@@ -22,9 +22,24 @@
 
 /* 標題、注記の出力（時刻別計算値ファイル） */
 
+void __replace_dir_sep(char* path)
+{
+   //ファイルパスセパレータの統一
+   size_t l = strlen(path);
+   for (size_t i = 0; i < l; i++)
+   {
+      if(path[i] == '/'){
+         path[i] = '\\';
+      }
+   }
+}
+
 void ttlprint(FILE *fo, char *fileid, SIMCONTL *Simc)
 {
    unsigned int i;
+
+   //ファイルパスセパレータの統一
+   __replace_dir_sep(Simc->File);
    
    fprintf(fo, "%s#\n", fileid);
    fprintf(fo, "-ver %s\n", EEVERSION);

@@ -15,6 +15,8 @@
 
 /* fesy.h */
 
+#pragma once
+
 #define  SIMUL_BUILDG  1
 
 #include "esize.h"

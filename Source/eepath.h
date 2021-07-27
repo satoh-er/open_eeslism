@@ -14,7 +14,7 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 /*  eepath.h  */
-
+#pragma once
 
 #define  ROOM_TYPE        "ROOM"
 #define  RDPANEL_TYPE     "RPNL"

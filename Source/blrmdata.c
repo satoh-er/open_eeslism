@@ -1492,8 +1492,10 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 	Rmvls->Nrdpnl = Nrdpnl;
 	//Rmvls->Nairflow = Nairflow ;
 
+#if WINVER
 	i = _heapmin() ;
-	
+#endif
+
 	N = Rmvls->Nroom ;
 	//printf("N=%d i=%d\n", N, i ) ;
 	if (N > 0 )

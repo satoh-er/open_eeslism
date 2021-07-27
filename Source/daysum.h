@@ -15,6 +15,7 @@
 
 /* daysum.h */
 
+#pragma once
 
 typedef struct svday /* システム変数の日集 */
 {

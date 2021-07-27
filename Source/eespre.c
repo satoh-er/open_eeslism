@@ -223,7 +223,12 @@ void eespre(char *File, char *Ipath, int *key)
 	fprintf ( fb, "\n" ) ;
 
 	ad = ftell ( fb ) ;
+#ifdef WIN32
+	//6文字分戻る(改行コード2文字含む)
 	fseek ( fb, ad - 6, SEEK_SET ) ;
+#else
+	fseek ( fb, ad - 4, SEEK_SET ) ;
+#endif
 
 	//if ( syscmp == 0 )
 	//	fprintf ( fb, " SYSCMP\n *\n" ) ;

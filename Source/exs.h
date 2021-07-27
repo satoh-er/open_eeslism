@@ -15,6 +15,7 @@
 
 /* exs.h */
 
+#pragma once
 
 typedef struct exsf   /*外表面方位デ－タ                */
 {

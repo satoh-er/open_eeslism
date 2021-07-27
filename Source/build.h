@@ -15,8 +15,11 @@
 
 /*   build.h  */
 
+#pragma once
+
 #include <string.h>
 #include "exs.h"
+#include "esize.h"
 
 typedef struct bmlst				/*壁材料リスト */
 {

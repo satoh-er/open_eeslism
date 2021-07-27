@@ -15,6 +15,9 @@
 
 /*  estr.h    */
 
+#pragma once
+
+
 #define  SCHAR    1024
 //#define  NCHAR	  128
 

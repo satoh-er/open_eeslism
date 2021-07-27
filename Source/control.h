@@ -15,6 +15,8 @@
 
 /* control.h */
 
+#pragma once
+
 /* 制御、スケジュール設定 */
 
 

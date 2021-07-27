@@ -15,6 +15,15 @@
 
 /* fnlib.h */
 
+#pragma once
+
+#include "simcon.h"
+#include "eepath.h"
+#include "eqptyp.h"
+#include "control.h"
+#include "sched.h"
+#include "wthrd.h"
+#include "eps.h"
 
 /*  ees3lib.c  */
 void	HeapCheck(char *s) ;

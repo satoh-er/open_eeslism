@@ -15,6 +15,7 @@
 
 /*   wthrd.h    */
 
+#pragma once
 
 typedef struct locat
 {

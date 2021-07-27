@@ -21,7 +21,12 @@
 				     
 */
 
-//#include "exs.h"
+#pragma once
+
+#include "wthrd.h"
+#include "exs.h"
+#include "MODEL.h"
+
 /*-----障害物に当たった点の合計をカウントする---------*/
 void KAUNT(int mpn, double ls, double ms, double ns,
            double *suma, double *sumg, double *sumwall, double s,

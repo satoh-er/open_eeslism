@@ -1,4 +1,7 @@
 ﻿/*  fnfio.h  */
+
+#pragma once
+
 /**** ee_files.c *****/
 
 /*  ee_spre.c  */

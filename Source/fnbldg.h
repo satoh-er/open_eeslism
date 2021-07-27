@@ -16,6 +16,7 @@
 /* fnbldg.h  */
 /*** bl_files.c ****/
 
+#pragma once
 
 /*  bl_hcflib.c   */
 void Htrcf (double *alc, double *alo, char alotype, EXSF *Exs, double Tr, int N, double *alr,

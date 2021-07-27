@@ -67,12 +67,12 @@ void monthday(int *Mon, int *Day, int mo, int dayo)
 
 
 /*  気象デ－タの入力     */
+double  Lat,Slat,Clat,Tlat,Lon,Ls,Isc;
 
 void Weatherdt(SIMCONTL *Simc, DAYTM *Daytm, LOCAT *Loc, WDAT *Wd, EXSF *Exs, char EarthSrfFlg)
 {
 	extern int	DEBUG, dayprn ;
 	extern FILE	*ferr ;
-	extern double  Lat,Slat,Clat,Tlat,Lon,Ls,Isc;
 	
 	static int   ptt=25, nc=0;
 	static double     decl, E, tas, timedg;
@@ -309,6 +309,13 @@ void hspwdread(FILE *fp, int nday,
 			fprintf(ferr,"\nName=%s\tLat=%.4g\tLon=%.4g\tLs=%.4g\ta=%.4g\tb=%.4g\tc=%.4g\n",
 				Loc->name, Loc->Lat, Loc->Lon, Loc->Ls, a,b,c); 
 		}
+
+		//改行コードの判定
+		fseek(fp, 0, SEEK_END);
+		long fsize = ftell(fp);
+		recl = (int)(fsize / 2556);
+		//recl=82 -> Windows (CRLF)
+		//recl=81 -> Linux/Mac(CR or LF)
 	}
 
 	if (ic != nday)
@@ -468,7 +475,13 @@ void EarthSrfTempInit(SIMCONTL *Simc, LOCAT *Loc, WDAT *Wd)
 	double	Soic, Soil ;
 
 	// 地表面温度の計算
-	printf("地表面温度の計算開始\n") ;
+#ifdef WIN32
+	printf("地表面温度の計算開始\n");
+#else
+	//GCCがSJIS非対応のため、`表`のあとに\を挿入
+	printf("地表\面温度の計算開始\n");
+#endif // WIN32
+
 
 	// 土壌の容積比熱[J/m3K]
 	Soic = 3.34e6 ;

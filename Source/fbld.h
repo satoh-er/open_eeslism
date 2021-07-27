@@ -15,6 +15,8 @@
 
 /* fbld.h  */
 
+#pragma once
+
 #include "MODEL.h"   /*---higuchi 070918--*/
 #include "estr.h"
 #include "wthrd.h"

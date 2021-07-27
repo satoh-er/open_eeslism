@@ -23,7 +23,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
-#include <conio.h>
 #include <stdlib.h>		// satoh追加 2008/11/8
 #include "esize.h"
 #include "fesy.h"
