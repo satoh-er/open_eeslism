@@ -15,6 +15,8 @@
 
 /* eps.h */
 
+#pragma once
+
 #define EPOS_PROG 0
 
 #define VTYPEMAX 50

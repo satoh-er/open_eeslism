@@ -15,6 +15,11 @@
 
 /* eqptyp.h  */
 
+#pragma once
+
+#include "daysum.h"
+#include "build.h"
+
 typedef struct qmeas
 {
 	char	fluid ;

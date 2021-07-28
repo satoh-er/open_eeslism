@@ -29,7 +29,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#ifdef _WIN32
 #include <direct.h>
+#else
+#include <unistd.h>
+#endif
 #include <math.h>
 //#include <iostream>
 #include "esize.h"
@@ -286,8 +290,11 @@ int main(int Narg, char **File)
 				if ((st = strchr(Path, '\"')) != 0)
 					*st = '\0';
 
-
+#if WIN32
 				_chdir(Path);
+#else
+				chdir(Path);
+#endif
 
 				free(Path);
 			}

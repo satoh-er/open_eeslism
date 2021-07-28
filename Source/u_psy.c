@@ -60,6 +60,8 @@ double min(double a, double b);
 
  --------------------------------------------------------------------- */
 
+double R0, Ca, Cv, Rc, Cc, Cw, Pcnv, P;
+
 void Psyint(void)
 {
 	extern double  R0, Ca, Cv, Rc, Cc, Cw, Pcnv, P;

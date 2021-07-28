@@ -15,6 +15,8 @@
 
 /* buildex.h */
 
+#pragma once
+
 #include <string.h>
 #include "exs.h"
 

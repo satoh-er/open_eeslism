@@ -25,7 +25,7 @@ void	dprdayweek ( int *daywk )
 {  
 	int		k, d, dmax = 366 ;
 	extern char	DAYweek[][4];
-	extern int	*ferr ;
+	extern FILE	*ferr ;
 	
 	printf ( "---  Day of week -----\n   " ) ;
 	for ( d = 0; d < 8; d++ )

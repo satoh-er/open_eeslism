@@ -14,6 +14,9 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 /* fnesy.h */
+
+#pragma once
+
 /*** es_filees.c ****/
 
 

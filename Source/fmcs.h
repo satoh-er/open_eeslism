@@ -15,6 +15,8 @@
 
 /*  fmcs.h  */
 
+#pragma once
+
 #include <stdio.h>
 #include "estr.h"
 #include "wthrd.h"

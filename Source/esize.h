@@ -15,6 +15,8 @@
 
 /*  esize.h  */
 
+#pragma once
+
 //#define  SCDAYTMMAX  30
 
 //#define  SEASNMX    1

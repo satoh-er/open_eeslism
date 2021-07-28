@@ -1,0 +1,6 @@
+.vs
+Debug
+*.o
+*.log
+build
+data

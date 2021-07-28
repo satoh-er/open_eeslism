@@ -15,8 +15,12 @@
 
 /*  simcon.h  */
 
+#pragma once
+
 #include <stdio.h>
 #include "estr.h"
+#include "eps.h"
+#include "wthrd.h"
 
 #define  EEVERSION  "ES4.6"
 

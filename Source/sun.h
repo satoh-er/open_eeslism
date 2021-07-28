@@ -28,4 +28,4 @@ void Srdclr(double Io, double P, double Sh, double *Idn, double *Isky);
 void Dnsky(double Io, double Ihol, double Sh, double *Idn, double *Isky);
 
 
-double  Lat,Slat,Clat,Tlat,Lon,Ls,Isc;
+extern double  Lat,Slat,Clat,Tlat,Lon,Ls,Isc;

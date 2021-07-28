@@ -34,6 +34,7 @@ void HeapCheck(char *s)
 	int i ;
 	extern int DEBUG;
 
+#if WINVER
 	if (DEBUG)
 	{
 		//printf("HeatCheck  %s\n", s) ;
@@ -54,6 +55,7 @@ void HeapCheck(char *s)
 			break;
 		}
 	}
+#endif
 }
 
 int isstrdigit(char *s)

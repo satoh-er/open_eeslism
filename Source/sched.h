@@ -15,6 +15,8 @@
 
 /*   sched.h    */
 
+#pragma once
+
 typedef struct seasn   /*季節設定*/
 {
 	char    *name;

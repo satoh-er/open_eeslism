@@ -15,6 +15,7 @@
 
 /* egcalc.h */
 
+#pragma once
 
 typedef struct ptotal  /* 系統、機器種別の積算値 */
 {
