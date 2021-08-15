@@ -806,15 +806,15 @@ void stankdyprt(FILE *fo, int id, int Nstank, STANK *Stank)
 			fprintf(fo, "%.1lf\n", S->Tsdy.m) ;
             for (j = 0; j < Stank->Nin; j++, S++)
             {	 
-				fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+				fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 					S->Tidy.hrs, S->Tidy.m, 
 					S->Tidy.mntime, S->Tidy.mn, 
 					S->Tidy.mxtime, S->Tidy.mx);
 
-				fprintf(fo, "%1d %3.1lf ", S->Qdy.hhr, S->Qdy.h);
-				fprintf(fo, "%1d %3.1lf ", S->Qdy.chr, S->Qdy.c);      
-				fprintf(fo, "%1d %2.0lf ", S->Qdy.hmxtime, S->Qdy.hmx);
-				fprintf(fo, "%1d %2.0lf ", S->Qdy.cmxtime, S->Qdy.cmx);
+				fprintf(fo, "%1ld %3.1lf ", S->Qdy.hhr, S->Qdy.h);
+				fprintf(fo, "%1ld %3.1lf ", S->Qdy.chr, S->Qdy.c);      
+				fprintf(fo, "%1ld %2.0lf ", S->Qdy.hmxtime, S->Qdy.hmx);
+				fprintf(fo, "%1ld %2.0lf ", S->Qdy.cmxtime, S->Qdy.cmx);
 			}
             fprintf(fo, " %3.1lf %3.1lf\n", 
 				Stank->Qlossdy * cff_kWh, Stank->Qstody * cff_kWh);	    
@@ -875,15 +875,15 @@ void stankmonprt(FILE *fo, int id, int Nstank, STANK *Stank)
 			fprintf(fo, "%.1lf\n", S->Tsdy.m) ;
             for (j = 0; j < Stank->Nin; j++, S++)
             {	 
-				fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+				fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 					S->Tidy.hrs, S->Tidy.m, 
 					S->Tidy.mntime, S->Tidy.mn, 
 					S->Tidy.mxtime, S->Tidy.mx);
 
-				fprintf(fo, "%1d %3.1lf ", S->Qdy.hhr, S->Qdy.h);
-				fprintf(fo, "%1d %3.1lf ", S->Qdy.chr, S->Qdy.c);      
-				fprintf(fo, "%1d %2.0lf ", S->Qdy.hmxtime, S->Qdy.hmx);
-				fprintf(fo, "%1d %2.0lf ", S->Qdy.cmxtime, S->Qdy.cmx);
+				fprintf(fo, "%1ld %3.1lf ", S->Qdy.hhr, S->Qdy.h);
+				fprintf(fo, "%1ld %3.1lf ", S->Qdy.chr, S->Qdy.c);      
+				fprintf(fo, "%1ld %2.0lf ", S->Qdy.hmxtime, S->Qdy.hmx);
+				fprintf(fo, "%1ld %2.0lf ", S->Qdy.cmxtime, S->Qdy.cmx);
 			}
             fprintf(fo, " %3.1lf %3.1lf\n", 
 				Stank->mQlossdy * cff_kWh, Stank->mQstody * cff_kWh);	    

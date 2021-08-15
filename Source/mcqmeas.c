@@ -320,21 +320,21 @@ void	Qmeasdyprt(FILE *fo, int id, int Nqmeas, QMEAS *Qmeas)
 		{
 			if ( Qmeas->Plistxc != NULL && Qmeas->Plistxh != NULL )
 			{
-				fprintf(fo, "%1d %3.1lf ", Qmeas->Qdys.hhr, Qmeas->Qdys.h);
-				fprintf(fo, "%1d %3.1lf ", Qmeas->Qdys.chr, Qmeas->Qdys.c);      
-				fprintf(fo, "%1d %2.0lf ", Qmeas->Qdys.hmxtime, Qmeas->Qdys.hmx);
-				fprintf(fo, "%1d %2.0lf\n", Qmeas->Qdys.cmxtime, Qmeas->Qdys.cmx);
+				fprintf(fo, "%1ld %3.1lf ", Qmeas->Qdys.hhr, Qmeas->Qdys.h);
+				fprintf(fo, "%1ld %3.1lf ", Qmeas->Qdys.chr, Qmeas->Qdys.c);      
+				fprintf(fo, "%1ld %2.0lf ", Qmeas->Qdys.hmxtime, Qmeas->Qdys.hmx);
+				fprintf(fo, "%1ld %2.0lf\n", Qmeas->Qdys.cmxtime, Qmeas->Qdys.cmx);
 				
-				fprintf(fo, "%1d %3.1lf ", Qmeas->Qdyl.hhr, Qmeas->Qdyl.h);
-				fprintf(fo, "%1d %3.1lf ", Qmeas->Qdyl.chr, Qmeas->Qdyl.c);      
-				fprintf(fo, "%1d %2.0lf ", Qmeas->Qdyl.hmxtime, Qmeas->Qdyl.hmx);
-				fprintf(fo, "%1d %2.0lf\n", Qmeas->Qdyl.cmxtime, Qmeas->Qdyl.cmx);
+				fprintf(fo, "%1ld %3.1lf ", Qmeas->Qdyl.hhr, Qmeas->Qdyl.h);
+				fprintf(fo, "%1ld %3.1lf ", Qmeas->Qdyl.chr, Qmeas->Qdyl.c);      
+				fprintf(fo, "%1ld %2.0lf ", Qmeas->Qdyl.hmxtime, Qmeas->Qdyl.hmx);
+				fprintf(fo, "%1ld %2.0lf\n", Qmeas->Qdyl.cmxtime, Qmeas->Qdyl.cmx);
 			}
 			
-            fprintf(fo, "%1d %3.1lf ", Qmeas->Qdyt.hhr, Qmeas->Qdyt.h);
-            fprintf(fo, "%1d %3.1lf ", Qmeas->Qdyt.chr, Qmeas->Qdyt.c);      
-            fprintf(fo, "%1d %2.0lf ", Qmeas->Qdyt.hmxtime, Qmeas->Qdyt.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Qmeas->Qdyt.cmxtime, Qmeas->Qdyt.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Qmeas->Qdyt.hhr, Qmeas->Qdyt.h);
+            fprintf(fo, "%1ld %3.1lf ", Qmeas->Qdyt.chr, Qmeas->Qdyt.c);      
+            fprintf(fo, "%1ld %2.0lf ", Qmeas->Qdyt.hmxtime, Qmeas->Qdyt.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Qmeas->Qdyt.cmxtime, Qmeas->Qdyt.cmx);
 		}
 		break;
 	}
@@ -385,21 +385,21 @@ void	Qmeasmonprt(FILE *fo, int id, int Nqmeas, QMEAS *Qmeas)
 		{
 			if ( Qmeas->Plistxc != NULL && Qmeas->Plistxh != NULL )
 			{
-				fprintf(fo, "%1d %3.1lf ", Qmeas->mQdys.hhr, Qmeas->mQdys.h);
-				fprintf(fo, "%1d %3.1lf ", Qmeas->mQdys.chr, Qmeas->mQdys.c);      
-				fprintf(fo, "%1d %2.0lf ", Qmeas->mQdys.hmxtime, Qmeas->mQdys.hmx);
-				fprintf(fo, "%1d %2.0lf\n", Qmeas->mQdys.cmxtime, Qmeas->mQdys.cmx);
+				fprintf(fo, "%1ld %3.1lf ", Qmeas->mQdys.hhr, Qmeas->mQdys.h);
+				fprintf(fo, "%1ld %3.1lf ", Qmeas->mQdys.chr, Qmeas->mQdys.c);      
+				fprintf(fo, "%1ld %2.0lf ", Qmeas->mQdys.hmxtime, Qmeas->mQdys.hmx);
+				fprintf(fo, "%1ld %2.0lf\n", Qmeas->mQdys.cmxtime, Qmeas->mQdys.cmx);
 				
-				fprintf(fo, "%1d %3.1lf ", Qmeas->mQdyl.hhr, Qmeas->mQdyl.h);
-				fprintf(fo, "%1d %3.1lf ", Qmeas->mQdyl.chr, Qmeas->mQdyl.c);      
-				fprintf(fo, "%1d %2.0lf ", Qmeas->mQdyl.hmxtime, Qmeas->mQdyl.hmx);
-				fprintf(fo, "%1d %2.0lf\n", Qmeas->mQdyl.cmxtime, Qmeas->mQdyl.cmx);
+				fprintf(fo, "%1ld %3.1lf ", Qmeas->mQdyl.hhr, Qmeas->mQdyl.h);
+				fprintf(fo, "%1ld %3.1lf ", Qmeas->mQdyl.chr, Qmeas->mQdyl.c);      
+				fprintf(fo, "%1ld %2.0lf ", Qmeas->mQdyl.hmxtime, Qmeas->mQdyl.hmx);
+				fprintf(fo, "%1ld %2.0lf\n", Qmeas->mQdyl.cmxtime, Qmeas->mQdyl.cmx);
 			}
 			
-            fprintf(fo, "%1d %3.1lf ", Qmeas->mQdyt.hhr, Qmeas->mQdyt.h);
-            fprintf(fo, "%1d %3.1lf ", Qmeas->mQdyt.chr, Qmeas->mQdyt.c);      
-            fprintf(fo, "%1d %2.0lf ", Qmeas->mQdyt.hmxtime, Qmeas->mQdyt.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Qmeas->mQdyt.cmxtime, Qmeas->mQdyt.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Qmeas->mQdyt.hhr, Qmeas->mQdyt.h);
+            fprintf(fo, "%1ld %3.1lf ", Qmeas->mQdyt.chr, Qmeas->mQdyt.c);      
+            fprintf(fo, "%1ld %2.0lf ", Qmeas->mQdyt.hmxtime, Qmeas->mQdyt.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Qmeas->mQdyt.cmxtime, Qmeas->mQdyt.cmx);
 		}
 		break;
 	}

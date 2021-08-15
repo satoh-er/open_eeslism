@@ -243,7 +243,7 @@ void Pflow(int Nmpath, MPATH *Mpath, WDAT *Wd)
 					
 					if(Plist->pelm != NULL)
 					{
-						sprintf(Err, "Mpath=%s  lpath=%Id  elm=%s  Go=%lf\n",
+						sprintf(Err, "Mpath=%s  lpath=%Ild  elm=%s  Go=%lf\n",
 							Mpath->name, Plist - mpi->plist, 
 							Plist->pelm->cmp->name, Go);
 					}

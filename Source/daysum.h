@@ -35,7 +35,7 @@ typedef struct qday
 	  hmx,   /* 加熱最大値 */
 	  cmx;   /* 冷却最大値 */
    
-   int    hhr,   /* 加熱時間回数 */
+   long   hhr,   /* 加熱時間回数 */
           chr,   /* 冷却時間回数 */
 	  hmxtime,
 	  cmxtime;
@@ -47,7 +47,7 @@ typedef struct eday
    double  d,     /* 積算値 */
           mx;    /* 最大値 */
    
-   int    hrs,   /* 運転時間回数 */
+   long   hrs,   /* 運転時間回数 */
           mxtime;
 } EDAY;
 

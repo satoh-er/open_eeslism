@@ -330,6 +330,7 @@ int main(int Narg, char **File)
 	Ifile = stralloc(File[1]);
 	strcpy(s, Ifile);
 
+	// 入力されたパスが"で始まる場合に除去する
 	if (Ifile[0] == '"')
 		sscanf(Ifile, "\"%~[\"]\"", s);
 

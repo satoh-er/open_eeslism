@@ -451,7 +451,7 @@ void Pathdata (FILE *f, char *errkey, SIMCONTL *Simc, WDAT *Wd, int  Ncompnt,  C
 
 			if ( DEBUG )
 			{
-				printf("<<Pathdata>>  Mpath=%Id fliud=%c\n", Mpath - mpi, Mpath->fluid);	
+				printf("<<Pathdata>>  Mpath=%Ild fliud=%c\n", Mpath - mpi, Mpath->fluid);	
 			}
 
 			if (Mpath->fluid == AIR_FLD)
@@ -529,7 +529,7 @@ void Pathdata (FILE *f, char *errkey, SIMCONTL *Simc, WDAT *Wd, int  Ncompnt,  C
 			if ( DEBUG )
 			{
 				printf ( "eepath.c  Mpath->Nlpath=%d\n", Mpath->Nlpath ) ;
-				printf("<<Pathdata>>  i=%d Mpath=%Id  j=%d Plist=%Id\n", i, Mpath - mpi, 
+				printf("<<Pathdata>>  i=%d Mpath=%Ild  j=%d Plist=%Ild\n", i, Mpath - mpi, 
 					j, Plist - Mpath->plist); 
 			}
 
@@ -538,7 +538,7 @@ void Pathdata (FILE *f, char *errkey, SIMCONTL *Simc, WDAT *Wd, int  Ncompnt,  C
 			{
 				if ( DEBUG )
 				{
-					printf("<<Pathdata>>  m=%d  pelm=%Id  %s\n", m, Pelm - Plist->pelm,
+					printf("<<Pathdata>>  m=%d  pelm=%Ild  %s\n", m, Pelm - Plist->pelm,
 						Pelm->cmp->name);
 
 					printf ( "MAX=%d  m=%d\n", Plist->Nelm, m ) ;

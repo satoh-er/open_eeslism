@@ -67,7 +67,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 	int		sk, si, rc ;
 	char	c, s[SCHAR], ss[SCHAR], *st, *ce, *stt,
 		**nxrmname, dexsname[SCHAR], dnxrname[SCHAR],
-		err[SCHAR], Er[SCHAR], sfemark, RmnameEr[SCHAR] ;
+		err[SCHAR+128], Er[SCHAR], sfemark, RmnameEr[SCHAR] ;
 	double	X, Y ;
 	double	Wi, H, D ;
 	char	*ast ;
@@ -797,7 +797,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 						Sd->PCMflg = w->PCMflg ;
 						if (Sd->tnxt < 0.)
 							Sd->tnxt = w->tnxt;
-						Sd->tnxt = max(Sd->tnxt, 0.);
+						Sd->tnxt = dmax(Sd->tnxt, 0.);
 						//printf("tnxt=%lf\n", Sd->tnxt);
 					}
 

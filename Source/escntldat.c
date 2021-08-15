@@ -39,7 +39,7 @@ void Contrldata(FILE *fi, CONTL **Ct, int *Ncontl, CTLIF **Ci, int *Nctlif,
 	CTLIF	*ctlif, *Ctlif, *cti ;
 	CTLST	*ctlst, *Ctlst, *cts ;
 	VPTR	vptr, vpath;
-	char	s[SCHAR], *st, Er[SCHAR], *load ; //, ss[SCHAR] ;
+	char	s[SCHAR], *st, Er[SCHAR+128], *load ; //, ss[SCHAR] ;
 	int		err, i, Ni, N, Nm ; //, k ;
 	char	Err[SCHAR] ;
 	//	VALV	*Valv, *Vb ;

@@ -36,7 +36,7 @@ double spcheat(char fluid)
       return ( ca ) ;
    else
    {
-      sprintf(s, "xxx fluid='%c'\0", fluid);
+      sprintf(s, "xxx fluid='%c'", fluid);
       Eprint("<spcheat>", s); 
       return(-9999.0);
    }

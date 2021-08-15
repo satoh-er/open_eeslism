@@ -313,7 +313,7 @@ void	gausei(double *A, double *C, int m, int n, double *B)
 
 			ay = fabs(y - B[i]);
 
-			def = max(def, ay);
+			def = dmax(def, ay);
 
 			B[i] = y;
 		}

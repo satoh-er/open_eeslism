@@ -290,22 +290,22 @@ void hexdyprt(FILE *fo, int id, int Nhex, HEX *Hex)
 	default:
 		for (i = 0; i < Nhex; i++, Hex++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Hex->Tcidy.hrs, Hex->Tcidy.m, 
 				Hex->Tcidy.mntime, Hex->Tcidy.mn, 
 				Hex->Tcidy.mxtime, Hex->Tcidy.mx);
-            fprintf(fo, "%1d %3.1lf ", Hex->Qcidy.hhr, Hex->Qcidy.h);
-            fprintf(fo, "%1d %3.1lf ", Hex->Qcidy.chr, Hex->Qcidy.c);      
-            fprintf(fo, "%1d %2.0lf ", Hex->Qcidy.hmxtime, Hex->Qcidy.hmx);
-            fprintf(fo, "%1d %2.0lf ", Hex->Qcidy.cmxtime, Hex->Qcidy.cmx);
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf ", Hex->Qcidy.hhr, Hex->Qcidy.h);
+            fprintf(fo, "%1ld %3.1lf ", Hex->Qcidy.chr, Hex->Qcidy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Hex->Qcidy.hmxtime, Hex->Qcidy.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Hex->Qcidy.cmxtime, Hex->Qcidy.cmx);
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Hex->Thidy.hrs, Hex->Thidy.m, 
 				Hex->Thidy.mntime, Hex->Thidy.mn, 
 				Hex->Thidy.mxtime, Hex->Thidy.mx);
-            fprintf(fo, "%1d %3.1lf ", Hex->Qhidy.hhr, Hex->Qhidy.h);
-            fprintf(fo, "%1d %3.1lf ", Hex->Qhidy.chr, Hex->Qhidy.c);      
-            fprintf(fo, "%1d %2.0lf ", Hex->Qhidy.hmxtime, Hex->Qhidy.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Hex->Qhidy.cmxtime, Hex->Qhidy.cmx); 
+            fprintf(fo, "%1ld %3.1lf ", Hex->Qhidy.hhr, Hex->Qhidy.h);
+            fprintf(fo, "%1ld %3.1lf ", Hex->Qhidy.chr, Hex->Qhidy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Hex->Qhidy.hmxtime, Hex->Qhidy.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Hex->Qhidy.cmxtime, Hex->Qhidy.cmx); 
 		}
 		break;
 	}
@@ -350,22 +350,22 @@ void hexmonprt(FILE *fo, int id, int Nhex, HEX *Hex)
 	default:
 		for (i = 0; i < Nhex; i++, Hex++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Hex->mTcidy.hrs, Hex->mTcidy.m, 
 				Hex->mTcidy.mntime, Hex->mTcidy.mn, 
 				Hex->mTcidy.mxtime, Hex->mTcidy.mx);
-            fprintf(fo, "%1d %3.1lf ", Hex->mQcidy.hhr, Hex->mQcidy.h);
-            fprintf(fo, "%1d %3.1lf ", Hex->mQcidy.chr, Hex->mQcidy.c);      
-            fprintf(fo, "%1d %2.0lf ", Hex->mQcidy.hmxtime, Hex->mQcidy.hmx);
-            fprintf(fo, "%1d %2.0lf ", Hex->mQcidy.cmxtime, Hex->mQcidy.cmx);
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf ", Hex->mQcidy.hhr, Hex->mQcidy.h);
+            fprintf(fo, "%1ld %3.1lf ", Hex->mQcidy.chr, Hex->mQcidy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Hex->mQcidy.hmxtime, Hex->mQcidy.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Hex->mQcidy.cmxtime, Hex->mQcidy.cmx);
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Hex->mThidy.hrs, Hex->mThidy.m, 
 				Hex->mThidy.mntime, Hex->mThidy.mn, 
 				Hex->mThidy.mxtime, Hex->mThidy.mx);
-            fprintf(fo, "%1d %3.1lf ", Hex->mQhidy.hhr, Hex->mQhidy.h);
-            fprintf(fo, "%1d %3.1lf ", Hex->mQhidy.chr, Hex->mQhidy.c);      
-            fprintf(fo, "%1d %2.0lf ", Hex->mQhidy.hmxtime, Hex->mQhidy.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Hex->mQhidy.cmxtime, Hex->mQhidy.cmx); 
+            fprintf(fo, "%1ld %3.1lf ", Hex->mQhidy.hhr, Hex->mQhidy.h);
+            fprintf(fo, "%1ld %3.1lf ", Hex->mQhidy.chr, Hex->mQhidy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Hex->mQhidy.hmxtime, Hex->mQhidy.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Hex->mQhidy.cmxtime, Hex->mQhidy.cmx); 
 		}
 		break;
 	}

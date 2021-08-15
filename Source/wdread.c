@@ -234,7 +234,7 @@ void  gtsupw (FILE *fp, char *Loc,
 {
 	static int    ic=0;
 	int		m, flg = 0;
-	char	s[SCHAR], E[SCHAR] ;
+	char	s[SCHAR], E[SCHAR+128] ;
 	
 	if (ic == 0)
 	{ 
@@ -475,13 +475,7 @@ void EarthSrfTempInit(SIMCONTL *Simc, LOCAT *Loc, WDAT *Wd)
 	double	Soic, Soil ;
 
 	// 地表面温度の計算
-#ifdef WIN32
 	printf("地表面温度の計算開始\n");
-#else
-	//GCCがSJIS非対応のため、`表`のあとに\を挿入
-	printf("地表\面温度の計算開始\n");
-#endif // WIN32
-
 
 	// 土壌の容積比熱[J/m3K]
 	Soic = 3.34e6 ;

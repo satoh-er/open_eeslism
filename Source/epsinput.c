@@ -249,7 +249,7 @@ void esoint(FILE *fi, char *err, int Ntime,
 			ESTL *Estl, TLIST *Tlist) 
 {
 	int		i, j, n = 0 ;
-	char	nm[SCHAR], id[SCHAR], *st, E[SCHAR] ;
+	char	nm[SCHAR], id[SCHAR], *st, E[SCHAR*2+128] ;
 	CATNM	*cat ;
 	RQLIST	*Rq, *R ;
 	char	*V ;

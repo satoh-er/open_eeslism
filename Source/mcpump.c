@@ -234,7 +234,7 @@ double	PumpFanPLC ( double XQ, PUMP *Pump )
 	int		i ;
 	PUMPCA	*cat ;
 	
-	dQ = min ( 1.0, max ( XQ, 0.25 )) ;
+	dQ = dmin ( 1.0, dmax ( XQ, 0.25 )) ;
 	cat = Pump->cat ;
 
 	if (cat->pfcmp == NULL)
@@ -398,14 +398,14 @@ void pumpdyprt(FILE *fo, int id, int Npump, PUMP *Pump)
 	default:
 		for (i = 0; i < Npump; i++, Pump++)
 		{      
-            fprintf(fo, "%1d %3.1lf ", Pump->Qdy.hrs, Pump->Qdy.d);
-            fprintf(fo, "%1d %2.0lf ", Pump->Qdy.mxtime, Pump->Qdy.mx);
+            fprintf(fo, "%1ld %3.1lf ", Pump->Qdy.hrs, Pump->Qdy.d);
+            fprintf(fo, "%1ld %2.0lf ", Pump->Qdy.mxtime, Pump->Qdy.mx);
 			
-            fprintf(fo, "%1d %3.1lf ", Pump->Edy.hrs, Pump->Edy.d);
-            fprintf(fo, "%1d %2.0lf ", Pump->Edy.mxtime, Pump->Edy.mx);
+            fprintf(fo, "%1ld %3.1lf ", Pump->Edy.hrs, Pump->Edy.d);
+            fprintf(fo, "%1ld %2.0lf ", Pump->Edy.mxtime, Pump->Edy.mx);
 			
-            fprintf(fo, "%1d %3.1lf ", Pump->Gdy.hrs, Pump->Gdy.d);      
-            fprintf(fo, "%1d %2.0lf\n", Pump->Gdy.mxtime, Pump->Gdy.mx);
+            fprintf(fo, "%1ld %3.1lf ", Pump->Gdy.hrs, Pump->Gdy.d);      
+            fprintf(fo, "%1ld %2.0lf\n", Pump->Gdy.mxtime, Pump->Gdy.mx);
 		} 
 		break;
 	}
@@ -439,14 +439,14 @@ void pumpmonprt(FILE *fo, int id, int Npump, PUMP *Pump)
 	default:
 		for (i = 0; i < Npump; i++, Pump++)
 		{      
-            fprintf(fo, "%1d %3.1lf ", Pump->mQdy.hrs, Pump->mQdy.d);
-            fprintf(fo, "%1d %2.0lf ", Pump->mQdy.mxtime, Pump->mQdy.mx);
+            fprintf(fo, "%1ld %3.1lf ", Pump->mQdy.hrs, Pump->mQdy.d);
+            fprintf(fo, "%1ld %2.0lf ", Pump->mQdy.mxtime, Pump->mQdy.mx);
 			
-            fprintf(fo, "%1d %3.1lf ", Pump->mEdy.hrs, Pump->mEdy.d);
-            fprintf(fo, "%1d %2.0lf ", Pump->mEdy.mxtime, Pump->mEdy.mx);
+            fprintf(fo, "%1ld %3.1lf ", Pump->mEdy.hrs, Pump->mEdy.d);
+            fprintf(fo, "%1ld %2.0lf ", Pump->mEdy.mxtime, Pump->mEdy.mx);
 			
-            fprintf(fo, "%1d %3.1lf ", Pump->mGdy.hrs, Pump->mGdy.d);      
-            fprintf(fo, "%1d %2.0lf\n", Pump->mGdy.mxtime, Pump->mGdy.mx);
+            fprintf(fo, "%1ld %3.1lf ", Pump->mGdy.hrs, Pump->mGdy.d);      
+            fprintf(fo, "%1ld %2.0lf\n", Pump->mGdy.mxtime, Pump->mGdy.mx);
 		} 
 		break;
 	}

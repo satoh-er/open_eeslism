@@ -32,7 +32,7 @@ void cmpprint(int id, int N,  COMPNT *cmp, ELOUT *Elout, ELIN *Elin)
 	
 	for (i = 0; i < N; i++, cmp++)
 	{
-		printf("%2d %-10s %-10s %-10s   %c %4d %3d %4d %3d %d %4Id %4Id\n",
+		printf("%2d %-10s %-10s %-10s   %c %4d %3d %4d %3d %d %4ld %4ld\n",
 			i, cmp->name,  cmp->eqptype, cmp->envname,
 			cmp->control, cmp->ncat, cmp->neqp, cmp->Nout, cmp->Nin, cmp->nivar,
 			cmp->elouts - Elout,  cmp->elins - Elin);
@@ -45,11 +45,11 @@ void eloutprint(int id, int N, ELOUT *E, COMPNT *cmp)
 	double  *cfin;
 	
 	if (id == 1)
-		printf("ELOUT\n  n         id fld contl sysld Cmp   G      cfo    cfin\n");
+		printf("ELOUT\n  n name            id fld contl sysld Cmp   G      cfo    cfin\n");
 	
 	for (i = 0; i < N; i++, E++)
 	{
-		printf("%3d (%-6s) %c   %c   %c    %c  %4Id [%5.3lf]  %6.3lf", 
+		printf("%3d (%-10s)     %c   %c   %c    %c  %4ld [%5.3lf]  %6.3lf", 
 			i, E->cmp->name, E->id, E->fluid, E->control, E->sysld,
 			E->cmp - cmp, E->G, E->coeffo);
 		
@@ -74,7 +74,7 @@ void eloutfprint(int id, int N, ELOUT *E, COMPNT *cmp)
 	
 	for (i = 0; i < N; i++, E++)
 	{
-		fprintf(ferr,"%3d (%-6s) %c   %c   %c    %c  %4Id [%5.3lf]  %6.3lf", 
+		fprintf(ferr,"%3d (%-6s) %c   %c   %c    %c  %4ld [%5.3lf]  %6.3lf", 
 			i, E->cmp->name, E->id, E->fluid, E->control, E->sysld,
 			E->cmp - cmp, E->G, E->coeffo);
 		
@@ -117,7 +117,7 @@ void elinprint(int id, int N, COMPNT *C, ELOUT *eo, ELIN *ei)
 				else
 					v = -999 ;
 
-				printf("%3Id (%-6s) %c   %3d   %3d", 
+				printf("%3ld (%-6s) %c   %3d   %3d", 
 					E - ei, C->name, E->id, o, v ); 
 				if (E->upo != NULL)
 					printf(" upo=(%-6s)", E->upo->cmp->name);
@@ -159,7 +159,7 @@ void elinfprint(int id, int N, COMPNT *C, ELOUT *eo, ELIN *ei)
 				else
 					v = -999 ;
 
-				fprintf(ferr,"%3Id (%-6s) %c   %3d   %3d", 
+				fprintf(ferr,"%3ld (%-6s) %c   %3d   %3d", 
 					E - ei, C->name, E->id, o, v ); 
 				if (E->upo != NULL)
 					fprintf(ferr," upo=(%-6s)", E->upo->cmp->name);
@@ -224,13 +224,13 @@ void plistprint(int Nmpath, MPATH *Mpath,
 		for (j = 0; j < Mpath->Nlpath; j++, pl++)
 		{
 			printf("PLIST\n  n type Nelm Npump Nvav lvc Pelm  G \n");	 
-			printf("%3d  %c  %3d  %3d %3d %3Id %6.3lf\n",
+			printf("%3d  %c  %3d  %3d %3d %3ld %6.3lf\n",
 				j, pl->type, pl->Nelm, pl->Nvav, pl->lvc,  pl->pelm - Pe, pl->G);
 			
 			printf("    PELM  n  co ci elin eout\n");
 			p = pl->pelm;
 			for (ii = 0; ii < pl->Nelm; ii++, p++)
-				printf("        %3Id   %c  %c %4Id %4Id  %s\n", 
+				printf("        %3ld   %c  %c %4ld %4ld  %s\n", 
 				p - pl->pelm, p->co, p->ci, p->in - Ei, p->out - Eo, p->cmp->name ); 
 		}
 	}    

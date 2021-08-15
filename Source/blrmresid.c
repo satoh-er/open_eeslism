@@ -31,7 +31,7 @@ void	Residata (FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, int *pmvpri, SIMCO
 {
 	int		i, k ;
 	char	s[SCHAR], ss[SCHAR], sss[SCHAR], s4[SCHAR], *st, *ce,
-		err[SCHAR], Er[SCHAR];
+		err[SCHAR+128], Er[SCHAR];
 	ROOM	*rm ;
 	double	*vall ;
 	extern int SETprint;
@@ -118,7 +118,7 @@ void	Appldata (FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, SIMCONTL *Simc)
 {
 	int		i, k ;
 	char	s[SCHAR], ss[SCHAR], *st, *ce,
-		err[SCHAR], Er[SCHAR];
+		err[SCHAR+128], Er[SCHAR];
 	ROOM	*rm ;
 	double	*vall ;
 	

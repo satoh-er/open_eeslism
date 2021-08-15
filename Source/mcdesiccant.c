@@ -630,51 +630,51 @@ void Desidyprt(FILE *fo, int id, int Ndesi, DESI *Desi)
 	default:
 		for (i = 0; i < Ndesi; i++, Desi++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Desi->Tidy.hrs, Desi->Tidy.m, 
 				Desi->Tidy.mntime, Desi->Tidy.mn, 
 				Desi->Tidy.mxtime, Desi->Tidy.mx);
-			fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+			fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Desi->Tody.hrs, Desi->Tody.m, 
 				Desi->Tody.mntime, Desi->Tody.mn, 
 				Desi->Tody.mxtime, Desi->Tody.mx);
-			fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+			fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Desi->Tsdy.hrs, Desi->Tsdy.m, 
 				Desi->Tsdy.mntime, Desi->Tsdy.mn, 
 				Desi->Tsdy.mxtime, Desi->Tsdy.mx);
 
-            fprintf(fo, "%1d %.4lf %1d %.4lf %1d %.4lf ", 
+            fprintf(fo, "%1ld %.4lf %1ld %.4lf %1ld %.4lf ", 
 				Desi->xidy.hrs, Desi->xidy.m, 
 				Desi->xidy.mntime, Desi->xidy.mn, 
 				Desi->xidy.mxtime, Desi->xidy.mx);
-			fprintf(fo, "%1d %.4lf %1d %.4lf %1d %.4lf ", 
+			fprintf(fo, "%1ld %.4lf %1ld %.4lf %1ld %.4lf ", 
 				Desi->xody.hrs, Desi->xody.m, 
 				Desi->xody.mntime, Desi->xody.mn, 
 				Desi->xody.mxtime, Desi->xody.mx);
-			fprintf(fo, "%1d %.4lf %1d %.4lf %1d %.4lf ", 
+			fprintf(fo, "%1ld %.4lf %1ld %.4lf %1ld %.4lf ", 
 				Desi->xsdy.hrs, Desi->xsdy.m, 
 				Desi->xsdy.mntime, Desi->xsdy.mn, 
 				Desi->xsdy.mxtime, Desi->xsdy.mx);
 
-            fprintf(fo, "%1d %3.1lf ", Desi->Qsdy.hhr, Desi->Qsdy.h);
-            fprintf(fo, "%1d %3.1lf ", Desi->Qsdy.chr, Desi->Qsdy.c);      
-            fprintf(fo, "%1d %2.0lf ", Desi->Qsdy.hmxtime, Desi->Qsdy.hmx);
-            fprintf(fo, "%1d %2.0lf ", Desi->Qsdy.cmxtime, Desi->Qsdy.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Desi->Qsdy.hhr, Desi->Qsdy.h);
+            fprintf(fo, "%1ld %3.1lf ", Desi->Qsdy.chr, Desi->Qsdy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Desi->Qsdy.hmxtime, Desi->Qsdy.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Desi->Qsdy.cmxtime, Desi->Qsdy.cmx);
 
-            fprintf(fo, "%1d %3.1lf ", Desi->Qldy.hhr, Desi->Qldy.h);
-            fprintf(fo, "%1d %3.1lf ", Desi->Qldy.chr, Desi->Qldy.c);      
-            fprintf(fo, "%1d %2.0lf ", Desi->Qldy.hmxtime, Desi->Qldy.hmx);
-            fprintf(fo, "%1d %2.0lf ", Desi->Qldy.cmxtime, Desi->Qldy.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Desi->Qldy.hhr, Desi->Qldy.h);
+            fprintf(fo, "%1ld %3.1lf ", Desi->Qldy.chr, Desi->Qldy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Desi->Qldy.hmxtime, Desi->Qldy.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Desi->Qldy.cmxtime, Desi->Qldy.cmx);
 
-            fprintf(fo, "%1d %3.1lf ", Desi->Qtdy.hhr, Desi->Qtdy.h);
-            fprintf(fo, "%1d %3.1lf ", Desi->Qtdy.chr, Desi->Qtdy.c);      
-            fprintf(fo, "%1d %2.0lf ", Desi->Qtdy.hmxtime, Desi->Qtdy.hmx);
-            fprintf(fo, "%1d %2.0lf ", Desi->Qtdy.cmxtime, Desi->Qtdy.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Desi->Qtdy.hhr, Desi->Qtdy.h);
+            fprintf(fo, "%1ld %3.1lf ", Desi->Qtdy.chr, Desi->Qtdy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Desi->Qtdy.hmxtime, Desi->Qtdy.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Desi->Qtdy.cmxtime, Desi->Qtdy.cmx);
 
-            fprintf(fo, "%1d %3.1lf ", Desi->Qlsdy.hhr, Desi->Qlsdy.h);
-            fprintf(fo, "%1d %3.1lf ", Desi->Qlsdy.chr, Desi->Qlsdy.c);      
-            fprintf(fo, "%1d %2.0lf ", Desi->Qlsdy.hmxtime, Desi->Qlsdy.hmx);
-            fprintf(fo, "%1d %2.0lf ", Desi->Qlsdy.cmxtime, Desi->Qlsdy.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Desi->Qlsdy.hhr, Desi->Qlsdy.h);
+            fprintf(fo, "%1ld %3.1lf ", Desi->Qlsdy.chr, Desi->Qlsdy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Desi->Qlsdy.hmxtime, Desi->Qlsdy.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Desi->Qlsdy.cmxtime, Desi->Qlsdy.cmx);
 		}
 		break;
 	}

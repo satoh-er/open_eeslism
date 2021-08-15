@@ -346,35 +346,35 @@ void Rmdyprint(FILE *fo, char *mrk, SIMCONTL *Simc, int mon, int day, int Nroom,
 	
 	for (i = 0; i < Nroom; i++, Room++)
 	{
-		fprintf(fo, "%1d %4.2lf %1d %4.2lf %1d %4.2lf ", 
+		fprintf(fo, "%1ld %4.2lf %1ld %4.2lf %1ld %4.2lf ", 
 			Room->Trdy.hrs, Room->Trdy.m, Room->Trdy.mntime, 
 			Room->Trdy.mn, Room->Trdy.mxtime, Room->Trdy.mx);
-		fprintf(fo, "%1d %5.4lf %1d %5.4lf %1d %5.4lf\n", 
+		fprintf(fo, "%1ld %5.4lf %1ld %5.4lf %1ld %5.4lf\n", 
 			Room->xrdy.hrs, Room->xrdy.m, Room->xrdy.mntime, 
 			Room->xrdy.mn, Room->xrdy.mxtime, Room->xrdy.mx);
-		fprintf(fo, "%1d %2.0lf %1d %2.0lf %1d %2.0lf ", 
+		fprintf(fo, "%1ld %2.0lf %1ld %2.0lf %1ld %2.0lf ", 
 			Room->RHdy.hrs, Room->RHdy.m, Room->RHdy.mntime, 
 			Room->RHdy.mn, Room->RHdy.mxtime, Room->RHdy.mx);
-		fprintf(fo, "%1d %4.2lf %1d %4.2lf %1d %4.2lf\n", 
+		fprintf(fo, "%1ld %4.2lf %1ld %4.2lf %1ld %4.2lf\n", 
 			Room->Tsavdy.hrs, Room->Tsavdy.m, Room->Tsavdy.mntime, 
 			Room->Tsavdy.mn, Room->Tsavdy.mxtime, Room->Tsavdy.mx);
 		
 		if ((R = Room->rmld) != NULL)
 		{
-			fprintf(fo, "%1d %.2lf ", R->Qdys.hhr, R->Qdys.h);
-			fprintf(fo, "%1d %.2lf ", R->Qdys.chr, R->Qdys.c);
-			fprintf(fo, "%4d %2.0lf ", R->Qdys.hmxtime, R->Qdys.hmx);
-			fprintf(fo, "%4d %2.0lf ", R->Qdys.cmxtime, R->Qdys.cmx);
+			fprintf(fo, "%1ld %.2lf ", R->Qdys.hhr, R->Qdys.h);
+			fprintf(fo, "%1ld %.2lf ", R->Qdys.chr, R->Qdys.c);
+			fprintf(fo, "%4ld %2.0lf ", R->Qdys.hmxtime, R->Qdys.hmx);
+			fprintf(fo, "%4ld %2.0lf ", R->Qdys.cmxtime, R->Qdys.cmx);
 			
-			fprintf(fo, "%1d %.2lf ", R->Qdyl.hhr, R->Qdyl.h);
-			fprintf(fo, "%1d %.2lf ", R->Qdyl.chr, R->Qdyl.c);
-			fprintf(fo, "%4d %2.0lf ", R->Qdyl.hmxtime, R->Qdyl.hmx);
-			fprintf(fo, "%4d %2.0lf ", R->Qdyl.cmxtime, R->Qdyl.cmx);
+			fprintf(fo, "%1ld %.2lf ", R->Qdyl.hhr, R->Qdyl.h);
+			fprintf(fo, "%1ld %.2lf ", R->Qdyl.chr, R->Qdyl.c);
+			fprintf(fo, "%4ld %2.0lf ", R->Qdyl.hmxtime, R->Qdyl.hmx);
+			fprintf(fo, "%4ld %2.0lf ", R->Qdyl.cmxtime, R->Qdyl.cmx);
 			
-			fprintf(fo, "%1d %.2lf ", R->Qdyt.hhr, R->Qdyt.h);
-			fprintf(fo, "%1d %.2lf ", R->Qdyt.chr, R->Qdyt.c);
-			fprintf(fo, "%4d %2.0lf ", R->Qdyt.hmxtime, R->Qdyt.hmx);
-			fprintf(fo, "%4d %2.0lf\n", R->Qdyt.cmxtime, R->Qdyt.cmx);
+			fprintf(fo, "%1ld %.2lf ", R->Qdyt.hhr, R->Qdyt.h);
+			fprintf(fo, "%1ld %.2lf ", R->Qdyt.chr, R->Qdyt.c);
+			fprintf(fo, "%4ld %2.0lf ", R->Qdyt.hmxtime, R->Qdyt.hmx);
+			fprintf(fo, "%4ld %2.0lf\n", R->Qdyt.cmxtime, R->Qdyt.cmx);
 		}	 
 		if (Room->Nasup)
 		{	 
@@ -502,35 +502,35 @@ void Rmmonprint(FILE *fo, char *mrk, SIMCONTL *Simc, int mon, int day, int Nroom
 	
 	for (i = 0; i < Nroom; i++, Room++)
 	{
-		fprintf(fo, "%1d %4.2lf %1d %4.2lf %1d %4.2lf ", 
+		fprintf(fo, "%1ld %4.2lf %1ld %4.2lf %1ld %4.2lf ", 
 			Room->mTrdy.hrs, Room->mTrdy.m, Room->mTrdy.mntime, 
 			Room->mTrdy.mn, Room->mTrdy.mxtime, Room->mTrdy.mx);
-		fprintf(fo, "%1d %5.4lf %1d %5.4lf %1d %5.4lf\n", 
+		fprintf(fo, "%1ld %5.4lf %1ld %5.4lf %1ld %5.4lf\n", 
 			Room->mxrdy.hrs, Room->mxrdy.m, Room->mxrdy.mntime, 
 			Room->mxrdy.mn, Room->mxrdy.mxtime, Room->mxrdy.mx);
-		fprintf(fo, "%1d %2.0lf %1d %2.0lf %1d %2.0lf ", 
+		fprintf(fo, "%1ld %2.0lf %1ld %2.0lf %1ld %2.0lf ", 
 			Room->mRHdy.hrs, Room->mRHdy.m, Room->mRHdy.mntime, 
 			Room->mRHdy.mn, Room->mRHdy.mxtime, Room->mRHdy.mx);
-		fprintf(fo, "%1d %4.2lf %1d %4.2lf %1d %4.2lf\n", 
+		fprintf(fo, "%1ld %4.2lf %1ld %4.2lf %1ld %4.2lf\n", 
 			Room->mTsavdy.hrs, Room->mTsavdy.m, Room->mTsavdy.mntime, 
 			Room->mTsavdy.mn, Room->mTsavdy.mxtime, Room->mTsavdy.mx);
 		
 		if ((R = Room->rmld) != NULL)
 		{
-			fprintf(fo, "%1d %3.1lf ", R->mQdys.hhr, R->mQdys.h);
-			fprintf(fo, "%1d %3.1lf ", R->mQdys.chr, R->mQdys.c);
-			fprintf(fo, "%4d %2.0lf ", R->mQdys.hmxtime, R->mQdys.hmx);
-			fprintf(fo, "%4d %2.0lf ", R->mQdys.cmxtime, R->mQdys.cmx);
+			fprintf(fo, "%1ld %3.1lf ", R->mQdys.hhr, R->mQdys.h);
+			fprintf(fo, "%1ld %3.1lf ", R->mQdys.chr, R->mQdys.c);
+			fprintf(fo, "%4ld %2.0lf ", R->mQdys.hmxtime, R->mQdys.hmx);
+			fprintf(fo, "%4ld %2.0lf ", R->mQdys.cmxtime, R->mQdys.cmx);
 			
-			fprintf(fo, "%1d %3.1lf ", R->mQdyl.hhr, R->mQdyl.h);
-			fprintf(fo, "%1d %3.1lf ", R->mQdyl.chr, R->mQdyl.c);
-			fprintf(fo, "%4d %2.0lf ", R->mQdyl.hmxtime, R->mQdyl.hmx);
-			fprintf(fo, "%4d %2.0lf ", R->mQdyl.cmxtime, R->mQdyl.cmx);
+			fprintf(fo, "%1ld %3.1lf ", R->mQdyl.hhr, R->mQdyl.h);
+			fprintf(fo, "%1ld %3.1lf ", R->mQdyl.chr, R->mQdyl.c);
+			fprintf(fo, "%4ld %2.0lf ", R->mQdyl.hmxtime, R->mQdyl.hmx);
+			fprintf(fo, "%4ld %2.0lf ", R->mQdyl.cmxtime, R->mQdyl.cmx);
 			
-			fprintf(fo, "%1d %3.1lf ", R->mQdyt.hhr, R->mQdyt.h);
-			fprintf(fo, "%1d %3.1lf ", R->mQdyt.chr, R->mQdyt.c);
-			fprintf(fo, "%4d %2.0lf ", R->mQdyt.hmxtime, R->mQdyt.hmx);
-			fprintf(fo, "%4d %2.0lf\n", R->mQdyt.cmxtime, R->mQdyt.cmx);
+			fprintf(fo, "%1ld %3.1lf ", R->mQdyt.hhr, R->mQdyt.h);
+			fprintf(fo, "%1ld %3.1lf ", R->mQdyt.chr, R->mQdyt.c);
+			fprintf(fo, "%4ld %2.0lf ", R->mQdyt.hmxtime, R->mQdyt.hmx);
+			fprintf(fo, "%4ld %2.0lf\n", R->mQdyt.cmxtime, R->mQdyt.cmx);
 		}	 
 		if (Room->Nasup)
 		{	 
@@ -624,30 +624,30 @@ void paneldyprt(FILE *fo, int id, int Nrdpnl, RDPNL *Rdpnl)
 			WALL	*Wall ;
 			Wall = Rdpnl->sd[0]->mw->wall ;
 
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Rdpnl->Tpody.hrs, Rdpnl->Tpody.m, Rdpnl->Tpody.mntime, 
 				Rdpnl->Tpody.mn, Rdpnl->Tpody.mxtime, Rdpnl->Tpody.mx);
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Rdpnl->Tpidy.hrs, Rdpnl->Tpidy.m, Rdpnl->Tpidy.mntime, 
 				Rdpnl->Tpidy.mn, Rdpnl->Tpidy.mxtime, Rdpnl->Tpidy.mx);
-            fprintf(fo, "%1d %3.1lf ", Rdpnl->Qdy.hhr, Rdpnl->Qdy.h);
-            fprintf(fo, "%1d %3.1lf ", Rdpnl->Qdy.chr, Rdpnl->Qdy.c);      
-            fprintf(fo, "%1d %2.0lf ", Rdpnl->Qdy.hmxtime, Rdpnl->Qdy.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Rdpnl->Qdy.cmxtime, Rdpnl->Qdy.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Rdpnl->Qdy.hhr, Rdpnl->Qdy.h);
+            fprintf(fo, "%1ld %3.1lf ", Rdpnl->Qdy.chr, Rdpnl->Qdy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Rdpnl->Qdy.hmxtime, Rdpnl->Qdy.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Rdpnl->Qdy.cmxtime, Rdpnl->Qdy.cmx);
 
 			if (Wall->WallType == 'C')
 			{
-				fprintf(fo, "%1d %3.1lf ", Rdpnl->Scoldy.hhr, Rdpnl->Scoldy.h);
-				fprintf(fo, "%1d %3.1lf ", Rdpnl->Scoldy.chr, Rdpnl->Scoldy.c);      
-				fprintf(fo, "%1d %2.0lf ", Rdpnl->Scoldy.hmxtime, Rdpnl->Scoldy.hmx);
-				fprintf(fo, "%1d %2.0lf\n", Rdpnl->Scoldy.cmxtime, Rdpnl->Scoldy.cmx);
+				fprintf(fo, "%1ld %3.1lf ", Rdpnl->Scoldy.hhr, Rdpnl->Scoldy.h);
+				fprintf(fo, "%1ld %3.1lf ", Rdpnl->Scoldy.chr, Rdpnl->Scoldy.c);      
+				fprintf(fo, "%1ld %2.0lf ", Rdpnl->Scoldy.hmxtime, Rdpnl->Scoldy.hmx);
+				fprintf(fo, "%1ld %2.0lf\n", Rdpnl->Scoldy.cmxtime, Rdpnl->Scoldy.cmx);
 
 				if (Rdpnl->sd[0]->PVwallFlg == 'Y')
 				{
-					fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+					fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 						Rdpnl->TPVdy.hrs, Rdpnl->TPVdy.m, Rdpnl->TPVdy.mntime, 
 						Rdpnl->TPVdy.mn, Rdpnl->TPVdy.mxtime, Rdpnl->TPVdy.mx);
-					fprintf(fo, "%1d %.1lf\n", Rdpnl->PVdy.hhr, Rdpnl->PVdy.h) ;
+					fprintf(fo, "%1ld %.1lf\n", Rdpnl->PVdy.hhr, Rdpnl->PVdy.h) ;
 				}
 			}
 		}
@@ -723,30 +723,30 @@ void panelmonprt(FILE *fo, int id, int Nrdpnl, RDPNL *Rdpnl)
 			WALL	*Wall ;
 			Wall = Rdpnl->sd[0]->mw->wall ;
 
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Rdpnl->mTpody.hrs, Rdpnl->mTpody.m, Rdpnl->mTpody.mntime, 
 				Rdpnl->mTpody.mn, Rdpnl->mTpody.mxtime, Rdpnl->mTpody.mx);
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Rdpnl->mTpidy.hrs, Rdpnl->mTpidy.m, Rdpnl->mTpidy.mntime, 
 				Rdpnl->mTpidy.mn, Rdpnl->mTpidy.mxtime, Rdpnl->mTpidy.mx);
-            fprintf(fo, "%1d %3.1lf ", Rdpnl->mQdy.hhr, Rdpnl->mQdy.h);
-            fprintf(fo, "%1d %3.1lf ", Rdpnl->mQdy.chr, Rdpnl->mQdy.c);      
-            fprintf(fo, "%1d %2.0lf ", Rdpnl->mQdy.hmxtime, Rdpnl->mQdy.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Rdpnl->mQdy.cmxtime, Rdpnl->mQdy.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Rdpnl->mQdy.hhr, Rdpnl->mQdy.h);
+            fprintf(fo, "%1ld %3.1lf ", Rdpnl->mQdy.chr, Rdpnl->mQdy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Rdpnl->mQdy.hmxtime, Rdpnl->mQdy.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Rdpnl->mQdy.cmxtime, Rdpnl->mQdy.cmx);
 
 			if (Wall->WallType == 'C')
 			{
-				fprintf(fo, "%1d %3.1lf ", Rdpnl->mScoldy.hhr, Rdpnl->mScoldy.h);
-				fprintf(fo, "%1d %3.1lf ", Rdpnl->mScoldy.chr, Rdpnl->mScoldy.c);      
-				fprintf(fo, "%1d %2.0lf ", Rdpnl->mScoldy.hmxtime, Rdpnl->mScoldy.hmx);
-				fprintf(fo, "%1d %2.0lf\n", Rdpnl->mScoldy.cmxtime, Rdpnl->mScoldy.cmx);
+				fprintf(fo, "%1ld %3.1lf ", Rdpnl->mScoldy.hhr, Rdpnl->mScoldy.h);
+				fprintf(fo, "%1ld %3.1lf ", Rdpnl->mScoldy.chr, Rdpnl->mScoldy.c);      
+				fprintf(fo, "%1ld %2.0lf ", Rdpnl->mScoldy.hmxtime, Rdpnl->mScoldy.hmx);
+				fprintf(fo, "%1ld %2.0lf\n", Rdpnl->mScoldy.cmxtime, Rdpnl->mScoldy.cmx);
 
 				if (Rdpnl->sd[0]->PVwallFlg == 'Y')
 				{
-					fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+					fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 						Rdpnl->mTPVdy.hrs, Rdpnl->mTPVdy.m, Rdpnl->mTPVdy.mntime, 
 						Rdpnl->mTPVdy.mn, Rdpnl->mTPVdy.mxtime, Rdpnl->mTPVdy.mx);
-					fprintf(fo, "%1d %.1lf\n", Rdpnl->mPVdy.hhr, Rdpnl->mPVdy.h) ;
+					fprintf(fo, "%1ld %.1lf\n", Rdpnl->mPVdy.hhr, Rdpnl->mPVdy.h) ;
 				}
 			}
 		}

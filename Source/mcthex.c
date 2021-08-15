@@ -504,36 +504,36 @@ void	Thexdyprt(FILE *fo, int id, int Nthex, THEX *Thex)
 	default:
 		for (i = 0; i < Nthex; i++, Thex++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Thex->Teidy.hrs, Thex->Teidy.m, 
 				Thex->Teidy.mntime, Thex->Teidy.mn, 
 				Thex->Teidy.mxtime, Thex->Teidy.mx);
-			fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf\n", 
+			fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf\n", 
 				Thex->Toidy.hrs, Thex->Toidy.m, 
 				Thex->Toidy.mntime, Thex->Toidy.mn, 
 				Thex->Toidy.mxtime, Thex->Toidy.mx);
-			fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+			fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Thex->xeidy.hrs, Thex->xeidy.m, 
 				Thex->xeidy.mntime, Thex->xeidy.mn, 
 				Thex->xeidy.mxtime, Thex->xeidy.mx);
-			fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf\n", 
+			fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf\n", 
 				Thex->xoidy.hrs, Thex->xoidy.m, 
 				Thex->xoidy.mntime, Thex->xoidy.mn, 
 				Thex->xoidy.mxtime, Thex->xoidy.mx);
-            fprintf(fo, "%1d %3.1lf ", Thex->Qdyes.hhr, Thex->Qdyes.h);
-            fprintf(fo, "%1d %3.1lf ", Thex->Qdyes.chr, Thex->Qdyes.c);      
-            fprintf(fo, "%1d %2.0lf ", Thex->Qdyes.hmxtime, Thex->Qdyes.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Thex->Qdyes.cmxtime, Thex->Qdyes.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Thex->Qdyes.hhr, Thex->Qdyes.h);
+            fprintf(fo, "%1ld %3.1lf ", Thex->Qdyes.chr, Thex->Qdyes.c);      
+            fprintf(fo, "%1ld %2.0lf ", Thex->Qdyes.hmxtime, Thex->Qdyes.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Thex->Qdyes.cmxtime, Thex->Qdyes.cmx);
 
-            fprintf(fo, "%1d %3.1lf ", Thex->Qdyel.hhr, Thex->Qdyel.h);
-            fprintf(fo, "%1d %3.1lf ", Thex->Qdyel.chr, Thex->Qdyel.c);      
-            fprintf(fo, "%1d %2.0lf ", Thex->Qdyel.hmxtime, Thex->Qdyel.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Thex->Qdyel.cmxtime, Thex->Qdyel.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Thex->Qdyel.hhr, Thex->Qdyel.h);
+            fprintf(fo, "%1ld %3.1lf ", Thex->Qdyel.chr, Thex->Qdyel.c);      
+            fprintf(fo, "%1ld %2.0lf ", Thex->Qdyel.hmxtime, Thex->Qdyel.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Thex->Qdyel.cmxtime, Thex->Qdyel.cmx);
 			
-            fprintf(fo, "%1d %3.1lf ", Thex->Qdyet.hhr, Thex->Qdyet.h);
-            fprintf(fo, "%1d %3.1lf ", Thex->Qdyet.chr, Thex->Qdyet.c);      
-            fprintf(fo, "%1d %2.0lf ", Thex->Qdyet.hmxtime, Thex->Qdyet.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Thex->Qdyet.cmxtime, Thex->Qdyet.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Thex->Qdyet.hhr, Thex->Qdyet.h);
+            fprintf(fo, "%1ld %3.1lf ", Thex->Qdyet.chr, Thex->Qdyet.c);      
+            fprintf(fo, "%1ld %2.0lf ", Thex->Qdyet.hmxtime, Thex->Qdyet.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Thex->Qdyet.cmxtime, Thex->Qdyet.cmx);
 		}
 		break;
 	}
@@ -587,36 +587,36 @@ void	Thexmonprt(FILE *fo, int id, int Nthex, THEX *Thex)
 	default:
 		for (i = 0; i < Nthex; i++, Thex++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Thex->mTeidy.hrs, Thex->mTeidy.m, 
 				Thex->mTeidy.mntime, Thex->mTeidy.mn, 
 				Thex->mTeidy.mxtime, Thex->mTeidy.mx);
-			fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf\n", 
+			fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf\n", 
 				Thex->mToidy.hrs, Thex->mToidy.m, 
 				Thex->mToidy.mntime, Thex->mToidy.mn, 
 				Thex->mToidy.mxtime, Thex->mToidy.mx);
-			fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+			fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Thex->mxeidy.hrs, Thex->mxeidy.m, 
 				Thex->mxeidy.mntime, Thex->mxeidy.mn, 
 				Thex->mxeidy.mxtime, Thex->mxeidy.mx);
-			fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf\n", 
+			fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf\n", 
 				Thex->mxoidy.hrs, Thex->mxoidy.m, 
 				Thex->mxoidy.mntime, Thex->mxoidy.mn, 
 				Thex->mxoidy.mxtime, Thex->mxoidy.mx);
-            fprintf(fo, "%1d %3.1lf ", Thex->mQdyes.hhr, Thex->mQdyes.h);
-            fprintf(fo, "%1d %3.1lf ", Thex->mQdyes.chr, Thex->mQdyes.c);      
-            fprintf(fo, "%1d %2.0lf ", Thex->mQdyes.hmxtime, Thex->mQdyes.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Thex->mQdyes.cmxtime, Thex->mQdyes.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Thex->mQdyes.hhr, Thex->mQdyes.h);
+            fprintf(fo, "%1ld %3.1lf ", Thex->mQdyes.chr, Thex->mQdyes.c);      
+            fprintf(fo, "%1ld %2.0lf ", Thex->mQdyes.hmxtime, Thex->mQdyes.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Thex->mQdyes.cmxtime, Thex->mQdyes.cmx);
 
-            fprintf(fo, "%1d %3.1lf ", Thex->mQdyel.hhr, Thex->mQdyel.h);
-            fprintf(fo, "%1d %3.1lf ", Thex->mQdyel.chr, Thex->mQdyel.c);      
-            fprintf(fo, "%1d %2.0lf ", Thex->mQdyel.hmxtime, Thex->mQdyel.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Thex->mQdyel.cmxtime, Thex->mQdyel.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Thex->mQdyel.hhr, Thex->mQdyel.h);
+            fprintf(fo, "%1ld %3.1lf ", Thex->mQdyel.chr, Thex->mQdyel.c);      
+            fprintf(fo, "%1ld %2.0lf ", Thex->mQdyel.hmxtime, Thex->mQdyel.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Thex->mQdyel.cmxtime, Thex->mQdyel.cmx);
 			
-            fprintf(fo, "%1d %3.1lf ", Thex->mQdyet.hhr, Thex->mQdyet.h);
-            fprintf(fo, "%1d %3.1lf ", Thex->mQdyet.chr, Thex->mQdyet.c);      
-            fprintf(fo, "%1d %2.0lf ", Thex->mQdyet.hmxtime, Thex->mQdyet.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Thex->mQdyet.cmxtime, Thex->mQdyet.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Thex->mQdyet.hhr, Thex->mQdyet.h);
+            fprintf(fo, "%1ld %3.1lf ", Thex->mQdyet.chr, Thex->mQdyet.c);      
+            fprintf(fo, "%1ld %2.0lf ", Thex->mQdyet.hmxtime, Thex->mQdyet.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Thex->mQdyet.cmxtime, Thex->mQdyet.cmx);
 		}
 		break;
 	}

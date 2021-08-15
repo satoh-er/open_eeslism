@@ -329,11 +329,11 @@ void PVdyprt(FILE *fo, int id, int Npv, PV *PV)
 	default:
 		for (i = 0; i < Npv; i++, PV++)
 		{
-			fprintf(fo, "%1d %3.1lf ", PV->Edy.hhr, PV->Edy.h);    
-            fprintf(fo, "%1d %2.0lf\n", PV->Edy.hmxtime, PV->Edy.hmx);
+			fprintf(fo, "%1ld %3.1lf ", PV->Edy.hhr, PV->Edy.h);    
+            fprintf(fo, "%1ld %2.0lf\n", PV->Edy.hmxtime, PV->Edy.hmx);
 			
-            fprintf(fo, "%1d %3.1lf ", PV->Soldy.hrs, PV->Soldy.d);
-            fprintf(fo, "%1d %2.0lf\n", PV->Soldy.mxtime, PV->Soldy.mx);
+            fprintf(fo, "%1ld %3.1lf ", PV->Soldy.hrs, PV->Soldy.d);
+            fprintf(fo, "%1ld %2.0lf\n", PV->Soldy.mxtime, PV->Soldy.mx);
 		}
 		break;
 	}
@@ -367,11 +367,11 @@ void PVmonprt(FILE *fo, int id, int Npv, PV *PV)
 	default:
 		for (i = 0; i < Npv; i++, PV++)
 		{
-			fprintf(fo, "%1d %3.1lf ", PV->mEdy.hhr, PV->mEdy.h);    
-            fprintf(fo, "%1d %2.0lf\n", PV->mEdy.hmxtime, PV->mEdy.hmx);
+			fprintf(fo, "%1ld %3.1lf ", PV->mEdy.hhr, PV->mEdy.h);    
+            fprintf(fo, "%1ld %2.0lf\n", PV->mEdy.hmxtime, PV->mEdy.hmx);
 			
-            fprintf(fo, "%1d %3.1lf ", PV->mSoldy.hrs, PV->mSoldy.d);
-            fprintf(fo, "%1d %2.0lf\n", PV->mSoldy.mxtime, PV->mSoldy.mx);
+            fprintf(fo, "%1ld %3.1lf ", PV->mSoldy.hrs, PV->mSoldy.d);
+            fprintf(fo, "%1ld %2.0lf\n", PV->mSoldy.mxtime, PV->mSoldy.mx);
 		}
 		break;
 	}

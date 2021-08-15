@@ -504,21 +504,21 @@ void boidyprt(FILE *fo, int id, int Nboi, BOI *Boi)
 	default:
 		for (i = 0; i < Nboi; i++, Boi++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Boi->Tidy.hrs, Boi->Tidy.m, 
 				Boi->Tidy.mntime, Boi->Tidy.mn, 
 				Boi->Tidy.mxtime, Boi->Tidy.mx);
 			
-            fprintf(fo, "%1d %3.1lf ", Boi->Qdy.hhr, Boi->Qdy.h);
-            fprintf(fo, "%1d %3.1lf ", Boi->Qdy.chr, Boi->Qdy.c);      
-            fprintf(fo, "%1d %2.0lf ", Boi->Qdy.hmxtime, Boi->Qdy.hmx);
-            fprintf(fo, "%1d %2.0lf ", Boi->Qdy.cmxtime, Boi->Qdy.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Boi->Qdy.hhr, Boi->Qdy.h);
+            fprintf(fo, "%1ld %3.1lf ", Boi->Qdy.chr, Boi->Qdy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Boi->Qdy.hmxtime, Boi->Qdy.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Boi->Qdy.cmxtime, Boi->Qdy.cmx);
 			
-            fprintf(fo, "%1d %3.1lf ", Boi->Edy.hrs, Boi->Edy.d);
-            fprintf(fo, "%1d %2.0lf ", Boi->Edy.mxtime, Boi->Edy.mx);
+            fprintf(fo, "%1ld %3.1lf ", Boi->Edy.hrs, Boi->Edy.d);
+            fprintf(fo, "%1ld %2.0lf ", Boi->Edy.mxtime, Boi->Edy.mx);
 			
-            fprintf(fo, "%1d %3.1lf ", Boi->Phdy.hrs, Boi->Phdy.d);      
-            fprintf(fo, "%1d %2.0lf\n", Boi->Phdy.mxtime, Boi->Phdy.mx);
+            fprintf(fo, "%1ld %3.1lf ", Boi->Phdy.hrs, Boi->Phdy.d);      
+            fprintf(fo, "%1ld %2.0lf\n", Boi->Phdy.mxtime, Boi->Phdy.mx);
 		} 
 		break;
 	}
@@ -557,21 +557,21 @@ void boimonprt(FILE *fo, int id, int Nboi, BOI *Boi)
 	default:
 		for (i = 0; i < Nboi; i++, Boi++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Boi->mTidy.hrs, Boi->mTidy.m, 
 				Boi->mTidy.mntime, Boi->mTidy.mn, 
 				Boi->mTidy.mxtime, Boi->mTidy.mx);
 			
-            fprintf(fo, "%1d %3.1lf ", Boi->mQdy.hhr, Boi->mQdy.h);
-            fprintf(fo, "%1d %3.1lf ", Boi->mQdy.chr, Boi->mQdy.c);      
-            fprintf(fo, "%1d %2.0lf ", Boi->mQdy.hmxtime, Boi->mQdy.hmx);
-            fprintf(fo, "%1d %2.0lf ", Boi->mQdy.cmxtime, Boi->mQdy.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Boi->mQdy.hhr, Boi->mQdy.h);
+            fprintf(fo, "%1ld %3.1lf ", Boi->mQdy.chr, Boi->mQdy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Boi->mQdy.hmxtime, Boi->mQdy.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Boi->mQdy.cmxtime, Boi->mQdy.cmx);
 			
-            fprintf(fo, "%1d %3.1lf ", Boi->mEdy.hrs, Boi->mEdy.d);
-            fprintf(fo, "%1d %2.0lf ", Boi->mEdy.mxtime, Boi->mEdy.mx);
+            fprintf(fo, "%1ld %3.1lf ", Boi->mEdy.hrs, Boi->mEdy.d);
+            fprintf(fo, "%1ld %2.0lf ", Boi->mEdy.mxtime, Boi->mEdy.mx);
 			
-            fprintf(fo, "%1d %3.1lf ", Boi->mPhdy.hrs, Boi->mPhdy.d);      
-            fprintf(fo, "%1d %2.0lf\n", Boi->mPhdy.mxtime, Boi->mPhdy.mx);
+            fprintf(fo, "%1ld %3.1lf ", Boi->mPhdy.hrs, Boi->mPhdy.d);      
+            fprintf(fo, "%1ld %2.0lf\n", Boi->mPhdy.mxtime, Boi->mPhdy.mx);
 		} 
 		break;
 	}

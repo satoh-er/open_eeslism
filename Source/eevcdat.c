@@ -31,7 +31,7 @@ void Vcfdata(FILE *fi, SIMCONTL *Simcon)
 	VCFILE  *Vcfile, *V;
 	TLIST	*T ;
 	int		i, N, j ;
-	char     s[SCHAR], Err[SCHAR], E[SCHAR];
+	char     s[SCHAR], Err[SCHAR], E[SCHAR*3+128];
 	
 	sprintf(Err, ERRFMT, "(vcfileint)");
 	

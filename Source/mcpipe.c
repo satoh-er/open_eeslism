@@ -363,14 +363,14 @@ void pipedyprt(FILE *fo, int id, int Npipe, PIPE *Pipe)
 	default:
 		for (i = 0; i < Npipe; i++, Pipe++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Pipe->Tidy.hrs, Pipe->Tidy.m, 
 				Pipe->Tidy.mntime, Pipe->Tidy.mn, 
 				Pipe->Tidy.mxtime, Pipe->Tidy.mx);
-            fprintf(fo, "%1d %3.1lf ", Pipe->Qdy.hhr, Pipe->Qdy.h);
-            fprintf(fo, "%1d %3.1lf ", Pipe->Qdy.chr, Pipe->Qdy.c);      
-            fprintf(fo, "%1d %2.0lf ", Pipe->Qdy.hmxtime, Pipe->Qdy.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Pipe->Qdy.cmxtime, Pipe->Qdy.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Pipe->Qdy.hhr, Pipe->Qdy.h);
+            fprintf(fo, "%1ld %3.1lf ", Pipe->Qdy.chr, Pipe->Qdy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Pipe->Qdy.hmxtime, Pipe->Qdy.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Pipe->Qdy.cmxtime, Pipe->Qdy.cmx);
 		}
 		break;
 	}
@@ -405,14 +405,14 @@ void pipemonprt(FILE *fo, int id, int Npipe, PIPE *Pipe)
 	default:
 		for (i = 0; i < Npipe; i++, Pipe++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Pipe->mTidy.hrs, Pipe->mTidy.m, 
 				Pipe->mTidy.mntime, Pipe->mTidy.mn, 
 				Pipe->mTidy.mxtime, Pipe->mTidy.mx);
-            fprintf(fo, "%1d %3.1lf ", Pipe->mQdy.hhr, Pipe->mQdy.h);
-            fprintf(fo, "%1d %3.1lf ", Pipe->mQdy.chr, Pipe->mQdy.c);      
-            fprintf(fo, "%1d %2.0lf ", Pipe->mQdy.hmxtime, Pipe->mQdy.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Pipe->mQdy.cmxtime, Pipe->mQdy.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Pipe->mQdy.hhr, Pipe->mQdy.h);
+            fprintf(fo, "%1ld %3.1lf ", Pipe->mQdy.chr, Pipe->mQdy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Pipe->mQdy.hmxtime, Pipe->mQdy.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Pipe->mQdy.cmxtime, Pipe->mQdy.cmx);
 		}
 		break;
 	}

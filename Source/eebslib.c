@@ -30,7 +30,7 @@ void Exsfdata (FILE *fi, char *dsn, EXSFS *Exsf, SCHDL *Schdl, SIMCONTL *Simc )
 	double  wa, wb, swa, cwa, swb, cwb ;
 	EXSF	*ex, *exj ;
 //	EXSF	*e ;
-	char	Err[SCHAR];
+	char	Err[SCHAR+128];
 	
 	strcpy ( s, dsn ) ;
 	Nd = imax ( ExsfCount ( fi ), 1 ) ;

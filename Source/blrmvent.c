@@ -32,7 +32,7 @@ void Ventdata(FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, SIMCONTL *Simc )
 	ACHIR	*achr;
 	ROOM	*room, *Rm ;
 	char	name1[SCHAR], name2[SCHAR], s[SCHAR], ss[SCHAR], 
-		err[SCHAR], E[SCHAR], c, *ce, *st;
+		err[SCHAR+128], E[SCHAR], c, *ce, *st;
 	double	val, *vall;
 	int		i, j, v, k ;
 	

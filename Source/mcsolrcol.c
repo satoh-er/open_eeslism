@@ -353,17 +353,17 @@ void colldyprt(FILE *fo, int id, int Ncoll, COLL *Coll)
 	default:
 		for (i = 0; i < Ncoll; i++, Coll++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Coll->Tidy.hrs, Coll->Tidy.m, 
 				Coll->Tidy.mntime, Coll->Tidy.mn, 
 				Coll->Tidy.mxtime, Coll->Tidy.mx);
-			fprintf(fo, "%1d %3.1lf ", Coll->Qdy.hhr, Coll->Qdy.h);
-            fprintf(fo, "%1d %3.1lf ", Coll->Qdy.chr, Coll->Qdy.c);      
-            fprintf(fo, "%1d %2.0lf ", Coll->Qdy.hmxtime, Coll->Qdy.hmx);
-            fprintf(fo, "%1d %2.0lf ", Coll->Qdy.cmxtime, Coll->Qdy.cmx);
+			fprintf(fo, "%1ld %3.1lf ", Coll->Qdy.hhr, Coll->Qdy.h);
+            fprintf(fo, "%1ld %3.1lf ", Coll->Qdy.chr, Coll->Qdy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Coll->Qdy.hmxtime, Coll->Qdy.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Coll->Qdy.cmxtime, Coll->Qdy.cmx);
 			
-            fprintf(fo, "%1d %3.1lf ", Coll->Soldy.hrs, Coll->Soldy.d);
-            fprintf(fo, "%1d %2.0lf\n", Coll->Soldy.mxtime, Coll->Soldy.mx);
+            fprintf(fo, "%1ld %3.1lf ", Coll->Soldy.hrs, Coll->Soldy.d);
+            fprintf(fo, "%1ld %2.0lf\n", Coll->Soldy.mxtime, Coll->Soldy.mx);
 		}
 		break;
 	}
@@ -400,17 +400,17 @@ void collmonprt(FILE *fo, int id, int Ncoll, COLL *Coll)
 	default:
 		for (i = 0; i < Ncoll; i++, Coll++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Coll->mTidy.hrs, Coll->mTidy.m, 
 				Coll->mTidy.mntime, Coll->mTidy.mn, 
 				Coll->mTidy.mxtime, Coll->mTidy.mx);
-			fprintf(fo, "%1d %3.1lf ", Coll->mQdy.hhr, Coll->mQdy.h);
-            fprintf(fo, "%1d %3.1lf ", Coll->mQdy.chr, Coll->mQdy.c);      
-            fprintf(fo, "%1d %2.0lf ", Coll->mQdy.hmxtime, Coll->mQdy.hmx);
-            fprintf(fo, "%1d %2.0lf ", Coll->mQdy.cmxtime, Coll->mQdy.cmx);
+			fprintf(fo, "%1ld %3.1lf ", Coll->mQdy.hhr, Coll->mQdy.h);
+            fprintf(fo, "%1ld %3.1lf ", Coll->mQdy.chr, Coll->mQdy.c);      
+            fprintf(fo, "%1ld %2.0lf ", Coll->mQdy.hmxtime, Coll->mQdy.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Coll->mQdy.cmxtime, Coll->mQdy.cmx);
 			
-            fprintf(fo, "%1d %3.1lf ", Coll->mSoldy.hrs, Coll->mSoldy.d);
-            fprintf(fo, "%1d %2.0lf\n", Coll->mSoldy.mxtime, Coll->mSoldy.mx);
+            fprintf(fo, "%1ld %3.1lf ", Coll->mSoldy.hrs, Coll->mSoldy.d);
+            fprintf(fo, "%1ld %2.0lf\n", Coll->mSoldy.mxtime, Coll->mSoldy.mx);
 		}
 		break;
 	}

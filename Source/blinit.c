@@ -649,7 +649,7 @@ void Windowdata (FILE *fi, char *dsn, WINDOW **Window, int *Nwindow)
 
 void Snbkdata (FILE *fi, char *dsn, SNBK **Snbk)
 {
-	char *ce, *vs, k[2], code[8], E[SCHAR],
+	char *ce, *vs, k[2], code[8], E[SCHAR*3+128],
 		name[SCHAR], s[SCHAR], key[SCHAR], v[SCHAR], Er[SCHAR];
 	int  i = -1, j, type, N ;
 	double   val[2];

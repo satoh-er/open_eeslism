@@ -624,21 +624,21 @@ void refadyprt(FILE *fo, int id, int Nrefa, REFA *Refa)
 	default:
 		for (i = 0; i < Nrefa; i++, Refa++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Refa->Tidy.hrs, Refa->Tidy.m, 
 				Refa->Tidy.mntime, Refa->Tidy.mn, 
 				Refa->Tidy.mxtime, Refa->Tidy.mx);
 			
-            fprintf(fo, "%1d %3.1lf ", Refa->Qdy.hhr, Refa->Qdy.h);
-            fprintf(fo, "%1d %3.1lf ", Refa->Qdy.chr, Refa->Qdy.c);
-            fprintf(fo, "%1d %2.0lf ", Refa->Qdy.hmxtime, Refa->Qdy.hmx);
-            fprintf(fo, "%1d %2.0lf ", Refa->Qdy.cmxtime, Refa->Qdy.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Refa->Qdy.hhr, Refa->Qdy.h);
+            fprintf(fo, "%1ld %3.1lf ", Refa->Qdy.chr, Refa->Qdy.c);
+            fprintf(fo, "%1ld %2.0lf ", Refa->Qdy.hmxtime, Refa->Qdy.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Refa->Qdy.cmxtime, Refa->Qdy.cmx);
 			
-            fprintf(fo, "%1d %3.1lf ", Refa->Edy.hrs, Refa->Edy.d);
-            fprintf(fo, "%1d %2.0lf ", Refa->Edy.mxtime, Refa->Edy.mx);
+            fprintf(fo, "%1ld %3.1lf ", Refa->Edy.hrs, Refa->Edy.d);
+            fprintf(fo, "%1ld %2.0lf ", Refa->Edy.mxtime, Refa->Edy.mx);
 			
-            fprintf(fo, "%1d %3.1lf ", Refa->Phdy.hrs, Refa->Phdy.d);     
-            fprintf(fo, "%1d %2.0lf\n", Refa->Phdy.mxtime, Refa->Phdy.mx); 
+            fprintf(fo, "%1ld %3.1lf ", Refa->Phdy.hrs, Refa->Phdy.d);     
+            fprintf(fo, "%1ld %2.0lf\n", Refa->Phdy.mxtime, Refa->Phdy.mx); 
 		}
 		break;
 	}
@@ -678,21 +678,21 @@ void refamonprt(FILE *fo, int id, int Nrefa, REFA *Refa)
 	default:
 		for (i = 0; i < Nrefa; i++, Refa++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Refa->mTidy.hrs, Refa->mTidy.m, 
 				Refa->mTidy.mntime, Refa->mTidy.mn, 
 				Refa->mTidy.mxtime, Refa->mTidy.mx);
 			
-            fprintf(fo, "%1d %3.1lf ", Refa->mQdy.hhr, Refa->mQdy.h);
-            fprintf(fo, "%1d %3.1lf ", Refa->mQdy.chr, Refa->mQdy.c);
-            fprintf(fo, "%1d %2.0lf ", Refa->mQdy.hmxtime, Refa->mQdy.hmx);
-            fprintf(fo, "%1d %2.0lf ", Refa->mQdy.cmxtime, Refa->mQdy.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Refa->mQdy.hhr, Refa->mQdy.h);
+            fprintf(fo, "%1ld %3.1lf ", Refa->mQdy.chr, Refa->mQdy.c);
+            fprintf(fo, "%1ld %2.0lf ", Refa->mQdy.hmxtime, Refa->mQdy.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Refa->mQdy.cmxtime, Refa->mQdy.cmx);
 			
-            fprintf(fo, "%1d %3.1lf ", Refa->mEdy.hrs, Refa->mEdy.d);
-            fprintf(fo, "%1d %2.0lf ", Refa->mEdy.mxtime, Refa->mEdy.mx);
+            fprintf(fo, "%1ld %3.1lf ", Refa->mEdy.hrs, Refa->mEdy.d);
+            fprintf(fo, "%1ld %2.0lf ", Refa->mEdy.mxtime, Refa->mEdy.mx);
 			
-            fprintf(fo, "%1d %3.1lf ", Refa->mPhdy.hrs, Refa->mPhdy.d);     
-            fprintf(fo, "%1d %2.0lf\n", Refa->mPhdy.mxtime, Refa->mPhdy.mx); 
+            fprintf(fo, "%1ld %3.1lf ", Refa->mPhdy.hrs, Refa->mPhdy.d);     
+            fprintf(fo, "%1ld %2.0lf\n", Refa->mPhdy.mxtime, Refa->mPhdy.mx); 
 		}
 		break;
 	}

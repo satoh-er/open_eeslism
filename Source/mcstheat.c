@@ -460,24 +460,24 @@ void stheatdyprt(FILE *fo, int id, int Nstheat, STHEAT *stheat)
 	default:
 		for (i = 0; i < Nstheat; i++, stheat++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				stheat->Tidy.hrs, stheat->Tidy.m, 
 				stheat->Tidy.mntime, stheat->Tidy.mn, 
 				stheat->Tidy.mxtime, stheat->Tidy.mx);
-			fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+			fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				stheat->Tody.hrs, stheat->Tody.m, 
 				stheat->Tody.mntime, stheat->Tody.mn, 
 				stheat->Tody.mxtime, stheat->Tody.mx);
-			fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+			fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				stheat->Tsdy.hrs, stheat->Tsdy.m, 
 				stheat->Tsdy.mntime, stheat->Tsdy.mn, 
 				stheat->Tsdy.mxtime, stheat->Tsdy.mx);
-            fprintf(fo, "%1d %3.1lf ", stheat->Qdy.hhr, stheat->Qdy.h);
-            fprintf(fo, "%1d %3.1lf ", stheat->Qdy.chr, stheat->Qdy.c);      
-            fprintf(fo, "%1d %2.0lf ", stheat->Qdy.hmxtime, stheat->Qdy.hmx);
-            fprintf(fo, "%1d %2.0lf ", stheat->Qdy.cmxtime, stheat->Qdy.cmx);
-			fprintf(fo, "%1d %3.1lf ", stheat->Edy.hrs, stheat->Edy.d);
-            fprintf(fo, "%1d %2.0lf ", stheat->Edy.mxtime, stheat->Edy.mx);
+            fprintf(fo, "%1ld %3.1lf ", stheat->Qdy.hhr, stheat->Qdy.h);
+            fprintf(fo, "%1ld %3.1lf ", stheat->Qdy.chr, stheat->Qdy.c);      
+            fprintf(fo, "%1ld %2.0lf ", stheat->Qdy.hmxtime, stheat->Qdy.hmx);
+            fprintf(fo, "%1ld %2.0lf ", stheat->Qdy.cmxtime, stheat->Qdy.cmx);
+			fprintf(fo, "%1ld %3.1lf ", stheat->Edy.hrs, stheat->Edy.d);
+            fprintf(fo, "%1ld %2.0lf ", stheat->Edy.mxtime, stheat->Edy.mx);
 			fprintf(fo, " %3.1lf %3.1lf\n", 
 				stheat->Qlossdy * cff_kWh, stheat->Qstody * cff_kWh);
 		}
@@ -525,24 +525,24 @@ void stheatmonprt(FILE *fo, int id, int Nstheat, STHEAT *stheat)
 	default:
 		for (i = 0; i < Nstheat; i++, stheat++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				stheat->mTidy.hrs, stheat->mTidy.m, 
 				stheat->mTidy.mntime, stheat->mTidy.mn, 
 				stheat->mTidy.mxtime, stheat->mTidy.mx);
-			fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+			fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				stheat->mTody.hrs, stheat->mTody.m, 
 				stheat->mTody.mntime, stheat->mTody.mn, 
 				stheat->mTody.mxtime, stheat->mTody.mx);
-			fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+			fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				stheat->mTsdy.hrs, stheat->mTsdy.m, 
 				stheat->mTsdy.mntime, stheat->mTsdy.mn, 
 				stheat->mTsdy.mxtime, stheat->mTsdy.mx);
-            fprintf(fo, "%1d %3.1lf ", stheat->mQdy.hhr, stheat->mQdy.h);
-            fprintf(fo, "%1d %3.1lf ", stheat->mQdy.chr, stheat->mQdy.c);      
-            fprintf(fo, "%1d %2.0lf ", stheat->mQdy.hmxtime, stheat->mQdy.hmx);
-            fprintf(fo, "%1d %2.0lf ", stheat->mQdy.cmxtime, stheat->mQdy.cmx);
-			fprintf(fo, "%1d %3.1lf ", stheat->mEdy.hrs, stheat->mEdy.d);
-            fprintf(fo, "%1d %2.0lf ", stheat->mEdy.mxtime, stheat->mEdy.mx);
+            fprintf(fo, "%1ld %3.1lf ", stheat->mQdy.hhr, stheat->mQdy.h);
+            fprintf(fo, "%1ld %3.1lf ", stheat->mQdy.chr, stheat->mQdy.c);      
+            fprintf(fo, "%1ld %2.0lf ", stheat->mQdy.hmxtime, stheat->mQdy.hmx);
+            fprintf(fo, "%1ld %2.0lf ", stheat->mQdy.cmxtime, stheat->mQdy.cmx);
+			fprintf(fo, "%1ld %3.1lf ", stheat->mEdy.hrs, stheat->mEdy.d);
+            fprintf(fo, "%1ld %2.0lf ", stheat->mEdy.mxtime, stheat->mEdy.mx);
 			fprintf(fo, " %3.1lf %3.1lf\n", 
 				stheat->mQlossdy * cff_kWh, stheat->mQstody * cff_kWh);
 		}

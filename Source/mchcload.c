@@ -1230,28 +1230,28 @@ void hclddyprt(FILE *fo, int id, int Nhcload, HCLOAD *Hcload)
 	default:
 		for (i = 0; i < Nhcload; i++, Hcload++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Hcload->Taidy.hrs, Hcload->Taidy.m, 
 				Hcload->Taidy.mntime, Hcload->Taidy.mn,
 				Hcload->Taidy.mxtime, Hcload->Taidy.mx);
-            fprintf(fo, "%1d %3.1lf ", Hcload->Qdys.hhr, Hcload->Qdys.h);
-            fprintf(fo, "%1d %3.1lf ", Hcload->Qdys.chr, Hcload->Qdys.c);
-            fprintf(fo, "%1d %2.0lf ", Hcload->Qdys.hmxtime, Hcload->Qdys.hmx);
-            fprintf(fo, "%1d %2.0lf ", Hcload->Qdys.cmxtime, Hcload->Qdys.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Hcload->Qdys.hhr, Hcload->Qdys.h);
+            fprintf(fo, "%1ld %3.1lf ", Hcload->Qdys.chr, Hcload->Qdys.c);
+            fprintf(fo, "%1ld %2.0lf ", Hcload->Qdys.hmxtime, Hcload->Qdys.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Hcload->Qdys.cmxtime, Hcload->Qdys.cmx);
 			
-            fprintf(fo, "%1d %5.4lf %1d %5.4lf %1d %5.4lf ",
+            fprintf(fo, "%1ld %5.4lf %1ld %5.4lf %1ld %5.4lf ",
 				Hcload->xaidy.hrs, Hcload->xaidy.m, 
 				Hcload->xaidy.mntime, Hcload->xaidy.mn, 
 				Hcload->xaidy.mxtime, Hcload->xaidy.mx);
-            fprintf(fo, "%1d %3.1lf ", Hcload->Qdyl.hhr, Hcload->Qdyl.h);
-            fprintf(fo, "%1d %3.1lf ", Hcload->Qdyl.chr, Hcload->Qdyl.c);
-            fprintf(fo, "%1d %2.0lf ", Hcload->Qdyl.hmxtime, Hcload->Qdyl.hmx);
-            fprintf(fo, "%1d %2.0lf ", Hcload->Qdyl.cmxtime, Hcload->Qdyl.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Hcload->Qdyl.hhr, Hcload->Qdyl.h);
+            fprintf(fo, "%1ld %3.1lf ", Hcload->Qdyl.chr, Hcload->Qdyl.c);
+            fprintf(fo, "%1ld %2.0lf ", Hcload->Qdyl.hmxtime, Hcload->Qdyl.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Hcload->Qdyl.cmxtime, Hcload->Qdyl.cmx);
 			
-            fprintf(fo, "%1d %3.1lf ", Hcload->Qdyt.hhr, Hcload->Qdyt.h);
-            fprintf(fo, "%1d %3.1lf ", Hcload->Qdyt.chr, Hcload->Qdyt.c);
-            fprintf(fo, "%1d %2.0lf ", Hcload->Qdyt.hmxtime, Hcload->Qdyt.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Hcload->Qdyt.cmxtime, Hcload->Qdyt.cmx);  
+            fprintf(fo, "%1ld %3.1lf ", Hcload->Qdyt.hhr, Hcload->Qdyt.h);
+            fprintf(fo, "%1ld %3.1lf ", Hcload->Qdyt.chr, Hcload->Qdyt.c);
+            fprintf(fo, "%1ld %2.0lf ", Hcload->Qdyt.hmxtime, Hcload->Qdyt.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Hcload->Qdyt.cmxtime, Hcload->Qdyt.cmx);  
 		}
 		break;
 	}
@@ -1300,28 +1300,28 @@ void hcldmonprt(FILE *fo, int id, int Nhcload, HCLOAD *Hcload)
 	default:
 		for (i = 0; i < Nhcload; i++, Hcload++)
 		{
-            fprintf(fo, "%1d %3.1lf %1d %3.1lf %1d %3.1lf ", 
+            fprintf(fo, "%1ld %3.1lf %1ld %3.1lf %1ld %3.1lf ", 
 				Hcload->mTaidy.hrs, Hcload->mTaidy.m, 
 				Hcload->mTaidy.mntime, Hcload->mTaidy.mn,
 				Hcload->mTaidy.mxtime, Hcload->mTaidy.mx);
-            fprintf(fo, "%1d %3.1lf ", Hcload->mQdys.hhr, Hcload->mQdys.h);
-            fprintf(fo, "%1d %3.1lf ", Hcload->mQdys.chr, Hcload->mQdys.c);
-            fprintf(fo, "%1d %2.0lf ", Hcload->mQdys.hmxtime, Hcload->mQdys.hmx);
-            fprintf(fo, "%1d %2.0lf ", Hcload->mQdys.cmxtime, Hcload->mQdys.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Hcload->mQdys.hhr, Hcload->mQdys.h);
+            fprintf(fo, "%1ld %3.1lf ", Hcload->mQdys.chr, Hcload->mQdys.c);
+            fprintf(fo, "%1ld %2.0lf ", Hcload->mQdys.hmxtime, Hcload->mQdys.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Hcload->mQdys.cmxtime, Hcload->mQdys.cmx);
 			
-            fprintf(fo, "%1d %5.4lf %1d %5.4lf %1d %5.4lf ",
+            fprintf(fo, "%1ld %5.4lf %1ld %5.4lf %1ld %5.4lf ",
 				Hcload->mxaidy.hrs, Hcload->mxaidy.m, 
 				Hcload->mxaidy.mntime, Hcload->mxaidy.mn, 
 				Hcload->mxaidy.mxtime, Hcload->mxaidy.mx);
-            fprintf(fo, "%1d %3.1lf ", Hcload->mQdyl.hhr, Hcload->mQdyl.h);
-            fprintf(fo, "%1d %3.1lf ", Hcload->mQdyl.chr, Hcload->mQdyl.c);
-            fprintf(fo, "%1d %2.0lf ", Hcload->mQdyl.hmxtime, Hcload->mQdyl.hmx);
-            fprintf(fo, "%1d %2.0lf ", Hcload->mQdyl.cmxtime, Hcload->mQdyl.cmx);
+            fprintf(fo, "%1ld %3.1lf ", Hcload->mQdyl.hhr, Hcload->mQdyl.h);
+            fprintf(fo, "%1ld %3.1lf ", Hcload->mQdyl.chr, Hcload->mQdyl.c);
+            fprintf(fo, "%1ld %2.0lf ", Hcload->mQdyl.hmxtime, Hcload->mQdyl.hmx);
+            fprintf(fo, "%1ld %2.0lf ", Hcload->mQdyl.cmxtime, Hcload->mQdyl.cmx);
 			
-            fprintf(fo, "%1d %3.1lf ", Hcload->mQdyt.hhr, Hcload->mQdyt.h);
-            fprintf(fo, "%1d %3.1lf ", Hcload->mQdyt.chr, Hcload->mQdyt.c);
-            fprintf(fo, "%1d %2.0lf ", Hcload->mQdyt.hmxtime, Hcload->mQdyt.hmx);
-            fprintf(fo, "%1d %2.0lf\n", Hcload->mQdyt.cmxtime, Hcload->mQdyt.cmx);  
+            fprintf(fo, "%1ld %3.1lf ", Hcload->mQdyt.hhr, Hcload->mQdyt.h);
+            fprintf(fo, "%1ld %3.1lf ", Hcload->mQdyt.chr, Hcload->mQdyt.c);
+            fprintf(fo, "%1ld %2.0lf ", Hcload->mQdyt.hmxtime, Hcload->mQdyt.hmx);
+            fprintf(fo, "%1ld %2.0lf\n", Hcload->mQdyt.cmxtime, Hcload->mQdyt.cmx);  
 		}
 		break;
 	}

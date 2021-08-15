@@ -129,7 +129,7 @@ void	Valvene ( int Nvalv, VALV *Valv, int *Valvreset )
 				{
 					r = ( *Valv->Tset - T2 ) / ( T1 - T2 ) ;
 
-					r = min ( 1.0, max ( r, 0.0 )) ;
+					r = dmin ( 1.0, dmax ( r, 0.0 )) ;
 					Valv->x = r ;
 					Vcb->x = 1.0 - r ;
 
