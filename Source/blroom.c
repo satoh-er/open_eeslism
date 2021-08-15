@@ -16,6 +16,7 @@
 /*  room.c       */
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdlib.h>
+#include "common.h"
 #include "MODEL.h" /*----higuchi 070918--*/
 #include "fesy.h"
 #include "fnbld.h"
@@ -522,7 +523,6 @@ void RMwlt (int Nmwall, MWALL *Mw)
 	ROOM  *Room;
 	int i;
 	double Tie, Tee, WTp;
-	extern int	DEBUG ;
 	
 	for (i = 0; i < Nmwall; i++, Mw++)
 	{
@@ -586,7 +586,6 @@ void RMwltd(int Nmwall, MWALL *Mw)
 	ROOM  *Room;
 	int i;
 	double Tie, Tee, WTp;
-	extern int	DEBUG;
 
 	for (i = 0; i < Nmwall; i++, Mw++)
 	{

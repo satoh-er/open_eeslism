@@ -20,6 +20,7 @@
 #include <malloc.h>
 #include <math.h>
 #include <string.h>
+#include "common.h"
 #include "fesy.h"
 #include "esize.h"
 #include "fnbld.h"
@@ -396,7 +397,6 @@ int		PCMcount(FILE *fi)
 double	FNPCMState(int Ctype, double Ss, double Sl, double Ql, double Ts, double Tl, double Tp, double T, PCMPARAM PCMp)
 {
 	double	Qse, Qla, Tls;
-	extern double PI;
 
 	Tls = Tl - Ts;
 	// 顕熱分の補間

@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <malloc.h>
 //#include <iostream>
+#include "common.h"
 #include "esize.h"
 #include "estr.h"
 #include "sched.h"
@@ -156,7 +157,6 @@ void	Floutfree(FLOUT* Flout)
 void	Compntfree(int N, COMPNT* c)
 {
 	int		i;
-	extern int	DEBUG;
 
 	for (i = 0; i < N; i++, c++)
 	{

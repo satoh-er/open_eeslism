@@ -15,6 +15,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "common.h"
 #include "MODEL.h"   /*---higuchi 070918 ---*/
 #include "fesy.h"
 #include "fnfio.h"
@@ -29,7 +30,6 @@ void Rmhtrcf(EXSFS *Exs, char *Emrk, ROOM *Room, RMSRF *Sd, WDAT *Wd)
 	RMSRF	*sd, *nxsd;
 	static int   count = 0;
 	ROOM	*rm;
-	extern int DEBUG;
 	//void	HeapCheck(char *s);
 
 	//HeapCheck("Rmhtrcf");
@@ -606,7 +606,6 @@ void Rmsurft(int Nroom, ROOM *Room, RMSRF *Sd)
 {
 	int		i, N, brs;
 	RMSRF	*sd;
-	extern int	DEBUG;
 	//static double	r = 0.5 ;
 	double	r;
 
@@ -671,7 +670,6 @@ void Rmsurftd(int Nroom, ROOM *Room, RMSRF *Sd)
 {
 	int		i, N, brs;
 	RMSRF	*sd;
-	extern int	DEBUG;
 	//static double	r = 0.5 ;
 	double	r;
 

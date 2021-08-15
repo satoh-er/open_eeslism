@@ -20,6 +20,7 @@
 //#include "exs.h"
 //#include "fbld.h"
 //#include "wthrd.h"
+#include "common.h"
 #include "fesy.h"
 #include "fnbld.h"
 #include "fnlib.h"
@@ -182,7 +183,7 @@ double	FNTf(double Tcin, double Tcole, double ECG)
 double FNSolarWallao(WDAT *Wd, RMSRF *Sd, EXSFS *Exsfs)
 {
 	double dblac, dblar, dblao ;
-	extern double Sgm, PI ;
+	extern double Sgm;
 	EXSF  *Exs ;
 	double dblWdre ;
 	double dblWa ;
@@ -260,7 +261,7 @@ double FNJurgesac(RMSRF *Sd, double dblV, double a, double b)
 void	FNKc(WDAT *Wd, EXSFS *Exsfs, RMSRF *Sd)
 {
 	double dblDet, dblWsuWsd, Ru, Cr, Cc ;
-	extern double roa, PI ;
+	extern double roa;
 	WALL	*Wall ;
 	EXSF		*Exs ;
 	double	rad ;

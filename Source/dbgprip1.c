@@ -14,6 +14,7 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 #include <stdio.h>
+#include "common.h"
 #include "fesy.h"
 
 #include "fnbld.h"
@@ -25,7 +26,6 @@ void	dprdayweek ( int *daywk )
 {  
 	int		k, d, dmax = 366 ;
 	extern char	DAYweek[][4];
-	extern FILE	*ferr ;
 	
 	printf ( "---  Day of week -----\n   " ) ;
 	for ( d = 0; d < 8; d++ )
@@ -57,8 +57,6 @@ void	dprschtable ( SEASN *Ssn, WKDY *Wkd, DSCH *Dh, DSCW *Dw )
 	WKDY	*Wkdy ;
 	DSCH	*Dsch ;
 	DSCW	*Dscw ;
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 	extern char	DAYweek[][4] ;
 	
 	Seasn = Ssn ;
@@ -179,8 +177,6 @@ void	dprschtable ( SEASN *Ssn, WKDY *Wkd, DSCH *Dh, DSCW *Dw )
 
 void	dprschdata ( SCH *Sh, SCH *Sw )
 { 
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 	int		i, k, d, dmax = 366 ;
 	int		*day, Nsc, Nsw ;
 	SCH		*Sch ;
@@ -283,8 +279,6 @@ void	dprschdata ( SCH *Sh, SCH *Sw )
 
 void	dprachv (int Nroom, ROOM *Room)
 {
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 	int		i, j;
 	ROOM	*Rm ;
 	ACHIR	*A ;
@@ -327,8 +321,6 @@ void	dprachv (int Nroom, ROOM *Room)
 void	dprexsf ( EXSF *E)   
 {
 	int		i, N ;
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 	EXSF	*Exs ;
 	
 	if ( E != NULL )
@@ -367,8 +359,6 @@ void	dprwwdata(WALL *Wa, WINDOW *Wi)
 {
 	int		i, j, N ;
 	WELM	*w ;
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 	WALL	*Wall ;
 	WINDOW	*Window ;
 	
@@ -440,8 +430,6 @@ void	dprroomdata(ROOM *R, RMSRF *S)
 {
 	int		i, j, N ;
 	RMSRF	*Sdd ;
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 	ROOM	*Room ;
 	RMSRF	*Sd ;
 
@@ -537,8 +525,6 @@ void	dprroomdata(ROOM *R, RMSRF *S)
 void	dprballoc ( MWALL *M, RMSRF *S )
 {
 	int		mw, id, N ;
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 	MWALL	*Mw ;
 	RMSRF	*Sd ;
 	

@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include "common.h"
 #include "esize.h"
 #include "fesy.h"
 #include "fnfio.h"
@@ -33,7 +34,6 @@ void eesprera (char *File, char *Ipath)
 {
 	FILE *fi, *fb ;
 	char  s[SCHAR], c, RET[SCHAR];
-	extern int	DEBUG ;
 	//int len ;
 	char *STRCUT(char *DATA, char a);
 

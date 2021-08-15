@@ -16,6 +16,7 @@
 /*   rmschd.c      */
 
 #define _CRT_SECURE_NO_WARNINGS
+#include "common.h"
 #include "MODEL.h" /*----higuchi 070918--*/
 #include "fesy.h"
 #include "fnbld.h"
@@ -82,7 +83,6 @@ void Qischdlr(int Nroom, ROOM* Room)
 		d[9] = { 3.5,3.6,4.0,4.2,4.4,6.5,7.0,7.3,6.3 };
 	int		i, wk;
 	double	N, Q;
-	extern int	DEBUG;
 	char	s[SCHAR];
 
 	for (i = 0; i < Nroom; i++, Room++)

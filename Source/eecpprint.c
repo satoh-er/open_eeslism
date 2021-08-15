@@ -16,6 +16,7 @@
 /*  ecpprint.c  */
 
 #include <stdio.h>
+#include "common.h"
 #include "fesy.h"
 #include "fnfio.h"
 
@@ -67,7 +68,6 @@ void eloutfprint(int id, int N, ELOUT *E, COMPNT *cmp)
 {
 	int    i, j;
 	double  *cfin;
-	extern FILE	*ferr ;
 	
 	if (id == 1)
 		fprintf(ferr,"ELOUT\n  n         id fld contl sysld Cmp   G      cfo    cfin\n");
@@ -134,7 +134,6 @@ void elinfprint(int id, int N, COMPNT *C, ELOUT *eo, ELIN *ei)
 	ELIN *E;
 	ELOUT *Eo;
 	int i, ii, j, o, v;
-	extern FILE	*ferr ;
 	
 	if (id == 1)
 		fprintf(ferr,"ELIN\n  n  id   upo  upv\n");

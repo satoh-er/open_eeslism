@@ -20,6 +20,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "common.h"
 #include "fesy.h"
 #include "fnesy.h"
 #include "sun.h"
@@ -71,8 +72,7 @@ double  Lat,Slat,Clat,Tlat,Lon,Ls,Isc;
 
 void Weatherdt(SIMCONTL *Simc, DAYTM *Daytm, LOCAT *Loc, WDAT *Wd, EXSF *Exs, char EarthSrfFlg)
 {
-	extern int	DEBUG, dayprn ;
-	extern FILE	*ferr ;
+	extern int	dayprn ;
 	
 	static int   ptt=25, nc=0;
 	static double     decl, E, tas, timedg;
@@ -286,8 +286,6 @@ void hspwdread(FILE *fp, int nday,
 			   LOCAT *Loc, int *year, int *mon, int *day, int *wkdy,
 			   double dt[7][25])
 {
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 	double  d, a, b, c;
 	int   k, t;
 	char  Data[24][4], Yr[3], Mon[3], Day[3], Wk[2], Sq[3];

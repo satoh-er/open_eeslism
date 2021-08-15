@@ -23,6 +23,7 @@
 #include <malloc.h>
 #include <math.h>
 #include <errno.h>
+#include "common.h"
 #include "estr.h"
 #include "fesy.h"
 #include "fnlib.h"
@@ -32,7 +33,6 @@
 void HeapCheck(char *s)
 {
 	int i ;
-	extern int DEBUG;
 
 #if WINVER
 	if (DEBUG)
@@ -337,8 +337,6 @@ int	drealloc ( double **A, unsigned int N, unsigned int NN )
 
 void Errprint(int err, char *key, char *s)
 {
-	extern FILE *ferr;
-	
 	if (err != 0)
 	{
 		printf(ERRFMTA, key, s);
@@ -350,8 +348,6 @@ void Errprint(int err, char *key, char *s)
 
 void Eprint(char *key, char *s)
 {
-	extern FILE *ferr;
-	
 	printf(ERRFMTA, key, s);
 	if ( ferr )
 		fprintf(ferr, ERRFMTA, key, s);

@@ -15,6 +15,7 @@
 
 /*  syseqv.c   */
 
+#include "common.h"
 #include "fesy.h"
 #include "fnesy.h"
 #include "fnlib.h"
@@ -27,7 +28,7 @@
 
 void Syseqv(int Nelout, ELOUT *Elout, SYSEQ *Syseq)
 {
-	extern int	DEBUG, dayprn ;
+	extern int	dayprn ;
 	extern FILE	*ferr ;
 	ELOUT	*elout, *elov, **eleq, **elosv ;
 	ELIN	*elin;

@@ -19,6 +19,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include "common.h"
 #include "fesy.h"
 #include "fnmcs.h"
 #include "fnesy.h"
@@ -160,7 +161,6 @@ void	Thexcfv ( int Nthex, THEX *Thex )
 	//char	E[SCHAR] ;
 	extern double	ca, ro, cv ;
 	double	*cfin ;
-	extern int DEBUG ;
 
 	for ( i = 0; i < Nthex; i++, Thex++ )
 	{

@@ -14,6 +14,7 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 /*  es_cntlsch_s.c */
+#include "common.h"
 #include "MODEL.h"   /*-----higuchi 070918---*/
 #include "fesy.h"
 #include "fnesy.h"
@@ -482,8 +483,6 @@ void	contlxprint(int Ncontl, CONTL *C)
 	CTLST	*cst;
 	double	V ;
 	CONTL	*Contl ;
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 	
 	Contl = C ;
 	if ( DEBUG )

@@ -16,6 +16,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
+#include "common.h"
 #include "MODEL.h"     /*--higuchi 070918 -*/
 
 #include "fesy.h"
@@ -40,7 +41,6 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 	int *bdpn, int *obsn, int *treen, int *shadn, int *polyn, BBDP **bp, OBS **obs,
 	TREE **tree, SHADTB **shadtb, POLYGN **poly, int *monten, int *gpn, double *DE, NOPLPMP *Noplpmp)
 {
-	extern FILE	*ferr;
 	FILE	*fi, *fbmlist;
 	FLOUT	*flo;
 	double	Twallinit;
@@ -49,7 +49,6 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 	char	s[SCHAR], Err[SCHAR], *File, hptest[SCHAR];
 	int		wdpri = 0, revpri = 0, pmvpri = 0, Nrmspri = 0, Nqrmpri = 0, Nwalpri = 0, Npcmpri = 0;
 	SCH		*Sch, *Scw;
-	extern int	DEBUG;
 	extern char	*Fbmlist;
 	int		SYSCMP_ID = 0, SYSPTH_ID = 0;
 

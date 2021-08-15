@@ -20,6 +20,7 @@
 #include <string.h>
 #include <malloc.h>
 #include <ctype.h>
+#include "common.h"
 #include "MODEL.h" /*----higuchi 070918--*/
 #include "esize.h"
 #include "fesy.h"
@@ -60,7 +61,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 
 	ACHIR	*Ac ;
 	extern double  ca, roa; 
-	extern int	DEBUG,NSTOP ;
+	extern int	NSTOP ;
 
 	int		i= -1, j, jj, J, n= -1, nr, nxnm= -1, nf, brs=0, ij, bre, N2, k, l ;
 	double  Area;

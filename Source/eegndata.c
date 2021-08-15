@@ -20,6 +20,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "common.h"
 /*************
 #include "wthrd.h"
 ******************/
@@ -37,9 +38,7 @@ void Gdata (FILE *fi, char *dsn, char *File, char **wfname, char **ofname,
 {
 	char	s[SCHAR], ss[SCHAR], *ce, *st, E[SCHAR], dd[SCHAR];
 	int		Ms, Ds, Mxs=0, Dxs=0, Me, De, n, ns, ne, i;
-	extern FILE	*ferr ;
 	int		logprn = 0 ;
-	extern int	DEBUG ;
 	
 	*dtm = 3600;
 	*sttmm = -1;

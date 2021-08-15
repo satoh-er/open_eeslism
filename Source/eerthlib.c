@@ -15,6 +15,7 @@
 
 #include <math.h>
 
+#include "common.h"
 #include "fesy.h"
 #include "fnfio.h"
 
@@ -25,8 +26,6 @@
 
 double Tearth (double Z, int n, int nmx, double Tgro, double DTg, double a)
 {
-	extern double PI;
-	
 	double Cz ;
 	static double	t = 31.536e+6 ;
 	

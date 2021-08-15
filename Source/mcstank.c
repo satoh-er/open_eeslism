@@ -23,6 +23,7 @@
 #include <ctype.h>
 #include <math.h>
 
+#include "common.h"
 #include "fesy.h"
 #include "fnmcs.h"
 #include "fnesy.h"
@@ -321,7 +322,7 @@ void Stankcfv(int Nstank, STANK *Stank)
 	double *fg;
 	double	ho, hi ;
 	double	dblT, dblv ;
-	extern double row, PI ;
+	extern double row;
 	
 	for (i = 0; i < Nstank; i++, Stank++)
 	{

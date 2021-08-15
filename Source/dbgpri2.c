@@ -16,6 +16,7 @@
 /*  dbgpri2.c   */
 
 #include <stdio.h>
+#include "common.h"
 #include "MODEL.h" /*---------higuchi 070918------------*/
 #include "fesy.h"
 #include "fnbld.h"
@@ -27,8 +28,6 @@ void	xprroom ( int Nroom, ROOM *R )
 { 
 	int		i, j ;
 	double	*ARN, *RMP ;
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 	ROOM	*Room ;
 	
 	Room = R ;
@@ -120,8 +119,6 @@ void	xprvent ( int Nroom, ROOM *R )
 {
 	int		i, j ;
 	ACHIR	*A ;
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 	ROOM	*Room ;
 	
 	Room = R ;

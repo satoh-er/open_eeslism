@@ -21,6 +21,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
+#include "common.h"
 #include "fesy.h"
 #include "fnmcs.h"
 #include "fnfio.h"
@@ -140,7 +141,6 @@ void Pumpflow(int Npump, PUMP *Pump)
 {
 	int		i;
 	double	S;
-	extern int	DEBUG ;
 	
 	for (i = 0; i < Npump; i++, Pump++)
 	{

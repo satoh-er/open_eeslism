@@ -14,6 +14,7 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 #include <stdio.h>
+#include "common.h"
 #include "MODEL.h" /*---------higuchi 070918------------*/
 #include "fesy.h"
 #include "fnbld.h"
@@ -26,8 +27,6 @@ void	xprtwallinit ( int Nmwall, MWALL *M )
 	int		j, m ;
 	double	*Told ;
 	MWALL	*Mw ;
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 	int		Max ;
 
 	Max = 0 ;
@@ -80,8 +79,6 @@ void	xprtwallinit ( int Nmwall, MWALL *M )
 void	xprsolrd ( int Nexs, EXSF *E )
 {
 	int		i ;
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 	EXSF	*Exs ;
 	
 	Exs = E ;
@@ -144,8 +141,6 @@ void	xprxas ( int Nroom, ROOM *R, RMSRF *S )
 	int		i, n, N, brs, j;
 	double  *WSRN, *WSPL;
 	RMSRF	*Sd ;
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 	ROOM	*Room ;
 	
 	Room = R ;

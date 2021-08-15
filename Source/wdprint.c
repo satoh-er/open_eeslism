@@ -16,6 +16,7 @@
 /* wdprint.c   */
 
 #include <stdio.h>
+#include "common.h"
 #include "estr.h"
 #include "fesy.h"
 #include "fnfio.h"
@@ -162,7 +163,6 @@ void Wdtprint(FILE *fo, char *title, int Mon, int Day, double time,
 	static int ic=0;
 	int		i;
 	EXSF	*e ;
-	extern int	DEBUG ;
 	int		Nexs ;
 
 	Nexs = Exsfst->Nexs ;

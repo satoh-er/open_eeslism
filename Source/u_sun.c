@@ -17,6 +17,7 @@
 -------------------     */
 #include <string.h>
 #include <math.h>
+#include "common.h"
 
 void Sunint(void);
 int FNNday(int Mo, int Nd);
@@ -41,7 +42,6 @@ void Dnsky(double Io, double Ihol, double Sh, double *Idn, double *Isky);
 ---------------------------------------------------------------- */
 void Sunint(void)
 {
-	extern double PI;
 	extern char *UNIT;
 	extern double Lat, Slat, Clat, Tlat, Isc;
 	double Rd;
@@ -63,13 +63,11 @@ int FNNday(int Mo, int Nd)
 /*  -------------------------------------------- */
 double FNDecl(int N)
 {
-	extern double PI;
     return( asin(.397949*sin(2.*PI*(N-81.)/365.)) );
 }
 /*  -------------------------------------------- */
 double FNE(int N)
 {
-	extern double PI;
 	double B;
 	B=2.*PI*(N-81.)/365.;
 	return( .1645*sin(2.*B)-.1255*cos(B)-.025*sin(B) );
@@ -77,7 +75,6 @@ double FNE(int N)
 /*  -------------------------------------------- */
 double FNSro(int N)
 {
-	extern double PI;
 	extern double Isc;
 	return( Isc*(1.0+.033*cos(2.*PI*N/365.)) );
 }
@@ -113,7 +110,7 @@ double FNTtd(double Decl)
 /* -------------------------------------------- */
 void Solpos(double Ttas, double Decl, double *Sh, double *Sw, double *Ss, double *solh, double *solA)
 {
-	extern double Slat, Clat, PI;
+	extern double Slat, Clat;
 	static double  Sdecl, Sld, Cld, Ttprev=25.;
 	double  Ch, Ca, Sa, W;
 	

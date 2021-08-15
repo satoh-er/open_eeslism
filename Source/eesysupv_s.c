@@ -15,6 +15,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "common.h"
 #include "fesy.h"
 #include "fnfio.h"
 
@@ -22,8 +23,7 @@
 
 void Sysupv(int Nmpath, MPATH *Mpath, RMVLS *Rmvls)
 {
-	extern int	DEBUG, dayprn ;
-	extern FILE	*ferr ;
+	extern int	dayprn ;
 	ROOM   *room, *rm;
 	RPANEL *rmpnl;
 	RDPNL  *Rdpnl;

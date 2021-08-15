@@ -15,15 +15,14 @@
 
 /*   bl_roomcf.c  */
 
-//#define		DEBUG	0
 #include <stdio.h>
+#include "common.h"
 #include "fesy.h"
 #include "fnbld.h"
 
 // 熱伝達率の計算
 void eeroomcf(WDAT *Wd, EXSFS *Exs, RMVLS *Rmvls, int nday, int mt)
 {
-	extern int	DEBUG ;
 	//int		i;
 	
 	//printf("ali=%lf\n", Rmvls->Sd->ali);

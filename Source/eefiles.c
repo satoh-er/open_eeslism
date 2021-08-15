@@ -17,6 +17,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
+#include "common.h"
 #include "fesy.h"
 #include "fnfio.h"
 #include "winerror.h"
@@ -28,7 +29,6 @@
 void eeflopen(SIMCONTL *Simc, int Nflout, FLOUT *Flout)
 {
 	FLOUT *fl;
-	//extern FILE	*ferr ;
 	char  Fname[SCHAR], Err[SCHAR] ; 
 	
 	sprintf(Err, ERRFMT, "(eeflopen)");
@@ -73,7 +73,6 @@ void eeflopen(SIMCONTL *Simc, int Nflout, FLOUT *Flout)
 void eeflclose(int Nflout, FLOUT *Flout)
 {
 	FLOUT *fl;
-	extern FILE	*ferr ;
 	
 	//   fclose(Simc->fwdata);
 	//   fclose(Simc->ftsupw);

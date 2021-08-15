@@ -19,6 +19,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "common.h"
 #include "MODEL.h"   /*--higuchi  070918--*/
 #include "fesy.h"
 #include "esize.h"
@@ -39,8 +40,7 @@ void Htrcf (double *alc, double *alo, char alotype, EXSF *Exs, double Tr, int N,
 	double  alic, *hc;
 	//double	aloc ;
 	double	dT;
-	extern int	DEBUG, dayprn ;
-	extern FILE	*ferr ;
+	extern int	dayprn ;
 	
 	HeapCheck("xxxxxx1");
 
@@ -221,7 +221,6 @@ void Radcf0 (double Tsav, double *alrbold, int N, RMSRF *Sd,
 	int    n;
 	double  alir,TA;
 	extern double Sgm;
-	extern int DEBUG ;
 	
 	TA = Tsav + 273.15;
 	alir = 4.0 * Sgm * pow ( TA, 3.0 ) ;
@@ -256,7 +255,6 @@ void radex(int N,  RMSRF *Sd, double *F, double *W)
 {
 	int		i, j, k, l = 0, n, nn ;
 	double  c, *wk, *Ff ;
-	extern int DEBUG ;
 	
 	/****
 	printf("<radex>  F[i,j]\n"); 

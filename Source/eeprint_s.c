@@ -15,7 +15,7 @@
 
 /*   ee_print_s.c  */
 
-
+#include "common.h"
 #include "fesy.h"
 #include "fnbld.h"
 #include "fnfio.h"
@@ -32,7 +32,6 @@ void Eeprinth(DAYTM *Daytm, SIMCONTL *Simc, int Nflout, FLOUT *flout,
 	char	*title;
 	int		Mon, Day, i;
 	double	time;
-	extern int	DEBUG ;
 	
 	if (Daytm->ddpri && Simc->dayprn[Daytm->day])
     {

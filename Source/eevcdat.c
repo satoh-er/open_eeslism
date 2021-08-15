@@ -18,6 +18,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <ctype.h>
 #include <stdlib.h>
+#include "common.h"
 #include "fesy.h"
 #include "fnesy.h"
 #include "fnfio.h"
@@ -302,7 +303,6 @@ void Vcfinput(DAYTM *Daytm, int Nvcfile, VCFILE *Vcfile, char perio)
 	static int Mon, Day, Time;
 	TMDT	Tmdt;
 	int		i, idend=0, iderr=0;
-	extern FILE	*ferr ;
 	char	E[SCHAR] ;
 	
 	TMDTinit ( &Tmdt ) ;
@@ -376,8 +376,6 @@ void	Flinprt ( int N, FLIN *Fl )
 {
 	FLIN	*F ;
 	int		i ;
-	extern int	DEBUG ;
-	extern FILE	*ferr ;
 
 	F = Fl ;
 	if ( DEBUG )

@@ -16,6 +16,7 @@
 /*   eschdlr_s.c   */
 
 #include <stdlib.h>
+#include "common.h"
 #include "MODEL.h"   /*-----higuchi 070918---*/
 #include "fesy.h"
 #include "fnbld.h"
@@ -31,7 +32,6 @@ void	Eeschdlr(int day, int ttmm, SCHDL *Schdl, RMVLS *Rmvls)
 	double	*val ;
 	SCH		*Sch, *Scw ;
 	char	*isw ;
-	extern int	DEBUG ;
 	ROOM	*r ;
 
 	val = Schdl->val ;

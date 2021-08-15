@@ -21,17 +21,12 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "common.h"
 #include "fesy.h"
 #include "fnesy.h"
 #include "fnlib.h"
 #include "winerror.h"
 #include "fnmcs.h"
-
-/**********************/
-
-//#define  DEBUG 0
-
-/**********************/
 
 /* --------------------------------------------------- */
 
@@ -39,7 +34,6 @@
 
 void Pflow(int Nmpath, MPATH *Mpath, WDAT *Wd)
 {
-	extern int	DEBUG ;
 	int		m, i, j, n, NG ;
 	MPATH	*mpi;
 	PLIST	*Plist, *pl;
@@ -55,7 +49,6 @@ void Pflow(int Nmpath, MPATH *Mpath, WDAT *Wd)
 	/*---- Satoh Debug VAV  2000/12/6 ----*/
 	VAV		*vav;
 	extern int	dayprn ;
-	extern FILE	*ferr ;
 	double G0 ;
 	
 	mpi = Mpath;

@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "common.h"
 #include "fesy.h"
 #include "fnesy.h"
 #include "fnfio.h"
@@ -33,7 +34,6 @@
 void Pathdata (FILE *f, char *errkey, SIMCONTL *Simc, WDAT *Wd, int  Ncompnt,  COMPNT *Compnt, SCHDL *Schdl,
 			   MPATH **M, int *Nmpath, PLIST **Plst, PELM **Plm, int *Npelm, int *Nplist, int ID, EQSYS *Eqsys )
 {
-	extern int	DEBUG ;
 	MPATH   *mpi, *Mpath ;
 	COMPNT  *cmp, *C ;
 	STANK   *stank;

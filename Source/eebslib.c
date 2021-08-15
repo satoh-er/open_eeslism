@@ -7,6 +7,7 @@
 #include <math.h>
 #include <malloc.h>
 
+#include "common.h"
 #include "fesy.h"
 #include "esize.h"
 #include "fnfio.h"
@@ -21,7 +22,6 @@
 
 void Exsfdata (FILE *fi, char *dsn, EXSFS *Exsf, SCHDL *Schdl, SIMCONTL *Simc )
 {
-	extern double PI;
 	char	s[SCHAR], ename[SCHAR], *st ;
 	double	dt, dfrg = 0.0 ;
 	double	rad; 
@@ -308,7 +308,6 @@ void Exsfsol(int Nexs, WDAT *Wd, EXSF *Exs)
 void Glasstga (double Ag, double tgtn, double Bn, double cinc, double Fsdw, 
 			   double Idr, double Idf,  double *Qgt, double *Qga, char *Cidtype, double Profile, double Gamma)
 { 
-	extern double	PI ;
 	double    Cid, Cidf=0.01;
 	double	  Bid, Bidf = 0.0 ;
 	double    Qt, Qb ;

@@ -21,6 +21,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
+#include "common.h"
 #include "fesy.h"
 #include "fnmcs.h"
 #include "fnfio.h"
@@ -109,7 +110,6 @@ void	Valvene ( int Nvalv, VALV *Valv, int *Valvreset )
 	double	T1, T2 ;
 	VALV	*Vcb ;
 	char	*etype ;
-	extern int	DEBUG ;
 	double	r ;
 
 	for ( i = 0; i < Nvalv; i++, Valv++ )
