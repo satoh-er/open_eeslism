@@ -19,7 +19,7 @@
 //#include <iostream>
 #include "common.h"
 #include "esize.h"
-#include "estr.h"
+#include "common.h"
 #include "sched.h"
 #include "wthrd.h"
 #include "daysum.h"
@@ -28,7 +28,7 @@
 #include "eqptyp.h"
 #include "eps.h"
 #include "simcon.h"
-#include "mfree.h"
+#include "memoryfree.h"
 
 //using namespace std ;
 
