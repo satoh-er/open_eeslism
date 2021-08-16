@@ -44,11 +44,10 @@
 #include "fnesy.h"
 #include "fnmcs.h"
 #include "fnfio.h"
-#include "INPUT.h"     /*--higuchi  -*/
 #include "fnlib.h"
-#include "sun.h"
-#include "psy.h"
-#include "mfree.h"
+#include "memoryfree.h"
+#include "bdhpri.h"
+
 #define  ALO  23.0
 
 /*-------------------higuchi add----------------start*/
@@ -60,6 +59,7 @@
 
 char	*UNIT = "SI";
 double	PI = 3.141592654;
+
 int	VAV_Count_MAX ;
 char	*Fbmlist;
 double	Sgm = 5.67e-8;
@@ -72,7 +72,6 @@ int		dayprn;
 
 char	DAYweek[][4] = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Hol" };
 FILE	*ferr;
-void	bdhpri(char *ofile, RMVLS rmvls, EXSFS *exs);
 int		NSTOP = 0, DISPLAY_DELAY = 0;
 int		SETprint = 0;
 
@@ -330,6 +329,7 @@ int main(int Narg, char **File)
 	Ifile = stralloc(File[1]);
 	strcpy(s, Ifile);
 
+	// 入力されたパスが"で始まる場合に除去する
 	if (Ifile[0] == '"')
 		sscanf(Ifile, "\"%~[\"]\"", s);
 
