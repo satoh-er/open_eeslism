@@ -1,6 +1,6 @@
 ﻿/*    bslib.c            */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -32,7 +32,7 @@ void Exsfdata (FILE *fi, char *dsn, EXSFS *Exsf, SCHDL *Schdl, SIMCONTL *Simc )
 //	EXSF	*e ;
 	char	Err[SCHAR+128];
 	
-	strcpy ( s, dsn ) ;
+	strcpy_s ( s, sizeof(s), dsn ) ;
 	Nd = imax ( ExsfCount ( fi ), 1 ) ;
 
 	vall = Schdl->val ;
@@ -40,7 +40,7 @@ void Exsfdata (FILE *fi, char *dsn, EXSFS *Exsf, SCHDL *Schdl, SIMCONTL *Simc )
 	/****************/
 	if ( Nd > 0 )
 	{
-		sprintf(s, "%lf", ALO);
+		sprintf_s(s, sizeof(s), "%lf", ALO);
 		Exsf->alosch = envptr(s,Simc,0,NULL,NULL,NULL) ;
 		Exsf->alotype = 'F' ;
 		Exsf->Exs = ( EXSF * ) malloc (( Nd + 1 ) * sizeof ( EXSF )) ;
@@ -59,7 +59,7 @@ void Exsfdata (FILE *fi, char *dsn, EXSFS *Exsf, SCHDL *Schdl, SIMCONTL *Simc )
 //	sprintf (E, ERRFMT, dsn);
 	ex = Exsf->Exs - 1 ;
 	
-	while (fscanf(fi, "%s", s), s[0] != '*')
+	while (fscanf_s(fi, "%s", s, sizeof(s)), s[0] != '*')
 	{
 		//printf ( "s=%s\n", s ) ;
 
@@ -87,7 +87,7 @@ void Exsfdata (FILE *fi, char *dsn, EXSFS *Exsf, SCHDL *Schdl, SIMCONTL *Simc )
 
 			if (dfrg<0. || dfrg>1.0)
 			{
-				sprintf(Err, "%s の設置値が不適切です", s);
+				sprintf_s(Err, sizeof(Err), "%s の設置値が不適切です", s);
 				preexit();
 			}
 		}
@@ -143,22 +143,22 @@ void Exsfdata (FILE *fi, char *dsn, EXSFS *Exsf, SCHDL *Schdl, SIMCONTL *Simc )
 			//}
 		}
 		
-		while (fscanf(fi, " %s ", s), s[0] != ';')
+		while (fscanf_s(fi, " %s ", s, sizeof(s)), s[0] != ';')
 		{ 
 			//printf ( "s=%s\n", s ) ;
 
 			if ( strncmp ( s, "a=", 2 ) == 0 )
 			{
-				if (sscanf(&s[2], "%lf", &dt) != 0)
+				if (sscanf_s(&s[2], "%lf", &dt) != 0)
 					ex->Wa =dt;
 				else
 				{
 					if (strchr(s, '+'))
-						Nd = sscanf(&s[2], "%[^+]%lf", ename, &dt);
+						Nd = sscanf_s(&s[2], "%[^+]%lf", ename, sizeof(ename), &dt);
 					else if (strchr(s, '-'))
-						Nd = sscanf(&s[2], "%[^-]%lf", ename, &dt); 
+						Nd = sscanf_s(&s[2], "%[^-]%lf", ename, sizeof(ename), &dt); 
 					else
-						Nd = sscanf(&s[2], "%s", ename);
+						Nd = sscanf_s(&s[2], "%s", ename, sizeof(ename));
 					
 					exj = Exsf->Exs ;
 					for (j=0; j<i+1; j++, exj++)
@@ -438,7 +438,7 @@ int	ExsfCount ( FILE *fi )
 	
 	ad = ftell ( fi ) ;
 	
-	while ( fscanf ( fi, " %s ", s ), s[0] != '*' )
+	while ( fscanf_s ( fi, " %s ", s, sizeof(s) ), s[0] != '*' )
 	{
 		/***********************
 		if ( strncmp ( s, "r=", 2 ) == 0 )

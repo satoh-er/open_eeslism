@@ -15,7 +15,7 @@
 
 /*  refas.c */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include "fesy.h"
@@ -153,7 +153,7 @@ void Refaint(int Nrefa, REFA *Refa, WDAT *Wd, int Ncompnt, COMPNT *Compnt)
 		}
 		
 		/*****************************
-		sprintf ( Err, "Name=%s  Ph=%.4g", Refa->cmp->name, Refa->cat->Ph ) ;
+		sprintf_s ( Err, sizeof(Err), "Name=%s  Ph=%.4g", Refa->cmp->name, Refa->cat->Ph ) ;
 		if ( Refa->cat->Ph < 0.0 )
 			Eprint ( "Refaint", Err ) ;
 			************************************/
@@ -263,7 +263,7 @@ void Refacfv(int Nrefa, REFA *Refa)
 					}
 					else
 					{
-						sprintf( s, "xxxxx refacoeff xxx stop xx  %s chmode=%c  monitor=%s",
+						sprintf_s( s, sizeof(s), "xxxxx refacoeff xxx stop xx  %s chmode=%c  monitor=%s",
 							Refa->name, Refa->chmode, Refa->cmp->elouts->emonitr->cmp->name);
 						Eprint ( "<Refacfv>", s ) ;
 

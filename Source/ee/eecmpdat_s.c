@@ -17,7 +17,7 @@
 
 /*   システム要素の入力 */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -188,7 +188,7 @@ void Compodata(FILE *f, char *errkey, RMVLS *Rmvls, EQCAT *Eqcat,
 
 	if ( ID == 0 )
 	{
-		while (fscanf(f, "%s", s), *s != '*')
+		while (fscanf_s(f, "%s", s, sizeof(s)), *s != '*')
 		{
 			//Ncrm = Compnt - cmp ;
 			cio=' '; 
@@ -197,15 +197,15 @@ void Compodata(FILE *f, char *errkey, RMVLS *Rmvls, EQCAT *Eqcat,
 			if ( *s == '(' )
 			{
 				if ( strlen ( s ) == 1 )
-					fscanf ( f, "%s", s ) ;
+					fscanf_s ( f, "%s", s, sizeof(s) ) ;
 				else
-					sscanf ( s, "(%s", s ) ;
+					sscanf_s ( s, "(%s", s, sizeof(s) ) ;
 
 				Crm = NULL ;
 				Compnt->name = stralloc ( s ) ;
 				Compnt++ ;
 
-				fscanf ( f, "%s", s ) ;
+				fscanf_s ( f, "%s", s, sizeof(s) ) ;
 
 				if (( st = strchr ( s, ')' )) != NULL )
 				{
@@ -240,7 +240,7 @@ void Compodata(FILE *f, char *errkey, RMVLS *Rmvls, EQCAT *Eqcat,
 				}
 			}
 
-			while (fscanf(f, "%s", s), *s != ';')
+			while (fscanf_s(f, "%s", s, sizeof(s)), *s != ';')
 			{
 				if (*s == '-')
 				{ 
@@ -468,7 +468,7 @@ void Compodata(FILE *f, char *errkey, RMVLS *Rmvls, EQCAT *Eqcat,
 
 					case 'R':
 						Compnt->roomname = stralloc(s) ;
-						fscanf ( f, "%lf", &Compnt->eqpeff ) ;
+						fscanf_s ( f, "%lf", &Compnt->eqpeff ) ;
 						break ;
 
 					case 's':
@@ -479,12 +479,12 @@ void Compodata(FILE *f, char *errkey, RMVLS *Rmvls, EQCAT *Eqcat,
 						Compnt->omparm = stralloc(s) ;
 						break ;
 					case 'S': case 'V':
-						strcat(s, "  ");
+						strcat_s(s, sizeof(s), "  ");
 						st = s + strlen(s);
 
-						fscanf(f, "%[^*]*", st); 
+						fscanf_s(f, "%[^*]*", st, sizeof(st)); 
 
-						strcat(s, " *"); 
+						strcat_s(s, sizeof(s), " *"); 
 
 						Compnt->tparm = stralloc(s);
 
@@ -493,9 +493,9 @@ void Compodata(FILE *f, char *errkey, RMVLS *Rmvls, EQCAT *Eqcat,
 					case 'T':
 						if (*s == '(')
 						{	  
-							strcat(s, " ");
+							strcat_s(s, sizeof(s), " ");
 							st = s + strlen(s);
-							fscanf(f, "%[^)])", st);
+							fscanf_s(f, "%[^)])", st, sizeof(st));
 							Compnt->tparm = stralloc(s);
 						}
 						else
@@ -538,8 +538,8 @@ void Compodata(FILE *f, char *errkey, RMVLS *Rmvls, EQCAT *Eqcat,
 		{
 			if (strcmp(cm->eqptype, DIVGAIR_TYPE) == 0)
 			{
-				strcpy ( s, cm->name ) ;
-				strcat ( s, ".x" ) ;
+				strcpy_s ( s, sizeof(s), cm->name ) ;
+				strcat_s ( s, sizeof(s), ".x" ) ;
 				Compnt->name = stralloc ( s ) ;
 
 				/**********************
@@ -558,8 +558,8 @@ void Compodata(FILE *f, char *errkey, RMVLS *Rmvls, EQCAT *Eqcat,
 			}
 			else if (strcmp(cm->eqptype, CVRGAIR_TYPE) == 0)
 			{
-				strcpy ( s, cm->name ) ;
-				strcat ( s, ".x" ) ;
+				strcpy_s ( s, sizeof(s), cm->name ) ;
+				strcat_s ( s, sizeof(s), ".x" ) ;
 				Compnt->name = stralloc ( s ) ;
 
 				/*********************
@@ -1051,14 +1051,14 @@ void Compodata(FILE *f, char *errkey, RMVLS *Rmvls, EQCAT *Eqcat,
 		N = 0 ;
 		ad = ftell ( fi ) ;
 
-		while ( fscanf ( fi, "%s", s ) != EOF )
+		while ( fscanf_s ( fi, "%s", s, sizeof(s) ) != EOF )
 		{
 			//printf ( "%s\n", s ) ;
 			if ( strcmp ( s, ";" ) == 0 )
 			{
 				N++ ;
 
-				fscanf ( fi, "%s", s ) ;
+				fscanf_s ( fi, "%s", s, sizeof(s) ) ;
 
 				if ( *s == '*' )
 					break ;

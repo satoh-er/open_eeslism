@@ -14,7 +14,7 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 /*  eesfiles.c  */
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "common.h"
@@ -31,25 +31,25 @@ void eeflopen(SIMCONTL *Simc, int Nflout, FLOUT *Flout)
 	FLOUT *fl;
 	char  Fname[SCHAR], Err[SCHAR] ; 
 	
-	sprintf(Err, ERRFMT, "(eeflopen)");
+	sprintf_s(Err, sizeof(Err), ERRFMT, "(eeflopen)");
 	
 	if (Simc->wdtype == 'H')
 	{
-		if ((Simc->fwdata = fopen(Simc->wfname, "r")) == 0)
+		if (fopen_s(&(Simc->fwdata), Simc->wfname, "r") != 0)
 		{
 			Eprint ( "<eeflopen>", Simc->wfname ) ;
             //getch() ;
 			preexit ( ) ;
 			exit(EXIT_WFILE);
 		}
-		if ((Simc->fwdata2 = fopen(Simc->wfname, "r")) == 0)
+		if (fopen_s(&(Simc->fwdata2), Simc->wfname, "r") != 0)
 		{
 			Eprint ( "<eeflopen>", Simc->wfname ) ;
             //getch() ;
 			preexit ( ) ;
 			exit(EXIT_WFILE);
 		}
-		if ((Simc->ftsupw = fopen("supw.efl", "r")) == 0)
+		if (fopen_s(&(Simc->ftsupw), "supw.efl", "r") != 0)
 		{
 			Eprint ( "<eeflopen>", "supw.efl" ) ;
             //getch() ;
@@ -63,8 +63,10 @@ void eeflopen(SIMCONTL *Simc, int Nflout, FLOUT *Flout)
 
 	for (fl = Flout; fl < Flout+Nflout; fl++)
 	{
-		strcat(strcpy(Fname, Simc->ofname), fl->idn);      
-		fl->f = fopen(strcat(Fname, ".es"), "w");
+		strcpy_s(Fname, sizeof(Fname), Simc->ofname);
+		strcat_s(Fname, sizeof(Fname), fl->idn);
+		strcat_s(Fname, sizeof(Fname), ".es");
+		fopen_s(&(fl->f), Fname, "w");
 	}
 }
 /* ----------------------------------------------------- */

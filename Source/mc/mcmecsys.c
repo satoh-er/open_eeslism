@@ -15,7 +15,7 @@
 
 /*  mecsys.c  */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include "fesy.h"
 #include "fnmcs.h"
 #include "fnfio.h"
@@ -35,7 +35,7 @@ void	Mecsinit(double dTM, EQSYS *Eqsys,
 	Collint ( Eqsys->Ncoll, Eqsys->Coll, Nexsf, Exsf, Wd ) ;
 	Pipeint ( Eqsys->Npipe, Eqsys->Pipe, Simc, Ncompnt, Compnt, Wd ) ;
 	/////////////////////////////////
-	sprintf(hptest, "Mecsinit") ;
+	sprintf_s(hptest, sizeof(hptest), "Mecsinit") ;
 	HeapCheck(hptest) ;
 	/////////////////////////////////
 	Stankint ( dTM, Eqsys->Nstank, Eqsys->Stank, Simc, Ncompnt, Compnt, Wd ) ;

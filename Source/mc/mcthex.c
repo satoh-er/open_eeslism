@@ -15,7 +15,7 @@
 
 /* mcthex.c */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 
@@ -77,7 +77,7 @@ void	Thexint ( int Nthex, THEX *Thex )
 
 		if ( Thex->cat->et < 0.0 )
 		{
-			sprintf ( s, "Name=%s catname=%s et=%lf",
+			sprintf_s ( s, sizeof(s), "Name=%s catname=%s et=%lf",
 				Thex->name, Thex->cat->name, Thex->cat->et ) ;
 			Eprint ( "<Thexint>", s ) ;
 		}

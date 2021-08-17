@@ -14,7 +14,7 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 /*   bl_wall.c   */
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -106,7 +106,7 @@ void Walli(int Nbm, BMLST *W, WALL *Wl, PCM *pcm, int Npcm)
 
 		if (k == Nbm)
 		{
-			sprintf(E, "%s", Welm->code);
+			sprintf_s(E, sizeof(E), "%s", Welm->code);
 			Eprint("<Walli>", E);
 		}
 

@@ -17,7 +17,7 @@
 
 /*  VAVコントローラ */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -94,7 +94,7 @@ void VWVint(int Nvav, VAV *VAV, int Ncompnt, COMPNT *Compn)
 
 			if ( VAV->mon == '-' )
 			{
-				sprintf ( s, "VWV(%s)=%s", VAV->name, VAV->cmp->hccname ) ;
+				sprintf_s ( s, sizeof(s), "VWV(%s)=%s", VAV->name, VAV->cmp->hccname ) ;
 				printf ( "xxxxxxxxx %s xxxxxxxxxxx\n", s ) ;
 			}
 		}
@@ -120,12 +120,12 @@ void VAVcfv(int Nvav, VAV *vav)
 		{
 			if ( vav->cat->Gmax < 0.0 )
 			{
-				sprintf ( Err, "Name=%s  Gmax=%.5g", vav->name, vav->cat->Gmax ) ;
+				sprintf_s ( Err, sizeof(Err), "Name=%s  Gmax=%.5g", vav->name, vav->cat->Gmax ) ;
 				Eprint ( "VAVcfv", Err ) ;
 			}
 			if ( vav->cat->Gmin < 0.0 )
 			{
-				sprintf ( Err, "Name=%s  Gmin=%.5g", vav->name, vav->cat->Gmin ) ;
+				sprintf_s ( Err, sizeof(Err), "Name=%s  Gmin=%.5g", vav->name, vav->cat->Gmin ) ;
 				Eprint ( "VAVcfv", Err ) ;
 			}
 

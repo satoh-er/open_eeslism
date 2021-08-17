@@ -53,9 +53,7 @@ typedef struct wdat    /*気象デ－タ         */
 	
 	char   RNtype ;	  /*気象データ項目  C:雲量　R:夜間放射量[W/m2] */
 	
-	char	Intgtsupw ;
-						// 給水温度を補完する場合は'Y'、しない場合は'N'
-						// デフォルトは'N'
+	char	Intgtsupw ; // 給水温度を補完する場合は'Y'、しない場合は'N' (デフォルトは'N')
 	double  Twsup;     /*給水温度              */
 	double	*EarthSurface ;
 						// 地表面温度[℃]

@@ -15,7 +15,7 @@
 
 /*     esidcode_s.c       */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include "fesy.h"
 #include "fnesy.h"
 #include "fnlib.h"
@@ -129,7 +129,7 @@ int idroom (char *code, ROOM *Room, char *err)
 
 		if ( j == N )
 		{
-			sprintf ( E, "Room=%s  %s", code, err ) ;
+			sprintf_s ( E, sizeof(E), "Room=%s  %s", code, err ) ;
 			Eprint ( "<idroom>", E ) ;
 		}
 	}

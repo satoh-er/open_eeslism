@@ -13,7 +13,7 @@
 //You should have received a copy of the GNU General Public License
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -37,7 +37,7 @@ char NAME[SCHAR];
 
 void HISASHI(FILE *fi, sunblk *sb){
 
-	fscanf(fi, "%s", NAME);
+	fscanf_s(fi, "%s", NAME, sizeof(NAME));
 	sb->snbname = stralloc(NAME);
 
 	/*-色の初期値--*/
@@ -45,26 +45,27 @@ void HISASHI(FILE *fi, sunblk *sb){
 	sb->rgb[1] = 0.2;
 	sb->rgb[2] = 0.0;
 
-	while (fscanf(fi, "%s", NAME), NAME[0] != ';'){
+	// ex) 1Fhisa -xy 0 2.7 -DW 0.5 8.645 -a 90 ;
+	while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != ';'){
 
 		if (strcmp(NAME, "-xy") == 0){
-			fscanf(fi, "%lf", &sb->x);
-			fscanf(fi, "%lf", &sb->y);
+			fscanf_s(fi, "%lf", &sb->x);
+			fscanf_s(fi, "%lf", &sb->y);
 		}
 
 		else if (strcmp(NAME, "-DW") == 0){
-			fscanf(fi, "%lf", &sb->D);
-			fscanf(fi, "%lf", &sb->W);
+			fscanf_s(fi, "%lf", &sb->D);
+			fscanf_s(fi, "%lf", &sb->W);
 		}
 
 		else if (strcmp(NAME, "-a") == 0)
-			fscanf(fi, "%lf", &sb->WA);
+			fscanf_s(fi, "%lf", &sb->WA);
 
 
 		else if (strcmp(NAME, "-rgb") == 0){
-			fscanf(fi, "%lf", &sb->rgb[0]);
-			fscanf(fi, "%lf", &sb->rgb[1]);
-			fscanf(fi, "%lf", &sb->rgb[2]);
+			fscanf_s(fi, "%lf", &sb->rgb[0]);
+			fscanf_s(fi, "%lf", &sb->rgb[1]);
+			fscanf_s(fi, "%lf", &sb->rgb[2]);
 		}
 
 		else {
@@ -85,30 +86,30 @@ void BARUKO(FILE *fi, sunblk *sb){
 	sb->rgb[2] = 0.0;
 
 
-	fscanf(fi, "%s", NAME);
+	fscanf_s(fi, "%s", NAME, sizeof(NAME));
 	sb->snbname = stralloc(NAME);
 
-	while (fscanf(fi, "%s", NAME), NAME[0] != ';'){
+	while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != ';'){
 
 		if (strcmp(NAME, "-xy") == 0){
-			fscanf(fi, "%lf", &sb->x);
-			fscanf(fi, "%lf", &sb->y);
+			fscanf_s(fi, "%lf", &sb->x);
+			fscanf_s(fi, "%lf", &sb->y);
 		}
 
 		else if (strcmp(NAME, "-DHWh") == 0){
-			fscanf(fi, "%lf", &sb->D);
-			fscanf(fi, "%lf", &sb->H);
-			fscanf(fi, "%lf", &sb->W);
-			fscanf(fi, "%lf", &sb->h);
+			fscanf_s(fi, "%lf", &sb->D);
+			fscanf_s(fi, "%lf", &sb->H);
+			fscanf_s(fi, "%lf", &sb->W);
+			fscanf_s(fi, "%lf", &sb->h);
 		}
 
 		else if (strcmp(NAME, "-ref") == 0)
-			fscanf(fi, "%lf", &sb->ref);
+			fscanf_s(fi, "%lf", &sb->ref);
 
 		else if (strcmp(NAME, "-rgb") == 0){
-			fscanf(fi, "%lf", &sb->rgb[0]);
-			fscanf(fi, "%lf", &sb->rgb[1]);
-			fscanf(fi, "%lf", &sb->rgb[2]);
+			fscanf_s(fi, "%lf", &sb->rgb[0]);
+			fscanf_s(fi, "%lf", &sb->rgb[1]);
+			fscanf_s(fi, "%lf", &sb->rgb[2]);
 		}
 
 		else {
@@ -126,28 +127,28 @@ void SODEK(FILE *fi, sunblk *sb){
 	sb->rgb[1] = 0.2;
 	sb->rgb[2] = 0.0;
 
-	fscanf(fi, "%s", NAME);
+	fscanf_s(fi, "%s", NAME, sizeof(NAME));
 	sb->snbname = stralloc(NAME);
 
-	while (fscanf(fi, "%s", NAME), NAME[0] != ';'){
+	while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != ';'){
 
 		if (strcmp(NAME, "-xy") == 0){
-			fscanf(fi, "%lf", &sb->x);
-			fscanf(fi, "%lf", &sb->y);
+			fscanf_s(fi, "%lf", &sb->x);
+			fscanf_s(fi, "%lf", &sb->y);
 		}
 
 		else if (strcmp(NAME, "-DH") == 0){
-			fscanf(fi, "%lf", &sb->D);
-			fscanf(fi, "%lf", &sb->H);
+			fscanf_s(fi, "%lf", &sb->D);
+			fscanf_s(fi, "%lf", &sb->H);
 		}
 
 		else if (strcmp(NAME, "-a") == 0)
-			fscanf(fi, "%lf", &sb->WA);
+			fscanf_s(fi, "%lf", &sb->WA);
 
 		else if (strcmp(NAME, "-rgb") == 0){
-			fscanf(fi, "%lf", &sb->rgb[0]);
-			fscanf(fi, "%lf", &sb->rgb[1]);
-			fscanf(fi, "%lf", &sb->rgb[2]);
+			fscanf_s(fi, "%lf", &sb->rgb[0]);
+			fscanf_s(fi, "%lf", &sb->rgb[1]);
+			fscanf_s(fi, "%lf", &sb->rgb[2]);
 		}
 		else {
 			printf("ERROR parameter----SODEKABE: %s\n", NAME);
@@ -165,26 +166,26 @@ void SCREEN(FILE *fi, sunblk *sb){
 	sb->rgb[1] = 0.2;
 	sb->rgb[2] = 0.0;
 
-	fscanf(fi, "%s", NAME);
+	fscanf_s(fi, "%s", NAME, sizeof(NAME));
 	sb->snbname = stralloc(NAME);
 
-	while (fscanf(fi, "%s", NAME), NAME[0] != ';'){
+	while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != ';'){
 
 		if (strcmp(NAME, "-xy") == 0){
-			fscanf(fi, "%lf", &sb->x);
-			fscanf(fi, "%lf", &sb->y);
+			fscanf_s(fi, "%lf", &sb->x);
+			fscanf_s(fi, "%lf", &sb->y);
 		}
 
 		else if (strcmp(NAME, "-DHW") == 0){
-			fscanf(fi, "%lf", &sb->D);
-			fscanf(fi, "%lf", &sb->H);
-			fscanf(fi, "%lf", &sb->W);
+			fscanf_s(fi, "%lf", &sb->D);
+			fscanf_s(fi, "%lf", &sb->H);
+			fscanf_s(fi, "%lf", &sb->W);
 		}
 
 		else if (strcmp(NAME, "-rgb") == 0){
-			fscanf(fi, "%lf", &sb->rgb[0]);
-			fscanf(fi, "%lf", &sb->rgb[1]);
-			fscanf(fi, "%lf", &sb->rgb[2]);
+			fscanf_s(fi, "%lf", &sb->rgb[0]);
+			fscanf_s(fi, "%lf", &sb->rgb[1]);
+			fscanf_s(fi, "%lf", &sb->rgb[2]);
 		}
 
 		else {
@@ -205,36 +206,36 @@ void rmpdata(FILE *fi, RRMP *rp, MADO *wp){
 	rp->rgb[1] = 0.9;
 	rp->rgb[2] = 0.9;
 
-	fscanf(fi, "%s", NAME);
+	fscanf_s(fi, "%s", NAME, sizeof(NAME));
 	//printf("<rmpdata> 1 NAME=%s\n", NAME);
 	rp->rmpname = stralloc(NAME);
-	fscanf(fi, "%s", NAME);
+	fscanf_s(fi, "%s", NAME, sizeof(NAME));
 	//printf("<rmpdata> 2 NAME=%s\n", NAME);
 	rp->wallname = stralloc(NAME);
 
-	while (fscanf(fi, "%s", NAME), NAME[0] != ';'){
+	while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != ';'){
 
 		//printf("<rmpdata> 3 NAME=%s\n", NAME);
 		if (strcmp(NAME, "-xyb") == 0){
-			fscanf(fi, "%lf", &rp->xb0);
-			fscanf(fi, "%lf", &rp->yb0);
+			fscanf_s(fi, "%lf", &rp->xb0);
+			fscanf_s(fi, "%lf", &rp->yb0);
 		}
 
 		else if (strcmp(NAME, "-WH") == 0){
-			fscanf(fi, "%lf", &rp->Rw);
-			fscanf(fi, "%lf", &rp->Rh);
+			fscanf_s(fi, "%lf", &rp->Rw);
+			fscanf_s(fi, "%lf", &rp->Rh);
 		}
 
 		else if (strcmp(NAME, "-ref") == 0)
-			fscanf(fi, "%lf", &rp->ref);
+			fscanf_s(fi, "%lf", &rp->ref);
 
 		else if (strcmp(NAME, "-grpx") == 0)
-			fscanf(fi, "%lf", &rp->grpx);
+			fscanf_s(fi, "%lf", &rp->grpx);
 
 		else if (strcmp(NAME, "-rgb") == 0){
-			fscanf(fi, "%lf", &rp->rgb[0]);
-			fscanf(fi, "%lf", &rp->rgb[1]);
-			fscanf(fi, "%lf", &rp->rgb[2]);
+			fscanf_s(fi, "%lf", &rp->rgb[0]);
+			fscanf_s(fi, "%lf", &rp->rgb[1]);
+			fscanf_s(fi, "%lf", &rp->rgb[2]);
 		}
 
 		else {
@@ -247,7 +248,7 @@ void rmpdata(FILE *fi, RRMP *rp, MADO *wp){
 
 	rp->sumWD = 0;
 	//wp = rp->WD;
-	while (fscanf(fi, "%s", NAME), NAME[0] != ';'){
+	while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != ';'){
 
 		//printf("<rmpdata> 4 NAME=%s\n", NAME);
 		wp->ref = 0.0;
@@ -266,33 +267,33 @@ void rmpdata(FILE *fi, RRMP *rp, MADO *wp){
 
 		rp->sumWD = rp->sumWD + 1;
 
-		fscanf(fi, "%s", NAME);
+		fscanf_s(fi, "%s", NAME, sizeof(NAME));
 		//printf("<rmpdata> 5 NAME=%s\n", NAME);
 		wp->winname = stralloc(NAME);
 
-		while (fscanf(fi, "%s", NAME), NAME[0] != ';'){
+		while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != ';'){
 
 			//printf("<rmpdata> 6 NAME=%s\n", NAME);
 			if (strcmp(NAME, "-xyr") == 0){
-				fscanf(fi, "%lf", &wp->xr);
-				fscanf(fi, "%lf", &wp->yr);
+				fscanf_s(fi, "%lf", &wp->xr);
+				fscanf_s(fi, "%lf", &wp->yr);
 			}
 
 			else if (strcmp(NAME, "-WH") == 0){
-				fscanf(fi, "%lf", &wp->Ww);
-				fscanf(fi, "%lf", &wp->Wh);
+				fscanf_s(fi, "%lf", &wp->Ww);
+				fscanf_s(fi, "%lf", &wp->Wh);
 			}
 
 			else if (strcmp(NAME, "-ref") == 0)
-				fscanf(fi, "%lf", &wp->ref);
+				fscanf_s(fi, "%lf", &wp->ref);
 
 			else if (strcmp(NAME, "-grpx") == 0)
-				fscanf(fi, "%lf", &wp->grpx);
+				fscanf_s(fi, "%lf", &wp->grpx);
 
 			else if (strcmp(NAME, "-rgb") == 0){
-				fscanf(fi, "%lf", &wp->rgb[0]);
-				fscanf(fi, "%lf", &wp->rgb[1]);
-				fscanf(fi, "%lf", &wp->rgb[2]);
+				fscanf_s(fi, "%lf", &wp->rgb[0]);
+				fscanf_s(fi, "%lf", &wp->rgb[1]);
+				fscanf_s(fi, "%lf", &wp->rgb[2]);
 			}
 
 			else {
@@ -314,34 +315,34 @@ void rectdata(FILE *fi, OBS *obs){
 	obs->rgb[1] = 0.7;
 	obs->rgb[2] = 0.7;
 
-	fscanf(fi, "%s", NAME);
+	fscanf_s(fi, "%s", NAME, sizeof(NAME));
 	obs->obsname = stralloc(NAME);
 
-	while (fscanf(fi, "%s", NAME), NAME[0] != ';'){
+	while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != ';'){
 
 		if (strcmp(NAME, "-xyz") == 0){
-			fscanf(fi, "%lf", &obs->x);
-			fscanf(fi, "%lf", &obs->y);
-			fscanf(fi, "%lf", &obs->z);
+			fscanf_s(fi, "%lf", &obs->x);
+			fscanf_s(fi, "%lf", &obs->y);
+			fscanf_s(fi, "%lf", &obs->z);
 		}
 
 		else if (strcmp(NAME, "-WH") == 0){
-			fscanf(fi, "%lf", &obs->W);
-			fscanf(fi, "%lf", &obs->H);
+			fscanf_s(fi, "%lf", &obs->W);
+			fscanf_s(fi, "%lf", &obs->H);
 		}
 
 		else if (strcmp(NAME, "-WaWb") == 0){
-			fscanf(fi, "%lf", &obs->Wa);
-			fscanf(fi, "%lf", &obs->Wb);
+			fscanf_s(fi, "%lf", &obs->Wa);
+			fscanf_s(fi, "%lf", &obs->Wb);
 		}
 
 		else if (strcmp(NAME, "-ref") == 0)
-			fscanf(fi, "%lf", &obs->ref[0]);
+			fscanf_s(fi, "%lf", &obs->ref[0]);
 
 		else if (strcmp(NAME, "-rgb") == 0){
-			fscanf(fi, "%lf", &obs->rgb[0]);
-			fscanf(fi, "%lf", &obs->rgb[1]);
-			fscanf(fi, "%lf", &obs->rgb[2]);
+			fscanf_s(fi, "%lf", &obs->rgb[0]);
+			fscanf_s(fi, "%lf", &obs->rgb[1]);
+			fscanf_s(fi, "%lf", &obs->rgb[2]);
 		}
 
 		else {
@@ -364,42 +365,42 @@ void cubdata(FILE *fi, OBS *obs){
 	obs->rgb[1] = 0.7;
 	obs->rgb[2] = 0.7;
 
-	fscanf(fi, "%s", NAME);
+	fscanf_s(fi, "%s", NAME, sizeof(NAME));
 	obs->obsname = stralloc(NAME);
 
-	while (fscanf(fi, "%s", NAME), NAME[0] != ';'){
+	while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != ';'){
 
 		if (strcmp(NAME, "-xyz") == 0){
-			fscanf(fi, "%lf", &obs->x);
-			fscanf(fi, "%lf", &obs->y);
-			fscanf(fi, "%lf", &obs->z);
+			fscanf_s(fi, "%lf", &obs->x);
+			fscanf_s(fi, "%lf", &obs->y);
+			fscanf_s(fi, "%lf", &obs->z);
 		}
 
 		else if (strcmp(NAME, "-WDH") == 0){
-			fscanf(fi, "%lf", &obs->W);
-			fscanf(fi, "%lf", &obs->D);
-			fscanf(fi, "%lf", &obs->H);
+			fscanf_s(fi, "%lf", &obs->W);
+			fscanf_s(fi, "%lf", &obs->D);
+			fscanf_s(fi, "%lf", &obs->H);
 		}
 
 		else if (strcmp(NAME, "-Wa") == 0)
-			fscanf(fi, "%lf", &obs->Wa);
+			fscanf_s(fi, "%lf", &obs->Wa);
 
 		else if (strcmp(NAME, "-ref0") == 0)
-			fscanf(fi, "%lf", &obs->ref[0]);
+			fscanf_s(fi, "%lf", &obs->ref[0]);
 
 		else if (strcmp(NAME, "-ref1") == 0)
-			fscanf(fi, "%lf", &obs->ref[1]);
+			fscanf_s(fi, "%lf", &obs->ref[1]);
 
 		else if (strcmp(NAME, "-ref2") == 0)
-			fscanf(fi, "%lf", &obs->ref[2]);
+			fscanf_s(fi, "%lf", &obs->ref[2]);
 
 		else if (strcmp(NAME, "-ref3") == 0)
-			fscanf(fi, "%lf", &obs->ref[3]);
+			fscanf_s(fi, "%lf", &obs->ref[3]);
 
 		else if (strcmp(NAME, "-rgb") == 0){
-			fscanf(fi, "%lf", &obs->rgb[0]);
-			fscanf(fi, "%lf", &obs->rgb[1]);
-			fscanf(fi, "%lf", &obs->rgb[2]);
+			fscanf_s(fi, "%lf", &obs->rgb[0]);
+			fscanf_s(fi, "%lf", &obs->rgb[1]);
+			fscanf_s(fi, "%lf", &obs->rgb[2]);
 		}
 
 		else {
@@ -419,33 +420,34 @@ void tridata(FILE *fi, OBS *obs){
 	obs->rgb[1] = 0.7;
 	obs->rgb[2] = 0.7;
 
-	fscanf(fi, "%s", obs->obsname);
+	fscanf_s(fi, "%s", NAME, sizeof(NAME));
+	obs->obsname = stralloc(NAME);
 
-	while (fscanf(fi, "%s", NAME), NAME[0] != ';'){
+	while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != ';'){
 
 		if (strcmp(NAME, "-xyz") == 0){
-			fscanf(fi, "%lf", &obs->x);
-			fscanf(fi, "%lf", &obs->y);
-			fscanf(fi, "%lf", &obs->z);
+			fscanf_s(fi, "%lf", &obs->x);
+			fscanf_s(fi, "%lf", &obs->y);
+			fscanf_s(fi, "%lf", &obs->z);
 		}
 
 		else if (strcmp(NAME, "-WH") == 0){
-			fscanf(fi, "%lf", &obs->W);
-			fscanf(fi, "%lf", &obs->H);
+			fscanf_s(fi, "%lf", &obs->W);
+			fscanf_s(fi, "%lf", &obs->H);
 		}
 
 		else if (strcmp(NAME, "-WaWb") == 0){
-			fscanf(fi, "%lf", &obs->Wa);
-			fscanf(fi, "%lf", &obs->Wb);
+			fscanf_s(fi, "%lf", &obs->Wa);
+			fscanf_s(fi, "%lf", &obs->Wb);
 		}
 
 		else if (strcmp(NAME, "-ref") == 0)
-			fscanf(fi, "%lf", &obs->ref[0]);
+			fscanf_s(fi, "%lf", &obs->ref[0]);
 
 		else if (strcmp(NAME, "-rgb") == 0){
-			fscanf(fi, "%lf", &obs->rgb[0]);
-			fscanf(fi, "%lf", &obs->rgb[1]);
-			fscanf(fi, "%lf", &obs->rgb[2]);
+			fscanf_s(fi, "%lf", &obs->rgb[0]);
+			fscanf_s(fi, "%lf", &obs->rgb[1]);
+			fscanf_s(fi, "%lf", &obs->rgb[2]);
 		}
 
 		else {
@@ -465,15 +467,15 @@ void dividdata(FILE *fi, int *monten, double *DE) {
 	//	exit(1);
 	//}
 
-	while (fscanf(fi, "%s", NAME), NAME[0] != ';') {
+	while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != ';') {
 
 		if (strcmp(NAME, "DE") == 0) {
 			//printf("Name=%s\n", NAME);
-			fscanf(fi, "%lf", DE);
+			fscanf_s(fi, "%lf", DE);
 		}
-		else if (strcmp(NAME, "MONT") == 0)
-			fscanf(fi, "%d", monten);
-
+		else if (strcmp(NAME, "MONT") == 0) {
+			fscanf_s(fi, "%d", monten);
+		}
 		else {
 			printf("ERROR parameter----DIVID: %s\n", NAME);
 			preexit();
@@ -482,7 +484,7 @@ void dividdata(FILE *fi, int *monten, double *DE) {
 
 	}
 
-	fscanf(fi, "%s", NAME);
+	fscanf_s(fi, "%s", NAME, sizeof(NAME));
 
 }
 void treedata(FILE *fi, int *treen, TREE **tree){
@@ -511,40 +513,40 @@ void treedata(FILE *fi, int *treen, TREE **tree){
 	*treen = 0;
 	tred = *tree;
 
-	while (fscanf(fi, "%s", NAME), NAME[0] != '*'){
+	while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != '*'){
 
 		tred->treetype = stralloc(NAME);
 
-		fscanf(fi, "%s", NAME);
+		fscanf_s(fi, "%s", NAME, sizeof(NAME));
 		tred->treename = stralloc(NAME);
 
 
 		if (strcmp(tred->treetype, "treeA") == 0){
-			while (fscanf(fi, "%s", NAME), NAME[0] != ';'){
+			while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != ';'){
 
 				if (strcmp(NAME, "-xyz") == 0){
-					fscanf(fi, "%lf", &tred->x);
-					fscanf(fi, "%lf", &tred->y);
-					fscanf(fi, "%lf", &tred->z);
+					fscanf_s(fi, "%lf", &tred->x);
+					fscanf_s(fi, "%lf", &tred->y);
+					fscanf_s(fi, "%lf", &tred->z);
 				}
 
 				else if (strcmp(NAME, "-WH1") == 0){
-					fscanf(fi, "%lf", &tred->W1);
-					fscanf(fi, "%lf", &tred->H1);
+					fscanf_s(fi, "%lf", &tred->W1);
+					fscanf_s(fi, "%lf", &tred->H1);
 				}
 
 				else if (strcmp(NAME, "-WH2") == 0){
-					fscanf(fi, "%lf", &tred->W2);
-					fscanf(fi, "%lf", &tred->H2);
+					fscanf_s(fi, "%lf", &tred->W2);
+					fscanf_s(fi, "%lf", &tred->H2);
 				}
 
 				else if (strcmp(NAME, "-WH3") == 0){
-					fscanf(fi, "%lf", &tred->W3);
-					fscanf(fi, "%lf", &tred->H3);
+					fscanf_s(fi, "%lf", &tred->W3);
+					fscanf_s(fi, "%lf", &tred->H3);
 				}
 
 				else if (strcmp(NAME, "-W4") == 0)
-					fscanf(fi, "%lf", &tred->W4);
+					fscanf_s(fi, "%lf", &tred->W4);
 
 				else {
 					printf("ERROR parameter----TREE: %s %s\n", tred->treename, NAME);
@@ -601,7 +603,7 @@ void polydata(FILE *fi, int *polyn, POLYGN **poly){
 
 	*polyn = 0;
 	polyp = *poly;
-	while (fscanf(fi, "%s", NAME), NAME[0] != '*'){
+	while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != '*'){
 
 		polyp->grpx = 1.0;
 
@@ -609,7 +611,7 @@ void polydata(FILE *fi, int *polyn, POLYGN **poly){
 		polyp->rgb[1] = 0.9;
 		polyp->rgb[2] = 0.9;
 
-		strcpy(polyp->polyknd, NAME);
+		strcpy_s(polyp->polyknd, sizeof(polyp->polyknd), NAME);
 		if ((strcmp(polyp->polyknd, "RMP") != 0) && (strcmp(polyp->polyknd, "OBS") != 0)){
 			printf("ERROR parameter----POLYGON: %s  <RMP> or <OBS> \n", polyp->polyknd);
 			//getch();
@@ -617,37 +619,37 @@ void polydata(FILE *fi, int *polyn, POLYGN **poly){
 			exit(1);
 		}
 
-		fscanf(fi, "%d", &polyp->polyd);
+		fscanf_s(fi, "%d", &polyp->polyd);
 		polyp->P = (XYZ *)malloc(sizeof(XYZ)*polyp->polyd);
 
-		fscanf(fi, "%s", NAME);
+		fscanf_s(fi, "%s", NAME, sizeof(NAME));
 		polyp->polyname = stralloc(NAME);
-		fscanf(fi, "%s", NAME);
+		fscanf_s(fi, "%s", NAME, sizeof(NAME));
 		polyp->wallname = stralloc(NAME);
 
-		while (fscanf(fi, "%s", NAME), NAME[0] != ';'){
+		while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != ';'){
 			if (strcmp(NAME, "-xyz") == 0){
 				for (i = 0; i < polyp->polyd; i++){
-					fscanf(fi, "%lf", &polyp->P[i].X);
-					fscanf(fi, "%lf", &polyp->P[i].Y);
-					fscanf(fi, "%lf", &polyp->P[i].Z);
+					fscanf_s(fi, "%lf", &polyp->P[i].X);
+					fscanf_s(fi, "%lf", &polyp->P[i].Y);
+					fscanf_s(fi, "%lf", &polyp->P[i].Z);
 				}
 			}
 
 			else if (strcmp(NAME, "-rgb") == 0){
-				fscanf(fi, "%lf", &polyp->rgb[0]);
-				fscanf(fi, "%lf", &polyp->rgb[1]);
-				fscanf(fi, "%lf", &polyp->rgb[2]);
+				fscanf_s(fi, "%lf", &polyp->rgb[0]);
+				fscanf_s(fi, "%lf", &polyp->rgb[1]);
+				fscanf_s(fi, "%lf", &polyp->rgb[2]);
 			}
 
 			else if (strcmp(NAME, "-ref") == 0)
-				fscanf(fi, "%lf", &polyp->ref);
+				fscanf_s(fi, "%lf", &polyp->ref);
 
 			else if (strcmp(NAME, "-refg") == 0)
-				fscanf(fi, "%lf", &polyp->refg);
+				fscanf_s(fi, "%lf", &polyp->refg);
 
 			else if (strcmp(NAME, "-grpx") == 0)
-				fscanf(fi, "%lf", &polyp->grpx);
+				fscanf_s(fi, "%lf", &polyp->grpx);
 
 			else{
 				printf("ERROR parameter----POLYGON: %s\n", NAME);
@@ -703,7 +705,8 @@ void bdpdata(FILE *fi, int *bdpn, BBDP **bp,EXSFS *Exsf){
 
 	*bdpn = 0;
 
-	while (fscanf(fi, "%s", NAME), NAME[0] != '*'){
+	// ex) BDP south -xyz 0.0 0.0 0.0 -WA 0.0 -WB 90.0 -WH 8.645 5.400 ;
+	while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != '*'){
 		//printf("<bdpdata> 1 NAME=%s", NAME);
 		if (strcmp(NAME, "BDP") != 0){
 			printf("error BDP\n");
@@ -711,33 +714,33 @@ void bdpdata(FILE *fi, int *bdpn, BBDP **bp,EXSFS *Exsf){
 		}
 		//printf("<bdpdata> 2 NAME=%s", NAME);
 
-		fscanf(fi, "%s", NAME);
+		fscanf_s(fi, "%s", NAME, sizeof(NAME));
 		bbdp->bdpname = stralloc(NAME);
 		//printf("<bdpdata> 3 NAME=%s", NAME);
 
-		while (fscanf(fi, "%s", NAME), NAME[0] != ';'){
+		while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != ';'){
 			//printf("<bdpdata> 4 NAME=%s", NAME);
 
 			if (strcmp(NAME, "-xyz") == 0){
-				fscanf(fi, "%lf", &bbdp->x0);
-				fscanf(fi, "%lf", &bbdp->y0);
-				fscanf(fi, "%lf", &bbdp->z0);
+				fscanf_s(fi, "%lf", &bbdp->x0);
+				fscanf_s(fi, "%lf", &bbdp->y0);
+				fscanf_s(fi, "%lf", &bbdp->z0);
 			}
 
 			else if (strcmp(NAME, "-WA") == 0)
-				fscanf(fi, "%lf", &bbdp->Wa);
+				fscanf_s(fi, "%lf", &bbdp->Wa);
 
 			else if (strcmp(NAME, "-WB") == 0)
-				fscanf(fi, "%lf", &bbdp->Wb);
+				fscanf_s(fi, "%lf", &bbdp->Wb);
 
 			else if (strcmp(NAME, "-WH") == 0){
-				fscanf(fi, "%lf", &bbdp->exw);
-				fscanf(fi, "%lf", &bbdp->exh);
+				fscanf_s(fi, "%lf", &bbdp->exw);
+				fscanf_s(fi, "%lf", &bbdp->exh);
 			}
 			// Satoh修正（2018/1/23）
 			else if (strcmp(NAME, "-exs") == 0)
 			{
-				fscanf(fi, "%s", NAME);
+				fscanf_s(fi, "%s", NAME, sizeof(NAME));
 				bbdp->exsfname = stralloc(NAME);
 				//外表面の検索
 				EXSF *Exs;
@@ -815,13 +818,14 @@ void bdpdata(FILE *fi, int *bdpn, BBDP **bp,EXSFS *Exsf){
 		rp = bbdp->RMP;
 		if (rp != NULL)
 			wp = rp->WD;
-		while (fscanf(fi, "%s", NAME), NAME[0] != '*'){
+		while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != '*'){
 
 			if (strcmp(NAME, "SBLK") == 0){
 				sb->ref = 0.0;
-				fscanf(fi, "%s", NAME);
+				fscanf_s(fi, "%s", NAME, sizeof(NAME));
 				sb->sbfname = stralloc(NAME);
 
+				// ex) SBLK HISASI 1Fhisa -xy 0 2.7 -DW 0.5 8.645 -a 90 ;
 				if (strcmp(sb->sbfname, "HISASI") == 0)
 					HISASHI(fi, sb);
 
@@ -831,6 +835,7 @@ void bdpdata(FILE *fi, int *bdpn, BBDP **bp,EXSFS *Exsf){
 				else if (strcmp(sb->sbfname, "SODEKABE") == 0)
 					SODEK(fi, sb);
 
+				// ex) SBLK MADOHIYOKE LDsudare-s1 -xy 0.7525 2.05 -DHW 0.1 2.0 1.8 -rgb 0.76 0.34 0.11 ;
 				else  if (strcmp(sb->sbfname, "MADOHIYOKE") == 0)
 					SCREEN(fi, sb);
 
@@ -920,7 +925,7 @@ void obsdata(FILE *fi, int *obsn, OBS **obs)
 
 	*obsn = 0;
 	obsp = *obs;
-	while (fscanf(fi, "%s", NAME), NAME[0] != '*'){
+	while (fscanf_s(fi, "%s", NAME, sizeof(NAME)), NAME[0] != '*'){
 		// OBS名称
 		obsp->fname = stralloc(NAME);
 
@@ -960,11 +965,11 @@ int		InputCount(FILE *fi, char *key)
 	N = 0;
 	ad = ftell(fi);
 
-	while (fscanf(fi, "%s", s) != EOF && *s != '*')
+	while (fscanf_s(fi, "%s", s, sizeof(s)) != EOF && *s != '*')
 	{
 		N++;
 
-		while (fscanf(fi, "%s", s) != EOF)
+		while (fscanf_s(fi, "%s", s, sizeof(s)) != EOF)
 		{
 			if (strcmp(s, key) == 0)
 				break;
@@ -984,7 +989,7 @@ int		SBLKCount(FILE *fi)
 	N = 0;
 	ad = ftell(fi);
 
-	while (fscanf(fi, "%s", s) != EOF && *s != '*')
+	while (fscanf_s(fi, "%s", s, sizeof(s)) != EOF && *s != '*')
 	{
 		if (strcmp(s, "SBLK") == 0)
 			N++;
@@ -1003,7 +1008,7 @@ int		RMPCount(FILE *fi)
 	N = 0;
 	ad = ftell(fi);
 
-	while (fscanf(fi, "%s", s) != EOF && *s != '*')
+	while (fscanf_s(fi, "%s", s, sizeof(s)) != EOF && *s != '*')
 	{
 		if (strcmp(s, "RMP") == 0)
 			N++;
@@ -1024,7 +1029,7 @@ int		WDCount(FILE *fi)
 
 	int Flg;
 	Flg = 0;
-	while (fscanf(fi, "%s", s) != EOF)
+	while (fscanf_s(fi, "%s", s, sizeof(s)) != EOF)
 	{
 		if (strcmp(s, "WD") == 0)
 			N++;

@@ -15,7 +15,7 @@
 
 /*  u_mlib.c  */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include "common.h"
 #include "lib/u_mlib.h"
@@ -36,7 +36,7 @@ double spcheat(char fluid)
       return ( ca ) ;
    else
    {
-      sprintf(s, "xxx fluid='%c'", fluid);
+      sprintf_s(s, sizeof(s), "xxx fluid='%c'", fluid);
       Eprint("<spcheat>", s); 
       return(-9999.0);
    }

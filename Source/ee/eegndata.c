@@ -15,7 +15,7 @@
 
 /*    ee_gndata.c      */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #define FLDELIM  '/'
 #include <stdio.h>
 #include <stdlib.h>
@@ -45,7 +45,7 @@ void Gdata (FILE *fi, char *dsn, char *File, char **wfname, char **ofname,
 	
 	*wfname = NULL;
 	
-	sprintf (E, ERRFMT, dsn);
+	sprintf_s (E, sizeof(E), ERRFMT, dsn);
 	
 	*ofname = stralloc( File);
 
@@ -59,17 +59,13 @@ void Gdata (FILE *fi, char *dsn, char *File, char **wfname, char **ofname,
 	if ((st = strrchr(*ofname, '.')) != NULL)
 		*st = '\0';
 	
-	while (fscanf(fi, "%s", s), s[0] != '*')
+	while (fscanf_s(fi, "%s", s, sizeof(s)), s[0] != '*')
 	{ 
 		if (strcmp(s, "FILE") == 0)
 		{ 
-		/********
-		strcpy(ofname, File);
-		if ((st = strrchr(ofname, '.')) != NULL)
-		*st = '\0';
-			*******/
+			// ex) "   FILE   w=wd/6_Tokyo2010_watanabe.has -skyrd ;"
 			
-			while (fscanf(fi, "%s", s), s[0] != ';')
+			while (fscanf_s(fi, "%s", s, sizeof(s)), s[0] != ';')
 			{
 				if ((ce=strchr(s, ';')) != 0)
 					*ce = '\0';
@@ -84,12 +80,12 @@ void Gdata (FILE *fi, char *dsn, char *File, char **wfname, char **ofname,
 					*st = '\0';
 					if (strcmp(s, "w") == 0)
 					{
-						sscanf(st+1, "%s", dd);
+						sscanf_s(st+1, "%s", dd, sizeof(dd));
 						*wfname= stralloc( dd ) ;
 					}
 					else if (strcmp(s, "out") == 0)
 					{
-						sscanf(st+1, "%s", ss);
+						sscanf_s(st+1, "%s", ss, sizeof(ss));
 						if (strrchr(ss, FLDELIM) == NULL)
 						{
 							free ( *ofname) ;
@@ -97,7 +93,7 @@ void Gdata (FILE *fi, char *dsn, char *File, char **wfname, char **ofname,
 							*ofname = stralloc( File);
 							
 							if ((st = strrchr(*ofname, FLDELIM)) != NULL)
-								strcpy(st + 1, ss);
+								strcpy_s(st + 1, st-s-1, ss);
 						}
 						else
 						{
@@ -117,13 +113,13 @@ void Gdata (FILE *fi, char *dsn, char *File, char **wfname, char **ofname,
 		{
 			*Tini=15.0;
 			
-			while (fscanf(fi, "%s", s), s[0] != ';')
+			while (fscanf_s(fi, "%s", s, sizeof(s)), s[0] != ';')
 			{
 				if ((ce=strchr(s, ';')) != 0)
 					*ce = '\0';
 
 				if (s[0] == 'T')
-					sscanf(s, "%*[^=]=%lf", Tini);
+					sscanf_s(s, "%*[^=]=%lf", Tini);
 				else if ((st = strchr(s, '=')) != NULL)
 				{
 					*st = '\0';
@@ -144,15 +140,15 @@ void Gdata (FILE *fi, char *dsn, char *File, char **wfname, char **ofname,
 				}
 				else if (s[0] == '(')
 				{
-					sscanf(s, "(%d/%d)", &Mxs, &Dxs);
+					sscanf_s(s, "(%d/%d)", &Mxs, &Dxs);
 					*dayxs = FNNday(Mxs, Dxs);
 				}
 				// 周期定常計算への対応
 				else if (strcmp(s, "-periodic") == 0)
 				{
 					*perio = 'y';			// 周期定常計算フラグの変更
-					fscanf(fi, "%s", s);	// 計算する日付の読み込み
-					sscanf(s, "%d/%d", &Ms, &Ds);	// 計算する日付の取得
+					fscanf_s(fi, "%s", s, sizeof(s));	// 計算する日付の読み込み
+					sscanf_s(s, "%d/%d", &Ms, &Ds);	// 計算する日付の取得
 					*days = FNNday(Ms, Ds);
 					*dayxs = *days;
 					Daytm->Mon = Ms;
@@ -160,7 +156,7 @@ void Gdata (FILE *fi, char *dsn, char *File, char **wfname, char **ofname,
 				}
 				else if (strchr(s,'-') != 0)
 				{
-					sscanf(s, "%d/%d-%d/%d", &Ms,&Ds,&Me,&De);
+					sscanf_s(s, "%d/%d-%d/%d", &Ms,&Ds,&Me,&De);
 					*days = FNNday(Ms, Ds);
 					*daye = FNNday(Me, De);
 					if (Mxs == 0)
@@ -185,7 +181,7 @@ void Gdata (FILE *fi, char *dsn, char *File, char **wfname, char **ofname,
 		}
 		else if (strcmp(s, "PRINT") == 0)
 		{
-			while (fscanf(fi, "%s", s), s[0] != ';')
+			while (fscanf_s(fi, "%s", s, sizeof(s)), s[0] != ';')
 			{
 				if ((ce=strchr(s, ';')) != 0)
 					*ce = '\0';
@@ -204,12 +200,12 @@ void Gdata (FILE *fi, char *dsn, char *File, char **wfname, char **ofname,
 					DEBUG = 1 ;
 				else if (strchr(s, '-') == 0)
 				{
-					sscanf(s, "%d/%d", &Ms, &Ds);
+					sscanf_s(s, "%d/%d", &Ms, &Ds);
 					pday[ FNNday(Ms, Ds) ] = 1;
 				}
 				else
 				{
-					sscanf(s, "%d/%d-%d/%d", &Ms, &Ds, &Me, &De);
+					sscanf_s(s, "%d/%d-%d/%d", &Ms, &Ds, &Me, &De);
 					ns = FNNday(Ms, Ds);
 					ne = (ns < (n=FNNday(Me, De)) ? n : n+365);
 					for (n=ns; n <= ne; n++)
@@ -224,8 +220,9 @@ void Gdata (FILE *fi, char *dsn, char *File, char **wfname, char **ofname,
 			Eprint ( "<Gdata>", s );
    }
 
-   strcat ( strcpy ( s, *ofname ), ".log" ) ;
-   ferr = fopen ( s, "w" ) ;
+   strcpy_s ( s, sizeof(s), *ofname );
+   strcat_s ( s, sizeof(s),  ".log" ) ;
+   fopen_s (&ferr, s, "w" ) ;
 
    if ( logprn == 0 )
    {

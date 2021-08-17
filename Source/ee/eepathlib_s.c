@@ -17,7 +17,7 @@
 
 /* 経路の定義用関数 */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include "fesy.h"
 #include "fnesy.h"
@@ -160,7 +160,9 @@ void pelmco(char pflow, PELM *Pelm, char *errkey)
 		}
 	}
 
-	Errprint(err, strcat(strcpy(Err, errkey), " <pelmco>"), cmp->name); 
+	strcpy_s(Err, sizeof(Err), errkey);
+	strcat_s(Err, sizeof(Err), " <pelmco>");
+	Errprint(err, Err, cmp->name); 
 }
 /* ----------------------------------------------- */
 
@@ -386,7 +388,9 @@ void pelmci(char pflow, PELM *Pelm, char *errkey)
 		}
 	}
 
-	Errprint(err, strcat(strcpy(Err, errkey), " <pelmci>"),cmp->name);
+	strcpy_s(Err, sizeof(Err), errkey);
+	strcat_s(Err, sizeof(Err), " <pelmci>");
+	Errprint(err, Err, cmp->name);
 }
 /* ----------------------------------------------- */
 
@@ -406,8 +410,8 @@ void plistcpy(MPATH *Mpath, int *Npelm, PELM *Pelm, PLIST *Plist,
 
 	mpi->mpair = Mpath;
 
-	strcpy ( s, mpi->name ) ;
-	strcat ( s, ".x" ) ;
+	strcpy_s ( s, sizeof(s), mpi->name ) ;
+	strcat_s ( s, sizeof(s), ".x" ) ;
 	Mpath->name = stralloc ( s ) ;
 
 	/******************
@@ -452,8 +456,8 @@ void plistcpy(MPATH *Mpath, int *Npelm, PELM *Pelm, PLIST *Plist,
 
 		if (pli->name != NULL)
 		{
-			strcpy ( s, pli->name ) ;
-			strcat ( s, ".x" ) ;
+			strcpy_s ( s, sizeof(s), pli->name ) ;
+			strcat_s ( s, sizeof(s), ".x" ) ;
 			Plist->name = stralloc ( s ) ;
 
 			/***************************
@@ -480,7 +484,7 @@ void plistcpy(MPATH *Mpath, int *Npelm, PELM *Pelm, PLIST *Plist,
 				{
 					for (cmp = peli->cmp + 1; cmp < Compnt + Ncompnt; cmp++)
 					{
-						strcpy(s, cmp->name);
+						strcpy_s(s, sizeof(s), cmp->name);
 						if ((st = strchr(s, '.') )!= NULL)
 						{
 							*st = '\0';
@@ -750,7 +754,7 @@ void	pflowstrct ( int Nmpath, MPATH *Mpath )
 
 		/*if ( n != Mpath->NGv )
 		{
-		sprintf ( Err, "xxxx  Nundflow=%d  Ncbeq=%d  Name=%s\n",
+		sprintf_s ( Err, sizeof(Err), "xxxx  Nundflow=%d  Ncbeq=%d  Name=%s\n",
 		n, m, Mpath->name ) ;
 		Eprint ( "<pflowstrct>", Err ) ;
 		}*/

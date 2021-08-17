@@ -15,7 +15,7 @@
 
 /* epsinput.c */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -35,26 +35,26 @@ void esondat(FILE *fi, ESTL *Estl)
 	
 	Estl->catnm = NULL;
 	
-	while (fscanf(fi, "%s", s), *s != '#')
+	while (fscanf_s(fi, "%s", s, sizeof(s)), *s != '#')
 	{
 		if (strcmp(s, "-t") == 0)
 		{
-			fscanf(fi, " %[^;];", s);
+			fscanf_s(fi, " %[^;];", s, sizeof(s));
 			Estl->title = stralloc(s);
 		}
 		else if (strcmp(s, "-w") == 0)
 		{
-			fscanf(fi, "%s", s);
+			fscanf_s(fi, "%s", s, sizeof(s));
 			Estl->wdatfile = stralloc(s);
 		}	 
 		else if (strcmp(s, "-tid") == 0)
 		{
-			fscanf(fi, " %c", &Estl->tid);
+			fscanf_s(fi, " %c", &Estl->tid, 1);
 		}
 		else if (strcmp(s, "-u") == 0)
 		{
 			i = 0;
-			while (fscanf(fi, "%s", s), *s != ';')
+			while (fscanf_s(fi, "%s", s, sizeof(s)), *s != ';')
 			{
 				Estl->unit[i] = stralloc(s);
 				i++ ;
@@ -62,14 +62,14 @@ void esondat(FILE *fi, ESTL *Estl)
 			}
 		}
 		else if (strcmp(s, "-Ntime") == 0)
-			fscanf(fi, " %d",  &Estl->Ntime);
+			fscanf_s(fi, " %d",  &Estl->Ntime);
 		
 		else if (strcmp(s, "-dtm") == 0)
-			fscanf(fi, " %d",  &Estl->dtm);
+			fscanf_s(fi, " %d",  &Estl->dtm);
 		
 		else if (strcmp(s, "-tmid") == 0)
 		{
-			fscanf(fi, "%s", s);
+			fscanf_s(fi, "%s", s, sizeof(s));
 			Estl->timeid = stralloc(s);
 			Estl->ntimeid = (int)strlen(Estl->timeid);
 		}
@@ -92,16 +92,16 @@ void esondat(FILE *fi, ESTL *Estl)
 
 			Estl->Ndata = 0;
 			catnm = Estl->catnm;
-			while(fscanf(fi, "%s", s), *s != '*')
+			while(fscanf_s(fi, "%s", s, sizeof(s)), *s != '*')
 			{
 				catnm->name = stralloc(s);
 				catnm->Ncdata = 0;
-				fscanf(fi, "%d", &catnm->N);
+				fscanf_s(fi, "%d", &catnm->N);
 				for (i = 0; i < catnm->N; i++)
 				{
-					fscanf(fi, "%s %d %d", s, &Nparm, &Ndat);
+					fscanf_s(fi, "%s %d %d", s, sizeof(s), &Nparm, &Ndat);
 					for (j = 0; j < Nparm - 1; j++)
-						fscanf(fi, "%s", s);
+						fscanf_s(fi, "%s", s, sizeof(s));
 					Estl->Ndata += Ndat;
 					catnm->Ncdata += Ndat;
 				}
@@ -110,13 +110,13 @@ void esondat(FILE *fi, ESTL *Estl)
 		}
 		else if (strcmp(s, "-wdloc") == 0)
 		{
-			fscanf(fi, "%[^;];", s);
+			fscanf_s(fi, "%[^;];", s, sizeof(s));
 			
-			strcat(s, " ;");
+			strcat_s(s, sizeof(s), " ;");
 			Estl->wdloc = stralloc(s);
 		}
 		else if (strcmp(s, "-Ndata") == 0)
-			fscanf(fi, " %d",  &Estl->Ndata);
+			fscanf_s(fi, " %d",  &Estl->Ndata);
 		
 		
 		else if (s[strlen(s) - 1] == '#')
@@ -264,7 +264,7 @@ void esoint(FILE *fi, char *err, int Ntime,
 	
 	for (i = 0; i < Estl->Ndata; i++, Tlist++)
 	{
-		fscanf(fi, " %[^_]_%s %c %c", nm, id, &Tlist->vtype, &Tlist->ptype);
+		fscanf_s(fi, " %[^_]_%s %c %c", nm, sizeof(nm), id, sizeof(id), &Tlist->vtype, 1, &Tlist->ptype, 1);
 		
 		switch (Tlist->vtype)
 		{
@@ -288,7 +288,7 @@ void esoint(FILE *fi, char *err, int Ntime,
 				Tlist->stype = 'm';
 				break;
 			default:
-				sprintf ( E, "xxxx %s xxx  %s %s %c %c %c\n",
+				sprintf_s ( E, sizeof(E), "xxxx %s xxx  %s %s %c %c %c\n",
 					err, nm, id, id[strlen(id)-1], Tlist->vtype, Tlist->ptype);
 				Eprint ( "<esoint>", E ) ;
 			}
@@ -421,7 +421,7 @@ int tmdata(VCFILE *Vcfile, TMDT *Tmdt, DAYTM *Daytm, char perio)
 	Estl = &Vcfile->Estl ;
 	r = 1 ;
 	
-	while ( fscanf ( fi, "%s", s ) != EOF )
+	while ( fscanf_s ( fi, "%s", s, sizeof(s) ) != EOF )
 	{
 		//printf ( "s=%s  ", s ) ;
 
@@ -442,14 +442,14 @@ int tmdata(VCFILE *Vcfile, TMDT *Tmdt, DAYTM *Daytm, char perio)
 			for ( i = 0; i < Estl->ntimeid; i++ )
 			{
 				if ( i > 0 )
-					fscanf ( fi, "%s", s ) ;
+					fscanf_s ( fi, "%s", s, sizeof(s) ) ;
 				
 				/*****printf("<<tmdata>> i=%d s=%s\n", i, s);/*****/
 				
 				switch (Estl->timeid[i])
 				{
 				case 'Y':
-					strcpy(Tmdt->year, s);
+					strcpy_s(Tmdt->year, sizeof(Tmdt->year), s);
 					Tmdt->Year = atoi(s);
 					Tmdt->dat[i] = Tmdt->year;
 
@@ -458,7 +458,7 @@ int tmdata(VCFILE *Vcfile, TMDT *Tmdt, DAYTM *Daytm, char perio)
 
 					break;
 				case 'M':
-					strcpy(Tmdt->mon, s);
+					strcpy_s(Tmdt->mon, sizeof(Tmdt->mon), s);
 					Tmdt->Mon = atoi(s);
 					Tmdt->dat[i] = Tmdt->mon;
 
@@ -467,7 +467,7 @@ int tmdata(VCFILE *Vcfile, TMDT *Tmdt, DAYTM *Daytm, char perio)
 
 					break;
 				case 'D':
-					strcpy(Tmdt->day, s);
+					strcpy_s(Tmdt->day, sizeof(Tmdt->day), s);
 					Tmdt->Day = atoi(s);
 					Tmdt->dat[i] = Tmdt->day;
 
@@ -476,11 +476,11 @@ int tmdata(VCFILE *Vcfile, TMDT *Tmdt, DAYTM *Daytm, char perio)
 
 					break;
 				case 'W':
-					strcpy(Tmdt->wkday, s);
+					strcpy_s(Tmdt->wkday, sizeof(Tmdt->wkday), s);
 					Tmdt->dat[i] = Tmdt->wkday;
 					break;
 				case 'T':
-					strcpy(Tmdt->time, s);
+					strcpy_s(Tmdt->time, sizeof(Tmdt->time), s);
 					if ((st = strchr(s, ':')) != NULL)
 						*st = '.';
 					Tmdt->Time = (int)(atof(s) * 100.0 + 0.5);
@@ -497,7 +497,7 @@ int tmdata(VCFILE *Vcfile, TMDT *Tmdt, DAYTM *Daytm, char perio)
 			else
 			{
 				for ( i = 0; i < Estl->Ndata; i++ )
-					fscanf ( fi, "%*s" ) ;
+					fscanf_s ( fi, "%*s" ) ;
 			}
 		}
 	}
@@ -516,7 +516,7 @@ void esdatgt(FILE *fi, int i, int Ndata, TLIST *Tlist)
 	
 	for (j = 0; j < Ndata; j++, Tlist++)
 	{
-		fscanf(fi, "%s", s);
+		fscanf_s(fi, "%s", s, sizeof(s));
 		if (Tlist->req == 'y' || Tlist->vtype == 'h' || Tlist->vtype == 'H')
 		{
 			switch (Tlist->ptype)

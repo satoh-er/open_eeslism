@@ -19,7 +19,7 @@
 						FILE=COORDNT.c
 						Create Date=1999.6.7
 						*/
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
@@ -67,7 +67,7 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 					chWA = cos((BDP[i].SBLK[j].WA - BDP[i].Wb)*M_rad);
 					shWA = sin((BDP[i].SBLK[j].WA - BDP[i].Wb)*M_rad);
 
-					lp[k].opname = stralloc(BDP[i].SBLK[j].snbname);
+					strcpy_s(lp[k].opname, OPNAME_SZ, BDP[i].SBLK[j].snbname);
 					lp[k].wa = BDP[i].Wa;
 					lp[k].wb = BDP[i].Wb + (180.0 - BDP[i].SBLK[j].WA);
 					if (lp[k].wb > 180.0)
@@ -126,7 +126,7 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 					chWA = cos((90.0 - BDP[i].Wb)*M_rad);
 					shWA = sin((90.0 - BDP[i].Wb)*M_rad);
 
-					lp[k].opname = stralloc(BDP[i].SBLK[j].snbname);
+					strcpy_s(lp[k].opname, OPNAME_SZ, BDP[i].SBLK[j].snbname);
 
 					lp[k].wa = BDP[i].Wa;
 					lp[k].wb = BDP[i].Wb + 90.0;
@@ -171,9 +171,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 					//HOUSEN2(&lp[k].P[0],&lp[k].P[1],&lp[k].P[2],&lp[k].e) ;
 
-					strcpy(name, "2");
-					strcat(name, lp[k].opname);
-					lp[k + 1].opname = stralloc(name);
+					strcpy_s(name, sizeof(name), "2");
+					strcat_s(name, sizeof(name), lp[k].opname);
+					strcpy_s(lp[k + 1].opname, OPNAME_SZ, name);
 
 					lp[k + 1].wa = BDP[i].Wa - 90.0;
 					if (lp[k + 1].wa <= -180.0)
@@ -210,9 +210,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 					//HOUSEN2(&lp[k+1].P[0],&lp[k+1].P[1],&lp[k+1].P[2],&lp[k+1].e) ;
 
-					strcpy(name, "3");
-					strcat(name, lp[k].opname);
-					lp[k + 2].opname = stralloc(name);
+					strcpy_s(name, sizeof(name), "3");
+					strcat_s(name, sizeof(name),  lp[k].opname);
+					strcpy_s(lp[k + 2].opname, OPNAME_SZ, name);
 
 					lp[k + 2].wa = BDP[i].Wa;
 					lp[k + 2].wb = BDP[i].Wb - 90.0;
@@ -248,9 +248,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 					//HOUSEN2(&lp[k+2].P[0],&lp[k+2].P[1],&lp[k+2].P[2],&lp[k+2].e) ;
 
-					strcpy(name, "4");
-					strcat(name, lp[k].opname);
-					lp[k + 3].opname = stralloc(name);
+					strcpy_s(name, sizeof(name), "4");
+					strcat_s(name, sizeof(name),  lp[k].opname);
+					strcpy_s(lp[k + 3].opname, OPNAME_SZ, name);
 
 					lp[k + 3].wa = BDP[i].Wa + 90.0;
 					if (lp[k + 3].wa >= 180.0)
@@ -284,9 +284,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 					//HOUSEN2(&lp[k+3].P[0],&lp[k+3].P[1],&lp[k+3].P[2],&lp[k+3].e) ;
 
-					strcpy(name, "5");
-					strcat(name, lp[k].opname);
-					lp[k + 4].opname = stralloc(name);
+					strcpy_s(name, sizeof(name), "5");
+					strcat_s(name, sizeof(name),  lp[k].opname);
+					strcpy_s(lp[k + 4].opname, OPNAME_SZ, name);
 
 					lp[k + 4].wa = BDP[i].Wa - 180;
 					if (lp[k + 4].wa > 180)
@@ -342,7 +342,7 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 					csWb = cos((90.0 - BDP[i].Wb)*M_rad);
 					ssWb = sin((90.0 - BDP[i].Wb)*M_rad);
 
-					lp[k].opname = stralloc(BDP[i].SBLK[j].snbname);
+					strcpy_s(lp[k].opname, OPNAME_SZ, BDP[i].SBLK[j].snbname);
 
 					lp[k].wa = BDP[i].Wa - 90.0;
 					if (lp[k].wa <= -180.0)
@@ -397,7 +397,7 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 					chWA = cos((90.0 - BDP[i].Wb)*M_rad);
 					shWA = sin((90.0 - BDP[i].Wb)*M_rad);
 
-					lp[k].opname = stralloc(BDP[i].SBLK[j].snbname);
+					strcpy_s(lp[k].opname, OPNAME_SZ, BDP[i].SBLK[j].snbname);
 
 					lp[k].wa = BDP[i].Wa - 180;
 					if (lp[k].wa > 180)
@@ -476,7 +476,7 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 			saWb = sin(obs[i].Wb*M_rad);
 			caWa = cos(-obs[i].Wa*M_rad);
 
-			lp[k].opname = stralloc(obs[i].obsname);
+			strcpy_s(lp[k].opname, OPNAME_SZ, obs[i].obsname);
 
 			lp[k].wa = obs[i].Wa;
 			lp[k].wb = obs[i].Wb;
@@ -522,7 +522,7 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 			cbWa = cos(-obs[i].Wa*M_rad);
 			sbWa = sin(-obs[i].Wa*M_rad);
 
-			lp[k].opname = stralloc(obs[i].obsname);
+			strcpy_s(lp[k].opname, OPNAME_SZ, obs[i].obsname);
 
 			lp[k].wa = obs[i].Wa;
 			lp[k].wb = 90.0;
@@ -560,9 +560,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			//HOUSEN2(&lp[k].P[0],&lp[k].P[1],&lp[k].P[2],&lp[k].e) ;
 
-			strcpy(name, "2");
-			strcat(name, lp[k].opname);
-			lp[k + 1].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), "2");
+			strcat_s(name, sizeof(name),  lp[k].opname);
+			strcpy_s(lp[k + 1].opname, OPNAME_SZ, name);
 
 			lp[k + 1].wa = obs[i].Wa - 90.0;
 			if (lp[k + 1].wa <= -180.0)
@@ -597,9 +597,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 			CAT(&lp[k + 1].e.X, &lp[k + 1].e.Y, &lp[k + 1].e.Z);
 			//HOUSEN2(&lp[k+1].P[0],&lp[k+1].P[1],&lp[k+1].P[2],&lp[k+1].e) ;
 
-			strcpy(name, "3");
-			strcat(name, lp[k].opname);
-			lp[k + 2].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), "3");
+			strcat_s(name, sizeof(name),  lp[k].opname);
+			strcpy_s(lp[k + 2].opname, OPNAME_SZ, name);
 
 			lp[k + 2].wa = obs[i].Wa - 180.0;
 			if (lp[k + 2].wa <= -180.0)
@@ -633,9 +633,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 			CAT(&lp[k + 2].e.X, &lp[k + 2].e.Y, &lp[k + 2].e.Z);
 			//HOUSEN2(&lp[k+2].P[0],&lp[k+2].P[1],&lp[k+2].P[2],&lp[k+2].e) ;
 
-			strcpy(name, "4");
-			strcat(name, lp[k].opname);
-			lp[k + 3].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), "4");
+			strcat_s(name, sizeof(name),  lp[k].opname);
+			strcpy_s(lp[k + 3].opname, OPNAME_SZ, name);
 
 			lp[k + 3].wa = obs[i].Wa + 90.0;
 			if (lp[k + 3].wa > 180.0)
@@ -678,7 +678,8 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 			saWb = sin(obs[i].Wb*M_rad);
 			caWa = cos(obs[i].Wa*M_rad);
 
-			strcpy(lp[k].opname, obs[i].obsname);
+			//TODO: 安全にコピーできていない。一旦freeしてメモリの確保が必要。
+			strcpy_s(lp[k].opname, OPNAME_SZ, obs[i].obsname);
 
 			lp[k].wa = obs[i].Wa;
 			lp[k].wb = obs[i].Wb;
@@ -723,7 +724,7 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 			saWb = sin(obs[i].Wb*M_rad);
 			caWa = cos(-obs[i].Wa*M_rad);
 
-			strcpy(lp[k].opname, obs[i].obsname);
+			strcpy_s(lp[k].opname, OPNAME_SZ, obs[i].obsname);
 
 			lp[k].wa = obs[i].Wa;
 			lp[k].wb = obs[i].Wb;
@@ -771,9 +772,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 	/*--------------------------------------------------------*/
 	for (i = 0; i < treen; i++){
 		if (strcmp(tree[i].treetype, "treeA") == 0){
-			strcpy(name, tree[i].treename);
-			strcat(name, "-m1");
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			strcat_s(name, sizeof(name),  "-m1");
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			for (p = 0; p < 366; p++)
 				lp[k].shad[p] = 1;
@@ -815,9 +816,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 			/*----2----*/
 			//strcpy(lp[k].opname, tree[i].treename);
 			//strcat(lp[k].opname, "-m2");
-			strcpy(name, tree[i].treename);
-			strcat(name, "-m2");
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			strcat_s(name, sizeof(name),  "-m2");
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 			lp[k].wa = -90.0;
 			lp[k].wb = 90.0;
 			lp[k].ref = 0.0;
@@ -855,9 +856,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 			/*----3----*/
 			//strcpy(lp[k].opname, tree[i].treename);
 			//strcat(lp[k].opname, "-m3");
-			strcpy(name, tree[i].treename);
-			strcat(name, "-m3");
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			strcat_s(name, sizeof(name),  "-m3");
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = 180.0;
 			lp[k].wb = 90.0;
@@ -896,9 +897,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 			/*----4----*/
 			//strcpy(lp[k].opname, tree[i].treename);
 			//strcat(lp[k].opname, "-m4");
-			strcpy(name, tree[i].treename);
-			strcat(name, "-m4");
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			strcat_s(name, sizeof(name),  "-m4");
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = 90.0;
 			lp[k].wb = 90.0;
@@ -932,9 +933,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*----5----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			//strcat(name, "-m2");
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			//strcat_s(name, sizeof(name),  "-m2");
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = -22.5;
 			lp[k].ref = 0.0;
@@ -977,9 +978,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*----6----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			//strcat(name, "-m2");
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			//strcat_s(name, sizeof(name),  "-m2");
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = lp[k - 1].wa - 45;
 			lp[k].ref = 0.0;
@@ -1018,9 +1019,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*----7----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			//strcat(name, "-m2");
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			//strcat_s(name, sizeof(name),  "-m2");
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = lp[k - 1].wa - 45;
 			lp[k].ref = 0.0;
@@ -1058,9 +1059,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*----8----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			//strcat(name, "-m2");
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			//strcat_s(name, sizeof(name),  "-m2");
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = lp[k - 1].wa - 45;
 			lp[k].ref = 0.0;
@@ -1098,9 +1099,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*----9----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			//strcat(name, "-m2");
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			//strcat_s(name, sizeof(name),  "-m2");
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = 360 + (lp[k - 1].wa - 45);
 			lp[k].ref = 0.0;
@@ -1138,9 +1139,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*----10----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			//strcat(name, "-m2");
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			//strcat_s(name, sizeof(name),  "-m2");
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = lp[k - 1].wa - 45;
 			lp[k].ref = 0.0;
@@ -1178,9 +1179,9 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*----11----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			//strcat(name, "-m2");
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			//strcat_s(name, sizeof(name),  "-m2");
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = lp[k - 1].wa - 45;
 			lp[k].ref = 0.0;
@@ -1218,8 +1219,8 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*----12----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = lp[k - 1].wa - 45;
 			lp[k].ref = 0.0;
@@ -1257,8 +1258,8 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*----13----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = -22.5;
 			lp[k].ref = 0.0;
@@ -1300,8 +1301,8 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*----14----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = lp[k - 1].wa - 45;
 			lp[k].ref = 0.0;
@@ -1339,8 +1340,8 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*----15----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = lp[k - 1].wa - 45;
 			lp[k].ref = 0.0;
@@ -1378,8 +1379,8 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*----16----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = lp[k - 1].wa - 45;
 			lp[k].ref = 0.0;
@@ -1417,8 +1418,8 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*---17---*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = 360 + (lp[k - 1].wa - 45);
 			lp[k].ref = 0.0;
@@ -1457,8 +1458,8 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*----18----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = lp[k - 1].wa - 45;
 			lp[k].ref = 0.0;
@@ -1496,8 +1497,8 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*---19----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = lp[k - 1].wa - 45;
 			lp[k].ref = 0.0;
@@ -1535,8 +1536,8 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 
 			/*---20----*/
 			//strcpy(lp[k].opname, tree[i].treename);
-			strcpy(name, tree[i].treename);
-			lp[k].opname = stralloc(name);
+			strcpy_s(name, sizeof(name), tree[i].treename);
+			strcpy_s(lp[k].opname, OPNAME_SZ, name);
 
 			lp[k].wa = lp[k - 1].wa - 45;
 			lp[k].ref = 0.0;
@@ -1586,7 +1587,7 @@ void LP_COORDNT(int *lpn, int bdpn, int obsn, int treen, int polyn,
 	for (i = 0; i < polyn; i++){
 
 		if (strcmp(poly[i].polyknd, "OBS") == 0){
-			lp[k].opname = stralloc(poly[i].polyname);
+			strcpy_s(lp[k].opname, OPNAME_SZ, poly[i].polyname);
 
 			lp[k].polyd = poly[i].polyd;
 			lp[k].P = (XYZ *)malloc(sizeof(XYZ)*lp[k].polyd);
@@ -1655,7 +1656,7 @@ void OP_COORDNT(int *opn, int bdpn, BBDP *BDP, P_MENN *op, int polyn, POLYGN *po
 			op[j].wlflg = 0;
 
 
-			op[j].opname = stralloc(BDP[l].RMP[k].rmpname);
+			strcpy_s(op[j].opname, OPNAME_SZ, BDP[l].RMP[k].rmpname);
 
 			op[j].rgb[0] = BDP[l].RMP[k].rgb[0];
 			op[j].rgb[1] = BDP[l].RMP[k].rgb[1];
@@ -1751,7 +1752,7 @@ void OP_COORDNT(int *opn, int bdpn, BBDP *BDP, P_MENN *op, int polyn, POLYGN *po
 	for (i = 0; i < polyn; i++){
 		if (strcmp(poly[i].polyknd, "RMP") == 0){
 
-			op[sumop].opname = stralloc(poly[i].polyname);
+			strcpy_s(op[sumop].opname, OPNAME_SZ, poly[i].polyname);
 			op[sumop].ref = poly[i].ref;
 			op[sumop].wd = 0;
 			op[sumop].grpx = poly[i].grpx;

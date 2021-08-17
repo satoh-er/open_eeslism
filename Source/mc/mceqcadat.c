@@ -15,7 +15,7 @@
 
 /*  eqcadat.c  */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -185,7 +185,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 			Ercalloc(N, dsn);
 	}
 
-    if((frf = fopen("reflist.efl", "r")) == NULL)
+    if(fopen_s(&frf, "reflist.efl", "r") != 0)
 		Eprint(" file ", "reflist.efl");
 
 	N = RFCMPLSTMX ;
@@ -214,7 +214,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
     Refcmpdat(frf, &Eqcat->Nrfcmp, Eqcat->Rfcmp);
     fclose (frf);
 
-	if (( frf = fopen("pumpfanlst.efl", "r")) == NULL)
+	if (fopen_s(&frf, "pumpfanlst.efl", "r") != 0)
 		Eprint(" file ", "pumpfanlst.efl") ;
 	N = pflistcount (frf) ;
 	if (N > 0 && (Eqcat->pfcmp = (PFCMP *)calloc(N, sizeof(PFCMP))) == NULL)
@@ -245,11 +245,11 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 	// Satoh追加 2013/10/26
 	Evacca = Eqcat->Evacca ;
 
-    sprintf (E, ERRFMT, dsn);
+    sprintf_s (E, sizeof(E), ERRFMT, dsn);
     
 	//printf("3 %s\n", Room->trnx->nextroom->name) ;
 
-    while (fscanf(f, "%s", s), s[0] != '*')
+    while (fscanf_s(f, "%s", s, sizeof(s)), s[0] != '*')
     {
 		//printf("%s %s\n", s, Room->trnx->nextroom->name) ;
 
@@ -257,7 +257,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 		{ 
 			Hccca->name = NULL ;
 
-			while (fscanf(f, "%s", s), s[0] != ';')
+			while (fscanf_s(f, "%s", s, sizeof(s)), s[0] != ';')
 			{
 				if ((ce=strchr(s,';')) != 0)
 					*ce=  '\0';	     
@@ -271,7 +271,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 		{ 
 			Boica->name = NULL ;
 
-			while (fscanf(f, "%s", s), s[0] != ';')
+			while (fscanf_s(f, "%s", s, sizeof(s)), s[0] != ';')
 			{
 				if ((ce=strchr(s,';')) != 0)
 					*ce=  '\0';
@@ -286,7 +286,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 			Collca->name = NULL ;
 			Collca->Fd = 0.9 ;
 
-			while (fscanf(f, "%s", ss), ss[0] != ';')
+			while (fscanf_s(f, "%s", ss, sizeof(ss)), ss[0] != ';')
 			{
 				if ((ce=strchr(ss,';')) != 0)
 					*ce=  '\0';
@@ -300,7 +300,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 		{ 
 			PVca->name = NULL ;
 
-			while (fscanf(f, "%s", ss), ss[0] != ';')
+			while (fscanf_s(f, "%s", ss, sizeof(ss)), ss[0] != ';')
 			{
 				if ((ce=strchr(ss,';')) != 0)
 					*ce=  '\0';
@@ -314,7 +314,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 		{ 
 			Refaca->name = NULL ;
 
-			while (fscanf(f, "%s", s), s[0] != ';')
+			while (fscanf_s(f, "%s", s, sizeof(s)), s[0] != ';')
 			{
 				if ((ce=strchr(s,';')) != 0)
 					*ce=  '\0';
@@ -329,7 +329,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 		{ 
 			Pipeca->name = NULL ;
 			
-			while (fscanf(f, "%s", ss), ss[0] != ';')
+			while (fscanf_s(f, "%s", ss, sizeof(ss)), ss[0] != ';')
 			{
 				if ((ce=strchr(ss,';')) != 0)
 					*ce=  '\0';
@@ -343,7 +343,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 		{ 
 			Stankca->name = NULL ;
 
-			while (fscanf(f, "%s", s), s[0] != ';')
+			while (fscanf_s(f, "%s", s, sizeof(s)), s[0] != ';')
 			{
 				if ((ce=strchr(s,';')) != 0)
 					*ce=  '\0';
@@ -357,7 +357,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 		{ 
 			Hexca->name = NULL ;
 
-			while (fscanf(f, "%s", s), s[0] != ';')
+			while (fscanf_s(f, "%s", s, sizeof(s)), s[0] != ';')
 			{
 				if ((ce=strchr(s,';')) != 0)
 					*ce=  '\0';
@@ -374,7 +374,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 			Pumpca->val = NULL ;
 			Pumpca->pfcmp = NULL ;
 
-			while (fscanf(f, "%s", ss), ss[0] != ';')
+			while (fscanf_s(f, "%s", ss, sizeof(ss)), ss[0] != ';')
 			{
 				if ((ce=strchr(ss,';')) != 0)
 					*ce=  '\0';
@@ -390,7 +390,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 			vavca->dTset = -999.0 ;
 			vavca->name = NULL ;
 
-			while (fscanf(f, "%s", ss), ss[0] != ';')
+			while (fscanf_s(f, "%s", ss, sizeof(ss)), ss[0] != ';')
 			{
 				if ((ce=strchr(ss,';')) != 0)
 					*ce=  '\0';
@@ -412,7 +412,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 			OMvavca->Gmin = -999.0 ;
 
 			//printf("5 %s\n", Room->trnx->nextroom->name) ;
-			while (fscanf(f, "%s", ss), ss[0] != ';')
+			while (fscanf_s(f, "%s", ss, sizeof(ss)), ss[0] != ';')
 			{
 				//printf("%s %s\n", ss, Room->trnx->nextroom->name) ;
 				if ((ce=strchr(ss,';')) != 0)
@@ -431,7 +431,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 			stheatca->name = NULL ;
 			stheatca->pcmname = NULL;
 
-			while (fscanf(f, "%s", s), s[0] != ';')
+			while (fscanf_s(f, "%s", s, sizeof(s)), s[0] != ';')
 			{
 				if ((ce = strchr(s, ';')) != 0)
 					*ce = '\0' ;
@@ -450,7 +450,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 			Thexca->et = -999.0 ;
 			Thexca->eh = -999.0 ;
 
-			while ( fscanf ( f, "%s", s), *s != ';')
+			while ( fscanf_s ( f, "%s", s, sizeof(s)), *s != ';')
 			{
 				if (( ce = strchr(s, ';')) != 0)
 					*ce = '\0' ;
@@ -468,7 +468,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 		{
 			Desica->name = NULL ;
 
-			while (fscanf(f, "%s", s), s[0] != ';')
+			while (fscanf_s(f, "%s", s, sizeof(s)), s[0] != ';')
 			{
 				if ((ce = strchr(s, ';')) != 0)
 					*ce = '\0' ;
@@ -485,7 +485,7 @@ void Eqcadata (FILE *f, char *dsn, EQCAT *Eqcat)
 		{
 			Evacca->name = NULL ;
 
-			while (fscanf(f, "%s", s), s[0] != ';')
+			while (fscanf_s(f, "%s", s, sizeof(s)), s[0] != ';')
 			{
 				if ((ce = strchr(s, ';')) != 0)
 					*ce = '\0' ;
@@ -531,7 +531,7 @@ void	Eqpcount ( FILE *fi, int *NBOI, int *NREFA, int *NCOL, int *NSTANK, int *NH
 
 	ad = ftell ( fi ) ;		// 読み込み位置を覚えておく
 
-	while ( fscanf ( fi, "%s", s ) !=EOF && *s != '*' )
+	while ( fscanf_s ( fi, "%s", s, sizeof(s) ) !=EOF && *s != '*' )
 	{
 		if (strcmp(s, HCCOIL_TYPE) == 0)	// 機器仕様のキーワードが見つかったら個数をインクリメント
 			(*NHCC)++;
@@ -565,7 +565,7 @@ void	Eqpcount ( FILE *fi, int *NBOI, int *NREFA, int *NCOL, int *NSTANK, int *NH
 		else if (strcmp(s, EVAC_TYPE) == 0)
 			(*NEVAC)++ ;
 
-		fscanf ( fi, "%*[^;] %*c" ) ;
+		fscanf_s ( fi, "%*[^;] %*c" ) ;
 	}
 
 	fseek ( fi, ad, SEEK_SET ) ;	// 読み込み位置を元に戻す
@@ -576,11 +576,11 @@ int	pflistcount ( FILE *fl )
 	int		N = 0 ;
 	char	s[SCHAR], c ;
 	
-	while ( fscanf ( fl, "%s", s ) != EOF, *s != '*' )
+	while ( fscanf_s ( fl, "%s", s, sizeof(s) ) != EOF, *s != '*' )
 	{
 		if ( strcmp(s,"!") == 0)
 		{
-			while ( fscanf ( fl,"%c", &c), c != '\n' )
+			while ( fscanf_s ( fl,"%c", &c, 1), c != '\n' )
 				;
 		}
 		else if (strcmp(s, ";") == 0)

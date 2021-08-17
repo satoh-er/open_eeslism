@@ -15,7 +15,7 @@
 
 /* hexchgr.c */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 
@@ -94,7 +94,7 @@ void Hexcfv(int Nhex, HEX *Hex)
 
 			if ( Hex->eff < 0.0 )
 			{
-				sprintf ( Err, "Name=%s  eff=%.4g", Hex->cmp->name, Hex->eff ) ;
+				sprintf_s ( Err, sizeof(Err), "Name=%s  eff=%.4g", Hex->cmp->name, Hex->eff ) ;
 				Eprint ( "Hexcfv", Err ) ;
 			}
 

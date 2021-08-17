@@ -19,7 +19,7 @@
 						 FILE=LPOP_placement.c
 						 Create Date=2006.11.4
 						 */
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,26 +39,26 @@ void HOUSING_PLACE(int lpn, int mpn, P_MENN *lp, P_MENN *mp, char *RET)
 
 	mlpn = lpn + mpn;
 
-	strcpy(NAMAE1, RET);
-	strcat(NAMAE1, "_placeLP.gchi");
+	strcpy_s(NAMAE1, sizeof(NAMAE1), RET);
+	strcat_s(NAMAE1, sizeof(NAMAE1), "_placeLP.gchi");
 	//printf("%s\n",NAMAE1) ;
 
-	if ((fp1 = fopen(NAMAE1, "w")) == NULL){
+	if (fopen_s(&fp1, NAMAE1, "w") != 0){
 		printf("File not open _placeLP.gchi\n");
 		exit(1);
 	}
-	strcpy(NAMAE2, RET);
-	strcat(NAMAE2, "_placeOP.gchi");
+	strcpy_s(NAMAE2, sizeof(NAMAE2), RET);
+	strcat_s(NAMAE2, sizeof(NAMAE2), "_placeOP.gchi");
 
-	if ((fp2 = fopen(NAMAE2, "w")) == NULL){
+	if (fopen_s(&fp2, NAMAE2, "w") != 0){
 		printf("File not open _placeOP.gchi\n");
 		exit(1);
 	}
 
-	strcpy(NAMAE3, RET);
-	strcat(NAMAE3, "_placeALL.gchi");
+	strcpy_s(NAMAE3, sizeof(NAMAE3), RET);
+	strcat_s(NAMAE3, sizeof(NAMAE3), "_placeALL.gchi");
 
-	if ((fp3 = fopen(NAMAE3, "w")) == NULL){
+	if (fopen_s(&fp3, NAMAE3, "w") != 0){
 		printf("File not open _placeALL.gchi\n");
 		exit(1);
 	}

@@ -13,7 +13,7 @@
 //You should have received a copy of the GNU General Public License
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
 #include "esize.h"
@@ -38,10 +38,10 @@ void	Simcinit ( SIMCONTL *S )
 	int		i ;
 	int		*dw, *dp ;
 
-	strcpy ( S->title, "" ) ;
+	strcpy_s ( S->title, sizeof(S->title), "" ) ;
 	S->File = S->wfname = S->ofname = S->unit = S->unitdy = NULL ;
 	S->fwdata = S->fwdata2 = S->ftsupw = NULL ;
-	strcpy ( S->timeid, "     " ) ;
+	strcpy_s ( S->timeid, sizeof(S->timeid), "     " ) ;
 	S->helmkey = S->wdtype = ' ' ;
 	S->daystartx = S->daystart = S->dayend = S->Dayntime = 0 ;
 	S->Ntimedyprt = S->Ntimehrprt = S->Nhelmsfpri = 0 ;
@@ -427,11 +427,11 @@ void	TMDTinit ( TMDT *t )
 	for ( i = 0; i < 5; i++ )
 		t->dat[i] = NULL ;
 
-	strcpy ( t->year, "" ) ;
-	strcpy ( t->mon, "" ) ;
-	strcpy ( t->day, "" ) ;
-	strcpy ( t->wkday, "" ) ;
-	strcpy ( t->time, "" ) ;
+	strcpy_s ( t->year, sizeof(t->year), "" ) ;
+	strcpy_s ( t->mon, sizeof(t->mon),"" ) ;
+	strcpy_s ( t->day, sizeof(t->day), "" ) ;
+	strcpy_s ( t->wkday, sizeof(t->wkday), "" ) ;
+	strcpy_s ( t->time, sizeof(t->time), "" ) ;
 
 	t->Year = t->Mon = t->Day = t->Time = 0 ;
 }

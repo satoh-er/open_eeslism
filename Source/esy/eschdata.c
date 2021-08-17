@@ -15,7 +15,7 @@
 
 /*   schdata.c  */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
@@ -35,7 +35,9 @@ void Dayweek(FILE *fi, char *Ipath, int *daywk, int key)
 	int   ds, de, dd, d, id=0, M, D;
 	FILE	 *fw ;
 	
-	if (( fw = fopen (strcat(strcpy(s, Ipath), "week.ewk"), "r" )) == 0 )
+	strcpy_s(s, sizeof(s), Ipath);
+	strcat_s(s, sizeof(s), "week.ewk");
+	if (fopen_s (&fw, s, "r" ) != 0 )
 	{
 		Eprint ( "<Dayweek>", "week.ewk" ) ;
 
@@ -44,12 +46,12 @@ void Dayweek(FILE *fi, char *Ipath, int *daywk, int key)
 	}
 	
 	if ( key == 0 )
-		fscanf(fi, "%d/%d=%s", &M, &D, s);
+		fscanf_s(fi, "%d/%d=%s", &M, &D, s, sizeof(s));
 	else
 	{
-		fscanf ( fi, "%*s" ) ;
+		fscanf_s ( fi, "%*s" ) ;
 		
-		fscanf ( fw, "%d/%d=%s", &M, &D, s);
+		fscanf_s ( fw, "%d/%d=%s", &M, &D, s, sizeof(s));
 	}
 	
 	for ( d = 0; d < 8; d++ )
@@ -72,13 +74,13 @@ void Dayweek(FILE *fi, char *Ipath, int *daywk, int key)
 		if (id > 6 )
 			id = 0;
 	}
-	while (fscanf(fi, "%s", s), s[0] != ';')
+	while (fscanf_s(fi, "%s", s, sizeof(s)), s[0] != ';')
 	{
 		if ((ce=strchr(s, ';')) != 0)
 			*ce = '\0';
 		if (strchr(s,'/') != 0)
 		{
-			sscanf(s, "%d/%d", &M, &D);
+			sscanf_s(s, "%d/%d", &M, &D);
 			d = FNNday(M, D);
 			daywk[d] = 7;
 		}
@@ -112,7 +114,7 @@ void Schtable (FILE *fi, char *dsn, SCHDL *Schdl )
 	Dsch = Dh = NULL ;
 	Dscw = Dw = NULL ;
 
-	sprintf (E, ERRFMT, dsn);
+	sprintf_s (E, sizeof(E), ERRFMT, dsn);
 
 	if ( ic == 0 )
 	{
@@ -212,11 +214,11 @@ void Schtable (FILE *fi, char *dsn, SCHDL *Schdl )
 	Dsch = Schdl->Dsch ;
 	Dscw = Schdl->Dscw ;
 	
-	while (fscanf(fi,"%s", s), s[0] != '*')
+	while (fscanf_s(fi,"%s", s, sizeof(s)), s[0] != '*')
 	{  
 		if (strcmp(s, "-ssn") == 0 || strcmp(s, "SSN") == 0)
 		{
-			while (fscanf(fi,"%s", s), s[0] != ';')
+			while (fscanf_s(fi,"%s", s, sizeof(s)), s[0] != ';')
 			{
 				if ((ce=strchr(s,';')) != 0)
 					*ce='\0';
@@ -230,7 +232,7 @@ void Schtable (FILE *fi, char *dsn, SCHDL *Schdl )
 				}
 				else
 				{ 
-					sscanf(s, "%d/%d-%d/%d", &Ms, &Ds, &Me, &De); 
+					sscanf_s(s, "%d/%d-%d/%d", &Ms, &Ds, &Me, &De); 
 					js++ ;
 					Sn->sday[js] = FNNday(Ms, Ds);
 					Sn->eday[js] = FNNday(Me, De);
@@ -242,7 +244,7 @@ void Schtable (FILE *fi, char *dsn, SCHDL *Schdl )
 		else if (strcmp(s, "-wkd") == 0 || strcmp(s, "WKD") == 0)
 		{
 			j=9;
-			while (fscanf(fi,"%s", s), s[0] != ';')
+			while (fscanf_s(fi,"%s", s, sizeof(s)), s[0] != ';')
 			{ 
 				if ((ce=strchr(s,';')) != 0)
 					*ce='\0';
@@ -269,7 +271,7 @@ void Schtable (FILE *fi, char *dsn, SCHDL *Schdl )
 		}
 		else if (strcmp(s, "-v") == 0 || strcmp(s, "VL") == 0)
 		{
-			while (fscanf(fi,"%s", s), s[0] != ';')
+			while (fscanf_s(fi,"%s", s, sizeof(s)), s[0] != ';')
 			{
 				if ((ce=strchr(s,';')) != 0)
 					*ce='\0';
@@ -293,7 +295,7 @@ void Schtable (FILE *fi, char *dsn, SCHDL *Schdl )
 //						printf ("<Schtable> Name=%s  MAX=%d  jsc=%d\n",
 //						Dh->name, SCDAYTMMAX, jsc) ;
 
-					sscanf(s,"%d-(%lf)-%d", &Dh->stime[jsc], &Dh->val[jsc], &Dh->etime[jsc] ) ;
+					sscanf_s(s,"%d-(%lf)-%d", &Dh->stime[jsc], &Dh->val[jsc], &Dh->etime[jsc] ) ;
 				}
 				if (ce) break;
 			} 
@@ -302,20 +304,20 @@ void Schtable (FILE *fi, char *dsn, SCHDL *Schdl )
 		else if (strcmp(s, "-s") == 0 || strcmp(s, "SW") == 0)
 		{ 
 			Nmod = 0;
-			fscanf(fi, " %s ", s);
+			fscanf_s(fi, " %s ", s, sizeof(s));
 
 			sw++ ;
 			Dw = Dscw + sw ;
 			Dw->name = stralloc ( s);
 			jsw= -1; 
 			
-			while (fscanf(fi,"%s", s), s[0] != ';')
+			while (fscanf_s(fi,"%s", s, sizeof(s)), s[0] != ';')
 			{ 
 				if ((ce=strchr(s,';')) != 0)
 					*ce='\0';
 				
 				jsw++;
-				sscanf(s,"%d-(%c)-%d", &Dw->stime[jsw], &code, &Dw->etime[jsw]);
+				sscanf_s(s,"%d-(%c)-%d", &Dw->stime[jsw], &code, 1, &Dw->etime[jsw]);
 				Dw->mode[jsw] = code ;
 				
 				for ( j = 0; j < Nmod; j++)
@@ -377,18 +379,18 @@ void Schdata (FILE *fi, char *dsn, int *daywk, SCHDL *Schdl )
 
 //	SchCount ( fi, &i, &i, &vl, &sws ) ;
 
-	sprintf (E, ERRFMT, dsn);
+	sprintf_s (E, sizeof(E), ERRFMT, dsn);
 	i = Sch->end - 1;
 	j = Scw->end - 1;
 	
-	while (fscanf(fi,"%s", s), s[0] != '*')
+	while (fscanf_s(fi,"%s", s, sizeof(s)), s[0] != '*')
 	{   
 		if (strcmp(s, "-v") == 0 || strcmp(s, "VL") == 0)
 			dmod = 'v';
 		else
 			dmod = 'w';
 		
-		fscanf(fi,"%s", s);
+		fscanf_s(fi,"%s", s, sizeof(s));
 		
 		if (dmod == 'v')
 		{
@@ -411,22 +413,22 @@ void Schdata (FILE *fi, char *dsn, int *daywk, SCHDL *Schdl )
 				*day1 = - 1 ;
 		}
 		
-		while (fscanf(fi,"%s", s),  *s != ';')
+		while (fscanf_s(fi,"%s", s, sizeof(s)),  *s != ';')
 		{
 			if (( ce = strchr ( s, ';' )) != 0 )
 				*ce = '\0' ;  
 			*sname = *wname = '\0' ;
 			is = iw = sc = sw = -1 ;
 			
-			sscanf ( s, "%[^:]:%s", dname, ss);
+			sscanf_s ( s, "%[^:]:%s", dname, sizeof(dname), ss, sizeof(ss));
 			if ( strchr ( ss, '-') == 0 )
-				sscanf ( ss, "%s", sname ) ;
+				sscanf_s ( ss, "%s", sname, sizeof(sname) ) ;
 			else
 			{
 				if ( *ss == '-' )
-					sscanf ( &ss[1], "%s", wname);
+					sscanf_s ( &ss[1], "%s", wname, sizeof(wname));
 				else
-					sscanf(ss, "%[^-]-%s", sname, wname);
+					sscanf_s(ss, "%[^-]-%s", sname, sizeof(sname), wname, sizeof(wname));
 			}
 			
 			/************************ 
@@ -441,16 +443,28 @@ void Schdata (FILE *fi, char *dsn, int *daywk, SCHDL *Schdl )
 			printf("-- dname:s,w,= %s  %s  %s\n",dname,sname,wname);
 			********************/
 			
-			if (sname[0] != '\0')
-				is= idssn(sname, Seasn, strcat(strcpy(err,E),sname));
-			if (wname[0] != '\0')
-				iw= idwkd(wname, Wkdy, strcat(strcpy(err,E),wname));
+			if (sname[0] != '\0') {
+				strcpy_s(err, sizeof(err), E);
+				strcat_s(err, sizeof(err), sname);
+				is= idssn(sname, Seasn, err);
+			}
+			if (wname[0] != '\0') {
+				strcpy_s(err, sizeof(err), E);
+				strcat_s(err, sizeof(err), wname);
+				iw= idwkd(wname, Wkdy, err);
+			}
 			if (dname[0] != '\0')
 			{
-				if (dmod == 'v')
-					sc= iddsc(dname, Dsch, strcat(strcpy(err,E),dname));
-				else 
-					sw= iddsw(dname, Dscw, strcat(strcpy(err,E),dname));
+				if (dmod == 'v') {
+					strcpy_s(err, sizeof(err), E);
+					strcat_s(err, sizeof(err), dname);
+					sc= iddsc(dname, Dsch, err);
+				}
+				else {
+					strcpy_s(err, sizeof(err), E);
+					strcat_s(err, sizeof(err), dname);
+					sw= iddsw(dname, Dscw, err);
+				}
 			}
 			if ( is >= 0 )
 				N = (Seasn+is)->N ;
@@ -516,7 +530,9 @@ void Schname (char *Ipath, char *dsn, SCHDL *Schdl )
 	FILE	*fi ;
 	int		ssnmx, vlmx, swmx ;
 
-	if (( fi = fopen (strcat(strcpy(s, Ipath), "schnma.ewk"), "r" )) == 0 )
+	strcpy_s(s, sizeof(s), Ipath);
+	strcat_s(s, sizeof(s), "schnma.ewk");
+	if (fopen_s (&fi, s, "r" ) != 0 )
 	{
 		Eprint ( "<Schname>", "schnma.ewk" ) ;
 
@@ -581,7 +597,7 @@ void Schname (char *Ipath, char *dsn, SCHDL *Schdl )
 	N = Dsch->end ;
 	Sch = Schdl->Sch + i ;
 
-	sprintf (E, ERRFMT, dsn);
+	sprintf_s (E, sizeof(E), ERRFMT, dsn);
 
 	for ( sc = sco; sc < N; sc++, Sch++ )
 	{
@@ -639,7 +655,7 @@ void	SchCount ( FILE *fi, int *ssn, int *wkd, int *vl, int *sw,
 
 	*ssn = *wkd = *vl = *sw = 0 ;
 
-	while ( fscanf ( fi, "%s", s ), *s != '*' )
+	while ( fscanf_s ( fi, "%s", s, sizeof(s) ), *s != '*' )
 	{
 		if ( strcmp ( s, "-ssn" ) == 0 || strcmp ( s, "SSN" ) == 0 )
 		{
@@ -674,7 +690,7 @@ int		Schcmpcount ( FILE *fi )
 	char	s[SCHAR] ;
 	
 	N = 0 ;
-	while ( fscanf ( fi, "%s", s ) != EOF )
+	while ( fscanf_s ( fi, "%s", s, sizeof(s) ) != EOF )
 	{
 		if ( *s == ';' )
 			break ;

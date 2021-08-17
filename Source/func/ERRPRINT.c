@@ -21,10 +21,11 @@
 				     
  */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "common.h"
 #include "MODEL.h"
 
 /*------計算中の面から見える面と見えない面を判別する際に必要となる
@@ -35,15 +36,17 @@ void errbekt_printf(int n, int m, bekt *a, char *name)
   int i ;
   int j ;
   FILE *fp ;
+  char fname[SCHAR];
 
-  strcat(name,".gchi") ;
+  strcpy_s(fname, sizeof(fname), name);
+  strcat_s(fname, sizeof(fname), ".gchi") ;
 
-  if ((fp=fopen(name,"w"))==NULL){
+  if (fopen_s(&fp, fname,"w") != 0){
      printf("File not open errbekt_printf\n") ;
      exit(1) ;
   }
 
-  fprintf(fp,"%s ",name) ;
+  fprintf(fp,"%s ",fname) ;
 
   for(i=0 ;i<n ;i++){
     for(j=0 ;j<m ;j++)
@@ -88,10 +91,12 @@ void e_printf(int n, P_MENN *p, char *name)
 {
   int i ;
   FILE *fp ;
+  char fname[SCHAR];
 
-  strcat(name,".gchi") ;
+  strcpy_s(fname, sizeof(fname), name);
+  strcat_s(fname, sizeof(fname), ".gchi") ;
 
-  if ((fp=fopen(name,"w"))==NULL){
+  if (fopen_s(&fp, fname,"w") != 0){
     printf("File not open e_printf\n") ;
     exit(1) ;
   }
@@ -120,9 +125,12 @@ void mp_printf(int n, P_MENN *mp, char *name)
 {
   int i ;
   FILE *fp ;
+  char fname[SCHAR];
 
-  strcat(name,".gchi") ;
-  if ((fp=fopen(name,"w"))==NULL){
+  strcpy_s(fname, sizeof(fname), name);
+  strcat_s(fname, sizeof(fname), ".gchi") ;
+
+  if (fopen_s(&fp, fname,"w") != 0){
      printf("File not open mp_printf\n") ;
      exit(1) ;
   }
@@ -147,9 +155,12 @@ void gp_printf(XYZ **gp,P_MENN *mp, int mpn, int lpn, char *name)
   int i ;
   int k ;
   FILE *fp ;
+  char fname[SCHAR];
 
-  strcat(name,".gchi") ;
-  if ((fp=fopen(name,"w"))==NULL){
+  strcpy_s(fname, sizeof(fname), name);
+  strcat_s(fname, sizeof(fname), ".gchi") ;
+
+  if (fopen_s(&fp, fname,"w") != 0){
     printf("File not open gp_printf\n") ;
     exit(1) ;
   }
@@ -171,9 +182,12 @@ void lp_printf(int n, P_MENN *lp, char *name)
 
   int i ;
   FILE *fp ;
+  char fname[SCHAR];
 
-  strcat(name,".gchi") ;
-  if ((fp=fopen(name,"w"))==NULL){
+  strcpy_s(fname, sizeof(fname), name);
+  strcat_s(fname, sizeof(fname), ".gchi") ;
+
+  if (fopen_s(&fp, fname,"w") != 0){
     printf("File not open\n") ;
     exit(1) ;
   }
@@ -197,9 +211,12 @@ void lp_shad_printf(int lpn, P_MENN *lp, char *name)
   FILE *fp ;
   int i ;
   int j ;
+  char fname[SCHAR];
 
-  strcat(name,".gchi") ;
-  if ((fp=fopen(name,"w"))==NULL){
+  strcpy_s(fname, sizeof(fname), name);
+  strcat_s(fname, sizeof(fname), ".gchi") ;
+
+  if (fopen_s(&fp, fname,"w") != 0){
     printf("File not open lp_shad_printf\n") ;
     exit(1) ;
   }

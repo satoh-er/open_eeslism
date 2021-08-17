@@ -14,7 +14,7 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 /*   ee_spre.c  */
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
@@ -25,6 +25,7 @@
 #include "fnfio.h"
 #include "winerror.h"
 #include "fnlib.h"
+#include "func/STRCUT.h"
 
 /* ---------------------------------------------------------- */
 
@@ -35,25 +36,28 @@ void eesprera (char *File, char *Ipath)
 	FILE *fi, *fb ;
 	char  s[SCHAR], c, RET[SCHAR];
 	//int len ;
-	char *STRCUT(char *DATA, char a);
 
 	//len = strlen(File);
 	//printf("s3=%s %d\n",File,len);
 
-	if ((fi = fopen(File, "r")) == 0)
+	if (fopen_s(&fi, File, "r") != 0)
 	{
 		Eprint ( "<eesprera>", File ) ;
 		preexit ( ) ;
 		exit(EXIT_INPUT);
 	}
-	strcpy(RET, STRCUT(File, '.'));
-	fb = fopen(strcat(strcpy(s, RET), "bdata0.ewk"), "w");
+	char* s_cut = STRCUT(File, '.');
+	strcpy_s(RET, sizeof(RET), s_cut);
+	free(s_cut);	//STRCUTで生成したメモリの開放
+	strcpy_s(s, sizeof(s), RET);
+	strcat_s(s, sizeof(s), "bdata0.ewk");
+	fopen_s(&fb, s, "w");
 	
-	while (fscanf(fi," %s ", s) >= 0)
+	while (fscanf_s(fi," %s ", s, sizeof(s)) >= 0)
 	{
 		if (strcmp(s, "!") == 0)
 		{
-			while (fscanf(fi, "%c", &c),  c != '\n')
+			while (fscanf_s(fi, "%c", &c, 1),  c != '\n')
 				;
 		}
 		else
@@ -93,7 +97,9 @@ void eespre(char *File, char *Ipath, int *key)
 
 	syspth = syscmp = 0 ;
 	
-	if ((fi = fopen(strcat(strcpy(s,Ipath), File), "r")) == 0)
+	strcpy_s(s, sizeof(s), Ipath);
+	strcat_s(s, sizeof(s), File);
+	if (fopen_s(&fi, s, "r") != 0)
 	{
 		Eprint ( "<eespre>", File ) ;
 
@@ -103,18 +109,29 @@ void eespre(char *File, char *Ipath, int *key)
 
 	Syscheck ( fi, &syspth, &syscmp ) ;
 	
-	fb = fopen(strcat(strcpy(s, Ipath), "bdata.ewk"), "w");
-	fs = fopen(strcat(strcpy(s, Ipath), "schtba.ewk"), "w");
-	fsn= fopen(strcat(strcpy(s, Ipath), "schnma.ewk"), "w");
-	fw = fopen(strcat(strcpy(s, Ipath), "week.ewk"), "w");
+	strcpy_s(s, sizeof(s), Ipath);
+	strcat_s(s, sizeof(s), "bdata.ewk");
+	fopen_s(&fb, s, "w");
+
+	strcpy_s(s, sizeof(s), Ipath);
+	strcat_s(s, sizeof(s), "schtba.ewk");
+	fopen_s(&fs, s, "w");
+
+	strcpy_s(s, sizeof(s), Ipath);
+	strcat_s(s, sizeof(s), "schnma.ewk");
+	fopen_s(&fsn, s, "w");
+
+	strcpy_s(s, sizeof(s), Ipath);
+	strcat_s(s, sizeof(s), "week.ewk");
+	fopen_s(&fw, s, "w");
 	
-	while (fscanf(fi," %s ", s) >= 0)
+	while (fscanf_s(fi," %s ", s, sizeof(s)) >= 0)
 	{
 		//		printf ( "<eespre> %s\n", s ) ;
 		
 		if (strcmp(s, "TITLE") == 0)
 		{
-			fscanf(fi, " %[^;];", s);
+			fscanf_s(fi, " %[^;];", s, sizeof(s));
 			fprintf(fb, "TITLE  %s ;\n", s);
 		}
 		/**********************************
@@ -130,7 +147,7 @@ void eespre(char *File, char *Ipath, int *key)
 			if ((st = strchr(s, ';' )) != NULL )
 				*(st+1) = '\0' ;
 			else
-				fscanf ( fi, "%*s" ) ;
+				fscanf_s ( fi, "%*s" ) ;
 
 			Fbmlist = stralloc ( s + 8 ) ;
 		}
@@ -138,17 +155,17 @@ void eespre(char *File, char *Ipath, int *key)
 		else if (strcmp(s, "WEEK") == 0 )
 		{
 			*key = 1 ;
-			fscanf(fi, " %[^;];", s ) ;
+			fscanf_s(fi, " %[^;];", s, sizeof(s) ) ;
 			fprintf(fw, "%s ;\n", s ) ;
 		}
 		else if (strcmp(s, "%s") == 0)
 		{
-			fscanf(fi, " %[^;];", s); 
+			fscanf_s(fi, " %[^;];", s, sizeof(s)); 
 			fprintf(fs, "%s ;\n", s);
 		}
 		else if (strcmp(s, "%sn") == 0)
 		{
-			fscanf(fi, " %[^;];", s);
+			fscanf_s(fi, " %[^;];", s, sizeof(s));
 			fprintf(fsn, "%s ;\n", s);
 		}
 		else if ((st=strchr(s, '"')) != 0)
@@ -203,7 +220,7 @@ void eespre(char *File, char *Ipath, int *key)
 		{
 			if ( s[strlen(s)-1] == ';' )
 			{
-				strcpy ( t, s ) ;
+				strcpy_s ( t, sizeof(t), s ) ;
 				t[strlen(t)-1] = '\0' ;
 				fprintf ( fb, " %s ; ", t ) ;
 			}
@@ -251,7 +268,7 @@ void	Syscheck ( FILE *fi, int *syspth, int *syscmp )
 {
 	char	s[2048] ;
 
-	while ( fscanf ( fi, "%s", s ) != EOF )
+	while ( fscanf_s ( fi, "%s", s, sizeof(s) ) != EOF )
 	{
 		if ( strcmp ( s, "SYSPTH" ) == 0 )
 			*syspth = 1 ;

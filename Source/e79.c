@@ -25,7 +25,6 @@
 #define TEST 0
 /*******************/
 
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -309,7 +308,7 @@ int main(int Narg, char **File)
 
 	/* ------------------------------------------------------ */
 
-	sprintf(Err, ERRFMT, "(main)");
+	sprintf_s(Err, sizeof(Err), ERRFMT, "(main)");
 	Psyint();
 
 	//for(i=0 ;i<Narg ; i++){
@@ -319,7 +318,7 @@ int main(int Narg, char **File)
 	if (Narg == 1)
 	{
 		printf("=== (main)  Input data file name ? \n");
-		scanf("%s", s);
+		scanf_s("%s", s, sizeof(s));
 		File[1] = s;
 		printf(" data file = %s\n", s);
 	}
@@ -327,21 +326,20 @@ int main(int Narg, char **File)
 	//printf("Narg=%d file=%s\n",Narg,File[1]);
 	Ifile = NULL;
 	Ifile = stralloc(File[1]);
-	strcpy(s, Ifile);
-
-	// 入力されたパスが"で始まる場合に除去する
-	if (Ifile[0] == '"')
-		sscanf(Ifile, "\"%~[\"]\"", s);
+	strcpy_s(s, sizeof(s), Ifile);
 
 	if ((st = strrchr(Ifile, '\\')) != NULL)
 		*st = '\0';
 
 	// 一時吐き出しファイル"*.ewk"のパス変更
-	strcat(strcpy(Ipath, Ifile), "\\");
+	strcpy_s(Ipath, sizeof(Ipath), Ifile);
+	strcat_s(Ipath, sizeof(Ipath), "\\");
 
 	eesprera(s, Ipath);
 	char EWKFile[SCHAR];
-	strcpy(EWKFile, STRCUT(s, '.'));
+	char* s_cut = STRCUT(s, '.');
+	strcpy_s(EWKFile, sizeof(EWKFile), s_cut);
+	free(s_cut);	//STRCUTで生成したメモリの開放
 
 	eespre("bdata0.ewk", EWKFile, &key);
 
@@ -378,21 +376,24 @@ int main(int Narg, char **File)
 	}
 
 	/////////////////////////////////
-	sprintf(hptest, "Main1");
+	sprintf_s(hptest, sizeof(hptest), "Main1");
 	HeapCheck(hptest);
 	/////////////////////////////////
 
 	if (bdpn != 0){
 
-		strcpy(RET, STRCUT(s, '.'));
+		char* s_cut = STRCUT(s, '.');
+		strcpy_s(RET, sizeof(RET), s_cut);
+		free(s_cut);	//STRCUTで生成したメモリの開放
+
 		//printf ( "SSSSS1\n" ) ;
-		strcpy(RET1, RET);
+		strcpy_s(RET1, sizeof(RET1), RET);
 		//printf ( "SSSSS2\n" ) ;
-		strcpy(RET3, RET);
+		strcpy_s(RET3, sizeof(RET3), RET);
 		//printf ( "SSSSS3\n" ) ;
-		strcpy(RET14, RET);
+		strcpy_s(RET14, sizeof(RET14), RET);
 		//printf ( "SSSSS4\n" ) ;
-		strcpy(RET15, RET);
+		strcpy_s(RET15, sizeof(RET15), RET);
 
 		//printf ( "SSSSS5\n" ) ;
 
@@ -421,29 +422,29 @@ int main(int Narg, char **File)
 		strcat(RET13,"_OPLP") ;
 		strcat(RET16,"_SHAD") ;
 #endif    
-		strcat(RET, "_shadow.gchi");
+		strcat_s(RET, sizeof(RET), "_shadow.gchi");
 		//printf ( "SSSSS6\n" ) ;
-		strcat(RET1, "_I.gchi");
+		strcat_s(RET1, sizeof(RET1), "_I.gchi");
 		//printf ( "SSSSS7\n" ) ;
-		strcat(RET3, "_ffactor.gchi");
+		strcat_s(RET3, sizeof(RET3), "_ffactor.gchi");
 		//printf ( "SSSSS8\n" ) ;
-		strcat(RET14, "_lwr.gchi");
+		strcat_s(RET14, sizeof(RET14), "_lwr.gchi");
 		//printf ( "SSSSS9\n" ) ;
 
-		if ((fp1 = fopen(RET, "w")) == NULL){
+		if (fopen_s(&fp1, RET, "w") != 0){
 			printf("File not open _shadow.gchi\n");
 			exit(1);
 		}
-		if ((fp2 = fopen(RET1, "w")) == NULL){
+		if (fopen_s(&fp2, RET1, "w") != 0){
 			printf("File not open _I.gchi\n");
 			exit(1);
 		}
 
-		if ((fp3 = fopen(RET14, "w")) == NULL){
+		if (fopen_s(&fp3, RET14, "w") != 0){
 			printf("File not open _lwr.gchi\n");
 			exit(1);
 		}
-		if ((fp4 = fopen(RET3, "w")) == NULL){
+		if (fopen_s(&fp4, RET3, "w") != 0){
 			printf("File not open _ffactor.gchi\n");
 			exit(1);
 		}
@@ -618,7 +619,7 @@ int main(int Narg, char **File)
 			Npelm, Ncmpalloc, Ncompnt, Nelout, Nelin);
 	}
 	/////////////////////////////////
-	sprintf(hptest, "Main2");
+	sprintf_s(hptest, sizeof(hptest), "Main2");
 	HeapCheck(hptest);
 	/////////////////////////////////
 
@@ -645,7 +646,7 @@ int main(int Narg, char **File)
 	dprballoc(Rmvls.Mw, Rmvls.Sd);
 
 	/////////////////////////////////
-	sprintf(hptest, "Main3");
+	sprintf_s(hptest, sizeof(hptest), "Main3");
 	HeapCheck(hptest);
 	/////////////////////////////////
 
@@ -943,7 +944,7 @@ int main(int Narg, char **File)
 					}
 				}
 				/////////////////////////////////
-				sprintf(hptest, "Main KAGE-SUN");
+				sprintf_s(hptest, sizeof(hptest), "Main KAGE-SUN");
 				HeapCheck(hptest);
 				/////////////////////////////////
 				//printf("H=%5.2f\n",Daytm.time) ;
@@ -1055,7 +1056,7 @@ int main(int Narg, char **File)
 				}
 
 				/////////////////////////////////
-				sprintf(hptest, "Main eeroomcf");
+				sprintf_s(hptest, sizeof(hptest), "Main eeroomcf");
 				HeapCheck(hptest);
 				/////////////////////////////////
 
@@ -1100,7 +1101,7 @@ int main(int Narg, char **File)
 				for (i = 0; i < LOOP_MAX; i++)
 				{
 					char	s[256];
-					sprintf(s, "Loop Start %d", i);
+					sprintf_s(s, sizeof(s), "Loop Start %d", i);
 					HeapCheck(s);
 
 					if (i == 0)
@@ -1671,7 +1672,7 @@ void P_MENNinit(P_MENN *pm, int N)
 	for (i = 0; i < N; i++, pm++)
 	{
 		pm->Nopw = 0;
-		pm->opname = NULL;
+		strcpy_s(pm->opname, OPNAME_SZ, "");
 		matinit(pm->rgb, 3);
 		matinit(pm->faiwall, pmax);
 		pm->wd = pm->exs = 0;

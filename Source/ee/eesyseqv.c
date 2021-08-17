@@ -141,7 +141,7 @@ void Syseqv(int Nelout, ELOUT *Elout, SYSEQ *Syseq)
 	
 	//	if ( Nsv > SYSEQMX )
 	//	{
-	//		sprintf ( Err, "syseq=%d  SYSEQMX=%d\n", Nsv, SYSEQMX ) ;
+	//		sprintf_s ( Err, sizeof(Err), "syseq=%d  SYSEQMX=%d\n", Nsv, SYSEQMX ) ;
 	//		Eprint ( "<Syseqv>", Err ) ;
 	//	}
 	

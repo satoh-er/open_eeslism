@@ -129,9 +129,11 @@ typedef struct menn{
    int polyd ;                  /*--何角形か？--*/
 }WD_MENN ;
 
+#define OPNAME_SZ 50
+
 /*--OP（受照面）,LP（被受照面）,MP(OP+OPW)--*/
 typedef struct opmenn{
-   char   *opname ;          /*--名前--*/
+   char   opname[OPNAME_SZ] ;          /*--名前--*/
    double rgb[3] ;              /*--色--*/
    int    wd,exs ;              /*--窓の数、方位番号--*/
    double grpx,                 /*--前面地面の代表点までの距離 初期値=1---*/

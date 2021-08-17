@@ -16,7 +16,7 @@
 /*  wreadlib.c   */
 
 //#define		DEBUG	0
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -106,7 +106,7 @@ void Weatherdt(SIMCONTL *Simc, DAYTM *Daytm, LOCAT *Loc, WDAT *Wd, EXSF *Exs, ch
 			hspwdread (Simc->fwdata, Daytm->day, Loc, &Year, &Mon, &Day, &wkdy, dt);
 			if (Daytm->Mon != Mon || Daytm->Day != Day)
 			{
-				sprintf(s, "loop Mon/Day=%d/%d - data Mon/Day=%d/%d",
+				sprintf_s(s, sizeof(s), "loop Mon/Day=%d/%d - data Mon/Day=%d/%d",
 					Daytm->Mon, Daytm->Day, Mon, Day );
 				Eprint ( "<Weatherdt>", s ) ;
 
@@ -238,7 +238,7 @@ void  gtsupw (FILE *fp, char *Loc,
 	
 	if (ic == 0)
 	{ 
-		while ( fscanf ( fp, "%s", s ) != EOF )
+		while ( fscanf_s ( fp, "%s", s, sizeof(s) ) != EOF )
 		{ 
 			//fscanf(fp, " %s", s);
 			if (strcmp(s, "end") == 0)
@@ -249,7 +249,7 @@ void  gtsupw (FILE *fp, char *Loc,
 				//preexit() ;
 				//exit(1) ;
 				//以下４行、higuchi del supw.eflと気象データの地名に整合性の無い場合は、東京で走らせる。
-				sprintf ( E,"supw.eflに%sが登録されていません。", s) ;
+				sprintf_s ( E, sizeof(E), "supw.eflに%sが登録されていません。", s) ;
 				Eprint ( "<gtsupw>", E ) ;
 
 				preexit () ;
@@ -263,15 +263,15 @@ void  gtsupw (FILE *fp, char *Loc,
 		}
 		
 		for (m=0; m<12; m++)
-			fscanf(fp, "%lf", &Tsupw[m]);
+			fscanf_s(fp, "%lf", &Tsupw[m]);
 		
-		fscanf(fp, " %d %lf %lf ", nmx, Tgrav, DTgr);
+		fscanf_s(fp, " %d %lf %lf ", nmx, Tgrav, DTgr);
 		
 		ic = 1;
 
 		if (flg == 0)
 		{
-			sprintf(E, "supw.eflに%sが登録されていません。", s);
+			sprintf_s(E, sizeof(E), "supw.eflに%sが登録されていません。", s);
 			Eprint("<gtsupw>", E);
 			//getch();
 			preexit();
@@ -297,8 +297,8 @@ void hspwdread(FILE *fp, int nday,
 
 	if (ic == 0)
 	{
-		fscanf(fp,"%s %lf %lf %lf %lf %lf %lf ",
-			s, &Loc->Lat, &Loc->Lon, &Loc->Ls, &a,&b,&c);
+		fscanf_s(fp,"%s %lf %lf %lf %lf %lf %lf ",
+			s, sizeof(s), &Loc->Lat, &Loc->Lon, &Loc->Ls, &a,&b,&c);
 		Loc->name = stralloc ( s ) ;
 		
 		if ( ferr )

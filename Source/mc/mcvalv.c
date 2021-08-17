@@ -17,7 +17,7 @@
 
 /*  VALV */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -170,7 +170,7 @@ void	ValvControl ( FILE *fi,  int Ncompnt, COMPNT *Compnt, SCHDL *Schdl, SIMCONT
 	PELM	*Pelm ;
 
 	Vb = NULL ;
-	fscanf ( fi, "%s", s ) ;
+	fscanf_s ( fi, "%s", s, sizeof(s) ) ;
 	ad = ftell ( fi ) ;
 
 	Vc = Compntptr ( s, Ncompnt, Compnt ) ;
@@ -182,7 +182,7 @@ void	ValvControl ( FILE *fi,  int Ncompnt, COMPNT *Compnt, SCHDL *Schdl, SIMCONT
 
 	Valv = ( VALV * ) Vc->eqp ;
 	Valv->org = 'y' ;
-	while ( fscanf ( fi, "%s", s ) != EOF )
+	while ( fscanf_s ( fi, "%s", s, sizeof(s) ) != EOF )
 	{
 		if ( *s == ';' )
 		{
@@ -192,7 +192,7 @@ void	ValvControl ( FILE *fi,  int Ncompnt, COMPNT *Compnt, SCHDL *Schdl, SIMCONT
 
 		if ( strcmp ( s, "-init" ) == 0 )
 		{
-			fscanf ( fi, "%s", s ) ;
+			fscanf_s ( fi, "%s", s, sizeof(s) ) ;
 			ad = ftell ( fi ) ;
 
 			if (( k = idsch ( s, Schdl->Sch, NULL )) >= 0 )
@@ -213,7 +213,7 @@ void	ValvControl ( FILE *fi,  int Ncompnt, COMPNT *Compnt, SCHDL *Schdl, SIMCONT
 		/*******************************************/
 		else if ( strcmp ( s, "-Tout" ) == 0 )
 		{
-			fscanf ( fi, "%s", s ) ;
+			fscanf_s ( fi, "%s", s, sizeof(s) ) ;
 			ad = ftell ( fi ) ;
 
 			if (( k = idsch ( s, Schdl->Sch, NULL )) >= 0 )

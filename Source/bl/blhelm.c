@@ -15,7 +15,7 @@
 
 /* helm.c */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdlib.h>
 #include "MODEL.h" /*----higuchi 070918--*/
 #include "fesy.h"
@@ -353,9 +353,9 @@ void helmsfprint( FILE *fo, int id, int Nroom, ROOM *Room)
 				if (Sd->sfepri == 'y')
 				{
 					if (strlen(Sd->name) == 0)
-						sprintf(s, "%s-%d-%c", Room->name, j, Sd->ble);
+						sprintf_s(s, sizeof(s), "%s-%d-%c", Room->name, j, Sd->ble);
 					else
-						sprintf(s, "%s-%s", Room->name, Sd->name);
+						sprintf_s(s, sizeof(s), "%s-%s", Room->name, Sd->name);
 					
 					fprintf (fo, "%s_trs t f %s_so f %s_sg t f ", s, s, s);
 					fprintf (fo, "%s_rn t f %s_in t f %s_pnl t f\n", s, s, s);

@@ -21,7 +21,6 @@
 	
 ****************/
 
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -51,9 +50,9 @@ void	bdhpri ( char *ofile, RMVLS rmvls, EXSFS *exs )
 	else
 		room = NULL ;
 	
-	strcpy ( file, ofile ) ;
-	strcat ( file, "_bdh.es" ) ;
-	fp = fopen ( file, "w" ) ;
+	strcpy_s ( file, sizeof(file), ofile ) ;
+	strcat_s ( file, sizeof(file), "_bdh.es" ) ;
+	fopen_s (&fp, file, "w" ) ;
 	
 	fprintf ( fp, "%d\n", Nroom ) ;
 	
@@ -88,7 +87,7 @@ void	bdhpri ( char *ofile, RMVLS rmvls, EXSFS *exs )
 			
 			if ( r->A < 0.0 )
 			{
-				sprintf ( E, "RmName=%s Ble=%c A=%.3lf\n", room->name, r->ble, r->A ) ;
+				sprintf_s ( E, sizeof(E), "RmName=%s Ble=%c A=%.3lf\n", room->name, r->ble, r->A ) ;
 				Errprint ( 1, "<bdhpri>", E ) ;
 			}
 			
@@ -96,7 +95,7 @@ void	bdhpri ( char *ofile, RMVLS rmvls, EXSFS *exs )
 				fprintf ( fp, "%.3lf\t%.2lf\t;\n", r->Rwall, r->CAPwall ) ;
 			else
 			{
-				sprintf ( E, "Rmname=%s Ble=%c  Not Defined", room->name, r->ble ) ;
+				sprintf_s ( E, sizeof(E), "Rmname=%s Ble=%c  Not Defined", room->name, r->ble ) ;
 				//Errprint ( 1, "<bdhpri>", E ) ;
 				fprintf(fp, "\t\t;\n");
 			}

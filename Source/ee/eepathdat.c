@@ -19,7 +19,7 @@
 
 //#define	 DEBUG  0
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -122,7 +122,7 @@ void Pathdata (FILE *f, char *errkey, SIMCONTL *Simc, WDAT *Wd, int  Ncompnt,  C
 
 	if ( ID == 0 )
 	{
-		while (fscanf(f, "%s", ss), *ss != '*')
+		while (fscanf_s(f, "%s", ss, sizeof(ss)), *ss != '*')
 		{
 			if ( DEBUG )
 			{
@@ -155,7 +155,7 @@ void Pathdata (FILE *f, char *errkey, SIMCONTL *Simc, WDAT *Wd, int  Ncompnt,  C
 			Mpath->plist = Plist;
 			Pelmpre = NULL ;
 
-			while (fscanf(f, "%s", s), *s != ';')
+			while (fscanf_s(f, "%s", s, sizeof(s)), *s != ';')
 			{
 				if ( DEBUG )
 				{
@@ -164,7 +164,7 @@ void Pathdata (FILE *f, char *errkey, SIMCONTL *Simc, WDAT *Wd, int  Ncompnt,  C
 
 				if (*s == '-')
 				{
-					fscanf(f, "%s", ss);
+					fscanf_s(f, "%s", ss, sizeof(ss));
 
 					if (strcmp(s + 1, "sys") == 0)
 						Mpath->sys = *ss;
@@ -175,11 +175,11 @@ void Pathdata (FILE *f, char *errkey, SIMCONTL *Simc, WDAT *Wd, int  Ncompnt,  C
 				}     
 				else if (*s == '>')
 				{
-					sprintf(sss, "Path%d", iPlist) ;
+					sprintf_s(sss, sizeof(sss), "Path%d", iPlist) ;
 					Plist->plistname = stralloc(sss) ;
 					Plist->pelm = Pelm;
 
-					while (fscanf(f, "%s", s), *s != '>')
+					while (fscanf_s(f, "%s", s, sizeof(s)), *s != '>')
 					{
 						if ( DEBUG )
 						{
@@ -188,7 +188,7 @@ void Pathdata (FILE *f, char *errkey, SIMCONTL *Simc, WDAT *Wd, int  Ncompnt,  C
 
 						if (*s == '(' )
 						{
-							i = sscanf(s + 1, "%lf", &Go);
+							i = sscanf_s(s + 1, "%lf", &Go);
 							if (i == 1)
 							{
 								Plist->Go = dcalloc(1, errkey);
@@ -200,7 +200,7 @@ void Pathdata (FILE *f, char *errkey, SIMCONTL *Simc, WDAT *Wd, int  Ncompnt,  C
 							}
 							else
 							{
-								sscanf(s + 1, "%[^)])", ss);
+								sscanf_s(s + 1, "%[^)])", ss, sizeof(ss));
 
 								if ( DEBUG )
 								{
@@ -223,7 +223,7 @@ void Pathdata (FILE *f, char *errkey, SIMCONTL *Simc, WDAT *Wd, int  Ncompnt,  C
 							// 流量比率設定フラグのセット
 							Mpath->rate = 'Y' ;
 
-							i = sscanf(s + 1, "%lf", &Go);
+							i = sscanf_s(s + 1, "%lf", &Go);
 							if (i == 1)
 							{
 								Plist->rate = dcalloc(1, errkey);
@@ -235,7 +235,7 @@ void Pathdata (FILE *f, char *errkey, SIMCONTL *Simc, WDAT *Wd, int  Ncompnt,  C
 							}
 							else
 							{
-								sscanf(s + 1, "%[^)])", ss);
+								sscanf_s(s + 1, "%[^)])", ss, sizeof(ss));
 
 								if ( DEBUG )
 								{
@@ -258,7 +258,7 @@ void Pathdata (FILE *f, char *errkey, SIMCONTL *Simc, WDAT *Wd, int  Ncompnt,  C
 							// 末端経路名称
 							if(strncmp(s,"name=",5) == 0)
 							{
-								sscanf(s, "%*[^=]=%s", ss) ;
+								sscanf_s(s, "%*[^=]=%s", ss, sizeof(ss)) ;
 								free(Plist->plistname) ;
 								Plist->plistname = NULL ;
 								Plist->plistname = stralloc(ss) ;
@@ -737,7 +737,7 @@ int		Mpathcount ( FILE *fi, int *Pl )
 	ad = ftell ( fi ) ;
 	*Pl = 0 ;
 
-	while ( fscanf ( fi, "%s", s ) != EOF && *s != '*' )
+	while ( fscanf_s ( fi, "%s", s, sizeof(s) ) != EOF && *s != '*' )
 	{
 		if ( strcmp ( s, ";" ) == 0 )
 			N++ ;
@@ -764,7 +764,7 @@ void	Plcount ( FILE *fi, int *N )
 	M = N ;
 	ad = ftell ( fi ) ;
 
-	while ( fscanf ( fi, "%s", s ) != EOF && *s != '*' )
+	while ( fscanf_s ( fi, "%s", s, sizeof(s) ) != EOF && *s != '*' )
 	{
 		if ( strcmp ( s, ";" ) == 0 )
 		{
@@ -776,7 +776,7 @@ void	Plcount ( FILE *fi, int *N )
 		if ( strcmp ( s, ">" ) == 0 )
 		{
 			i++ ;
-			fscanf ( fi, "%*[^>] %*c" ) ;
+			fscanf_s ( fi, "%*[^>] %*c" ) ;
 		}
 	}
 
@@ -800,20 +800,20 @@ int		Pelmcount ( FILE *fi )
 	i = 1 ;
 	N = 0 ;
 
-	while ( fscanf ( fi, "%s", s ) != EOF )
+	while ( fscanf_s ( fi, "%s", s, sizeof(s) ) != EOF )
 	{
 		i = 1 ;
 		if ( strcmp ( s, "*" ) == 0 )
 			break ;
 
-		while ( fscanf ( fi, "%s", s ) != EOF )
+		while ( fscanf_s ( fi, "%s", s, sizeof(s) ) != EOF )
 		{
 			if ( *s == ';' )
 				break ;
 
 			if ( strcmp ( s, "-f" ) == 0 )
 			{
-				fscanf ( fi, "%s", t ) ;
+				fscanf_s ( fi, "%s", t, sizeof(t) ) ;
 
 				if ( strcmp ( t, "W" ) == 0 || strcmp ( t, "a" ) == 0 )
 					i = 1 ;
@@ -821,7 +821,7 @@ int		Pelmcount ( FILE *fi )
 					i = 2 ;
 			}
 			if ( strcmp ( s, "-sys" ) == 0 )
-				fscanf ( fi, "%*s" ) ;
+				fscanf_s ( fi, "%*s" ) ;
 
 			if ( strcmp ( s, ">" ) != 0 && *s != '(' && *s != '-' && *s != ';' )
 			{

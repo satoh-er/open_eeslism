@@ -15,7 +15,7 @@
 
 /*  solrcol.c  */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -92,22 +92,22 @@ void Collint(int Ncoll, COLL *Coll, int Nexsf, EXSF *Exs, WDAT *Wd)
 
 		if ( Coll->cat->b0 < 0.0 )
 		{
-			sprintf ( Err, "Name=%s b0=%.4g", Coll->cmp->name, Coll->cat->b0 ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s b0=%.4g", Coll->cmp->name, Coll->cat->b0 ) ;
 			Eprint("Collint", Err ) ;
 		}
 		if ( Coll->cat->b1 < 0.0 )
 		{
-			sprintf ( Err, "Name=%s b1=%.4g", Coll->cmp->name, Coll->cat->b1 ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s b1=%.4g", Coll->cmp->name, Coll->cat->b1 ) ;
 			Eprint("Collint", Err ) ;
 		}
 		if ( Coll->cat->Ac < 0.0 )
 		{
-			sprintf ( Err, "Name=%s Ac=%.4g", Coll->cmp->name, Coll->cat->Ac ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s Ac=%.4g", Coll->cmp->name, Coll->cat->Ac ) ;
 			Eprint("Collint", Err ) ;
 		}
 		if ( Coll->cat->Ag < 0.0 )
 		{
-			sprintf ( Err, "Name=%s Ag=%.4g", Coll->cmp->name, Coll->cat->Ag ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s Ag=%.4g", Coll->cmp->name, Coll->cat->Ag ) ;
 			Eprint("Collint", Err ) ;
 		}
 

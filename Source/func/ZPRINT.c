@@ -21,7 +21,7 @@
 
 */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include "fesy.h"
@@ -33,14 +33,18 @@
 #include "lib/u_psy.h"
 #include "MODEL.h"
 #include "func/ZPRINT.h"
+#include "common.h"
 
 void ZPRINT(P_MENN *lp, P_MENN *op, int lpn, int opn, char *name)
 {
 int i, k, j ;
 FILE *fp ;
+char fname[SCHAR];
 
-strcat(name,".gchi") ;
-if ((fp=fopen(name,"w"))==NULL){
+strcpy_s(fname, sizeof(fname), name);
+strcat_s(fname, sizeof(fname), ".gchi") ;
+
+if (fopen_s(&fp, fname,"w") != 0){
    printf("File not open\n") ;
    		preexit ( ) ;
 		exit(EXIT_ZPRI); 

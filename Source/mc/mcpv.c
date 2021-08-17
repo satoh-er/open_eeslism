@@ -15,7 +15,7 @@
 
 /*  solrcol.c  */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -123,49 +123,49 @@ void PVint(int Npv, PV *PV, int Nexsf, EXSF *Exs, WDAT *Wd)
 
 		if ( PV->cat->KHD < 0.0 )
 		{
-			sprintf ( Err, "Name=%s KHD=%.4g", PV->cmp->name, PV->cat->KHD ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s KHD=%.4g", PV->cmp->name, PV->cat->KHD ) ;
 			Eprint("PVint", Err ) ;
 		}
 
 		if ( PV->cat->KPD < 0.0 )
 		{
-			sprintf ( Err, "Name=%s KHD=%.4g", PV->cmp->name, PV->cat->KPD ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s KHD=%.4g", PV->cmp->name, PV->cat->KPD ) ;
 			Eprint("PVint", Err ) ;
 		}
 
 		if ( PV->cat->KPM < 0.0 )
 		{
-			sprintf ( Err, "Name=%s KPM=%.4g", PV->cmp->name, PV->cat->KPM ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s KPM=%.4g", PV->cmp->name, PV->cat->KPM ) ;
 			Eprint("PVint", Err ) ;
 		}
 
 		if ( PV->cat->KPA < 0.0 )
 		{
-			sprintf ( Err, "Name=%s KPA=%.4g", PV->cmp->name, PV->cat->KPA ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s KPA=%.4g", PV->cmp->name, PV->cat->KPA ) ;
 			Eprint("PVint", Err ) ;
 		}
 
 		if ( PV->cat->effINO < 0.0 )
 		{
-			sprintf ( Err, "Name=%s EffInv=%.4g", PV->cmp->name, PV->cat->effINO ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s EffInv=%.4g", PV->cmp->name, PV->cat->effINO ) ;
 			Eprint("PVint", Err ) ;
 		}
 
 		if ( PV->cat->apmax > 0.0 )
 		{
-			sprintf ( Err, "Name=%s apmax=%.4g", PV->cmp->name, PV->cat->apmax ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s apmax=%.4g", PV->cmp->name, PV->cat->apmax ) ;
 			Eprint("PVint", Err ) ;
 		}
 
 		if ( PV->PVcap < 0.0 )
 		{
-			sprintf ( Err, "Name=%s PVcap=%.4g", PV->cmp->name, PV->PVcap ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s PVcap=%.4g", PV->cmp->name, PV->PVcap ) ;
 			Eprint("PVint", Err ) ;
 		}
 
 		if ( PV->Area < 0.0 )
 		{
-			sprintf ( Err, "Name=%s Area=%.4g", PV->cmp->name, PV->Area ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s Area=%.4g", PV->cmp->name, PV->Area ) ;
 			Eprint("PVint", Err ) ;
 		}
 

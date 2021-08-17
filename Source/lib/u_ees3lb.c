@@ -15,7 +15,7 @@
 
 /*  ees3lib.c  */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
@@ -32,9 +32,9 @@
 /* Check heap status */
 void HeapCheck(char *s)
 {
+#if WINVER
 	int i ;
 
-#if WINVER
 	if (DEBUG)
 	{
 		//printf("HeatCheck  %s\n", s) ;
@@ -93,7 +93,7 @@ char *stralloc(char *s)
 		//c = ( char * ) _alloca (( strlen(s) + 1 ) * sizeof ( char )) ;
 
 		if ( c != NULL)
-			strcpy(c, s);
+			strcpy_s(c, N, s);
 		else
 		{
 			Eprint("xxxxx  stralloc  err=", s);
@@ -125,7 +125,7 @@ char *scalloc(unsigned int n, char *errkey)
 
 	if ( c == NULL)
 	{
-		sprintf(s, " -- f.scalloc   n=%d", n);
+		sprintf_s(s, sizeof(s), " -- f.scalloc   n=%d", n);
 		Eprint(errkey, s);
 
 		preexit ( ) ;
@@ -136,7 +136,7 @@ char *scalloc(unsigned int n, char *errkey)
 	for ( i = 0; i < ( int ) n; i++, st++ )
 		*st = ' ' ;
 
-	strcpy ( c, "" ) ;
+	strcpy_s (c, n, "" ) ;
 	return  c;
 }
 
@@ -169,7 +169,7 @@ char *charalloc(char c)
 	
 	if ((p = scalloc(1, "xxxxx  charalloc")) == NULL)
 	{
-		sprintf(s, "  errchar = [%c]", c);
+		sprintf_s(s, sizeof(s), "  errchar = [%c]", c);
 		Eprint("charalloc", s); 
 
 		preexit ( ) ;
@@ -192,7 +192,7 @@ int *icalloc(unsigned int n, char *errkey)
 	i = NULL ;
 	if (n > 0 && (i = (int *)malloc(n * sizeof(int))) == NULL)
 	{
-		sprintf(s, " -- f.icalloc   n=%d", n);
+		sprintf_s(s, sizeof(s), " -- f.icalloc   n=%d", n);
 		Eprint(errkey, s);
 
 		preexit ( ) ;
@@ -257,7 +257,7 @@ double *dcalloc(unsigned int n, char *errkey)
 	
 	if ( n > 0 && f == NULL)
 	{
-		sprintf(s, " -- f.dcalloc   n=%d", n);
+		sprintf_s(s, sizeof(s), " -- f.dcalloc   n=%d", n);
 		Eprint(errkey, s);
 
 		preexit ( ) ;
@@ -359,7 +359,7 @@ void Ercalloc(unsigned int n, char *errkey)
 {
     char  s[SCHAR];
 	
-    sprintf(s, " -- calloc   n=%d", n);
+    sprintf_s(s, sizeof(s), " -- calloc   n=%d", n);
     Eprint(errkey, s);
 }
 

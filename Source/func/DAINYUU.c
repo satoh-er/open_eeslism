@@ -19,7 +19,7 @@
 					  FILE=DAINYUU.c
 					  Create Date=1999.6.7
 					  */
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
@@ -42,7 +42,8 @@ void DAINYUU_MP(P_MENN *mp, P_MENN *op, int opn, int mpn){
 		mp[k].sbflg = 0;
 		mp[k].wlflg = 0;
 
-		strcpy(mp[k].opname, op[i].opname);
+		strcpy_s(mp[k].opname, OPNAME_SZ, op[i].opname);
+
 		for (j = 0; j < op[i].wd; j++){
 			k++;
 
@@ -66,7 +67,8 @@ void DAINYUU_MP(P_MENN *mp, P_MENN *op, int opn, int mpn){
 			mp[k].wa = op[i].wa;
 			mp[k].e = op[i].e;
 
-			mp[k].opname = stralloc(op[i].opw[j].opwname);
+			strcpy_s(mp[k].opname, OPNAME_SZ, op[i].opw[j].opwname);
+
 			for (l = 0; l < mp[k].polyd; l++){
 				mp[k].P[l] = op[i].opw[j].P[l];
 			}

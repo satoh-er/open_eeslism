@@ -17,7 +17,7 @@
 
 /*  95/11/17 rev  */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -61,10 +61,10 @@ int Stankdata(FILE *f, char *s, STANKCA *Stankca)
 	}
 	else if (strcmp(s, "-S") == 0)
 	{
-		strcat(s, "  ");
+		strcat_s(s, sizeof(s), "  ");
 		st = s + strlen(s);	   
-		fscanf(f, "%[^*]*", st); 
-		strcat(s, " *"); 	   
+		fscanf_s(f, "%[^*]*", st, sizeof(s) - strlen(s)); 
+		strcat_s(s, sizeof(s), " *");
 		Stankca->tparm = stralloc(s);
 	}   
 	else
@@ -95,7 +95,7 @@ void Stankmemloc(char *errkey, STANK *Stank)
 	
 	/******* printf("xxxx Stankmemloc  tparm=%s\n", st); *****/
 	
-	while (sscanf(st, "%s", ss), *ss != '*')
+	while (sscanf_s(st, "%s", ss, sizeof(ss)), *ss != '*')
 	{
 		parm[np] = st;
 		np++ ;
@@ -117,7 +117,7 @@ void Stankmemloc(char *errkey, STANK *Stank)
 	// np：タンクへの流入数
 	for (j = 0; j < np; j++)
 	{
-		sscanf(parm[j], "%s", ss);
+		sscanf_s(parm[j], "%s", ss, sizeof(ss));
 		
 		if (strncmp(ss, "N=", 2) == 0)
 			Stank->Ndiv = atoi(ss + 2);
@@ -214,7 +214,7 @@ void Stankint(double dTM, int Nstank, STANK *Stank,
 	char	*s, ss[SCHAR], mrk, Err[SCHAR], E[SCHAR] ;
 	double	Tso;
 	
-	strcpy ( E, "Stankint" ) ;
+	strcpy_s ( E, sizeof(E), "Stankint" ) ;
 
 	for (i = 0; i < Nstank; i++, Stank++)
 	{ 
@@ -233,7 +233,7 @@ void Stankint(double dTM, int Nstank, STANK *Stank,
 				s++;
 				for (j = 0; j < Stank->Ndiv; j++)
 				{
-					sscanf(s, " %s ", ss);
+					sscanf_s(s, " %s ", ss, sizeof(ss));
 					
 					if (*ss == TANK_EMPTY)
 					{
@@ -286,22 +286,22 @@ void Stankint(double dTM, int Nstank, STANK *Stank,
 
 		if ( Stank->cat->Vol < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  Vol=%.4g", Stank->cmp->name, Stank->cat->Vol ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  Vol=%.4g", Stank->cmp->name, Stank->cat->Vol ) ;
 			Eprint ( E, Err ) ;
 		}
 		if ( Stank->cat->KAside < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  KAside=%.4g", Stank->cmp->name, Stank->cat->KAside ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  KAside=%.4g", Stank->cmp->name, Stank->cat->KAside ) ;
 			Eprint ( E, Err ) ;
 		}
 		if ( Stank->cat->KAtop < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  KAtop=%.4g", Stank->cmp->name, Stank->cat->KAtop ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  KAtop=%.4g", Stank->cmp->name, Stank->cat->KAtop ) ;
 			Eprint ( E, Err ) ;
 		}
 		if ( Stank->cat->KAbtm < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  KAbtm=%.4g", Stank->cmp->name, Stank->cat->KAbtm ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  KAbtm=%.4g", Stank->cmp->name, Stank->cat->KAbtm ) ;
 			Eprint ( E, Err ) ;
 		}
 	}

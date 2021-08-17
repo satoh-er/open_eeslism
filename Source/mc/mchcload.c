@@ -17,7 +17,7 @@
 
 /*  空調負荷仮想機器  */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -82,12 +82,12 @@ void rmacdat(HCLOAD *Hcld)
 	int  n = 0;
 	char     Err[SCHAR];
 	
-	sprintf(Err, ERRFMT, "(rmacdat)");
-	
+	sprintf_s(Err, sizeof(Err), ERRFMT, "(rmacdat)");
+
 	ss = Hcld->cmp->tparm;
 	Hcld->Qhmax = Hcld->Qh = Hcld->COPc = Hcld->COPh = -999.0 ;
 	Hcld->Qcmax = Hcld->Qc = 999. ;
-	while(sscanf(ss, "%s", s), strchr(s,'*') == NULL)
+	while(sscanf_s(ss, "%s", s, sizeof(s)), strchr(s,'*') == NULL)
 	{
 		ss += strlen(s);
 		while(isspace(*ss))
@@ -158,7 +158,7 @@ void rmacddat(HCLOAD *Hcld)
 	extern double ca, cv ;
 	int		i, j ;
 	
-	sprintf(Err, ERRFMT, "(rmacddat)");
+	sprintf_s(Err, sizeof(Err), ERRFMT, "(rmacddat)");
 	
 	ss = Hcld->cmp->tparm;
 	//Hcld->Qhmax = Hcld->Qh = Hcld->COPc = Hcld->COPh = -999.0 ;
@@ -166,7 +166,7 @@ void rmacddat(HCLOAD *Hcld)
 	Hcld->Ecmax = Hcld->Ec = Hcld->Ecmin = Hcld->Qh = Hcld->Qhmax = Hcld->Qhmin 
 		= Hcld->Ehmax = Hcld->Eh = Hcld->Ehmin = -999. ;
 	Hcld->Gi = Hcld->Go = -999.0 ;
-	while(sscanf(ss, "%s", s), strchr(s,'*') == NULL)
+	while(sscanf_s(ss, "%s", s, sizeof(s)), strchr(s,'*') == NULL)
 	{
 		ss += strlen(s);
 		while(isspace(*ss))

@@ -47,7 +47,7 @@ void MONTE_CARLO(int mpn,int lpn,int NUM,P_MENN *MP,P_MENN *LP,
 #if test
   FILE *fp ;
 
-  if ((fp=fopen("monteOPLP.dat","w"))==NULL){
+  if (fopen_s(&fp, "monteOPLP.dat","w") != 0){
     printf("File not open\n") ;
     exit(1) ;
   }
@@ -286,7 +286,7 @@ double S=0.0, T=0.0 ;
 #if test
 FILE *fp1 ;
 
-if ((fp1=fopen("monte.dat","w"))==NULL){
+if (fopen_s(&fp1, "monte.dat","w") != 0){
    printf("File not open\n") ;
    exit(1) ;
  }

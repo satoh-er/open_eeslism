@@ -15,7 +15,7 @@
 
 /*   rmschd.c      */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include "common.h"
 #include "MODEL.h" /*----higuchi 070918--*/
 #include "fesy.h"
@@ -108,7 +108,7 @@ void Qischdlr(int Nroom, ROOM* Room)
 
 				if (wk < 0 || wk > 8)
 				{
-					sprintf(s, "Room=%s wk=%d", Room->name, wk);
+					sprintf_s(s, sizeof(s), "Room=%s wk=%d", Room->name, wk);
 					Eprint("<Qischdlr>", s);
 				}
 

@@ -16,7 +16,7 @@
 /*  pflow.c  */
 
 /* 流量の設定 */
-#define _CRT_SECURE_NO_WARNINGS
+
 
 #include <string.h>
 #include <stdio.h>
@@ -98,7 +98,7 @@ void Pflow(int Nmpath, MPATH *Mpath, WDAT *Wd)
 						{
 							if ( vc->x < 0.0 )
 							{
-								sprintf ( s, "%s のバルブ開度 %lf が不正です。",
+								sprintf_s ( s, sizeof(s), "%s のバルブ開度 %lf が不正です。",
 									vc->name, vc->x ) ;
 								Eprint ( "<Pflow>", s ) ;
 							}
@@ -236,7 +236,7 @@ void Pflow(int Nmpath, MPATH *Mpath, WDAT *Wd)
 					
 					if(Plist->pelm != NULL)
 					{
-						sprintf(Err, "Mpath=%s  lpath=%Ild  elm=%s  Go=%lf\n",
+						sprintf_s(Err, sizeof(Err), "Mpath=%s  lpath=%Ild  elm=%s  Go=%lf\n",
 							Mpath->name, Plist - mpi->plist, 
 							Plist->pelm->cmp->name, Go);
 					}
@@ -298,7 +298,7 @@ void Pflow(int Nmpath, MPATH *Mpath, WDAT *Wd)
 						
 						if (n < 0 || n >= NG)
 						{
-							sprintf ( Err, "n=%d", n ) ;
+							sprintf_s ( Err, sizeof(Err), "n=%d", n ) ;
 							Eprint ( "<Pflow>", Err ) ;
 							preexit ( ) ;
 							exit (EXIT_PFLOW) ;
@@ -336,7 +336,7 @@ void Pflow(int Nmpath, MPATH *Mpath, WDAT *Wd)
 						
 						if (n < 0 || n >= NG)
 						{
-							sprintf ( Err, "n=%d", n ) ;
+							sprintf_s ( Err, sizeof(Err), "n=%d", n ) ;
 							Eprint ( "<Pflow>", Err ) ;
 							preexit ( ) ;
 							exit (EXIT_PFLOW) ;

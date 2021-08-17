@@ -15,7 +15,7 @@
 
 /*  pipe.c  */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -94,12 +94,12 @@ void Pipeint(int Npipe, PIPE *Pipe,
 
 		if ( Pipe->cat->Ko < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  Ko=%.4g", Pipe->cmp->name, Pipe->cat->Ko ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  Ko=%.4g", Pipe->cmp->name, Pipe->cat->Ko ) ;
 			Eprint ( "Pipeint", Err ) ;
 		}
 		if ( Pipe->L < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  L=%.4g", Pipe->cmp->name, Pipe->L ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  L=%.4g", Pipe->cmp->name, Pipe->L ) ;
 			Eprint ( "Pipeint", Err ) ;
 		}
 	}
@@ -126,7 +126,7 @@ void Pipecfv(int Npipe, PIPE *Pipe)
 				Te = Pipe->room->Tot ;
 			else
 			{
-				sprintf ( s, "Undefined Pipe Environment  name=%s", Pipe->name ) ;
+				sprintf_s ( s, sizeof(s), "Undefined Pipe Environment  name=%s", Pipe->name ) ;
 				Eprint ( "<Pipecfv>", s ) ;
 			}
             

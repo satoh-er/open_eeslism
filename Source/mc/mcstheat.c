@@ -16,7 +16,7 @@
 /*  mcstheat.c  */
 /*  電気蓄熱式暖房器 */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -107,7 +107,7 @@ void Stheatint(int Nstheat, STHEAT *stheat,
 			}
 			if (stheat->pcm == NULL)
 			{
-				sprintf(Err, "STHEAT %s のPCM=%sが見つかりません", stheat->name, stheat->cat->pcmname);
+				sprintf_s(Err, sizeof(Err), "STHEAT %s のPCM=%sが見つかりません", stheat->name, stheat->cat->pcmname);
 				Eprint(Err, "<Stheatint>");
 				preexit();
 			}
@@ -117,22 +117,22 @@ void Stheatint(int Nstheat, STHEAT *stheat,
 
 		if ( st->Q < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  Q=%.4g", stheat->name, st->Q ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  Q=%.4g", stheat->name, st->Q ) ;
 			Eprint ( "Stheatinit", Err ) ;
 		}
 		if ( stheat->pcm == NULL && st->Hcap < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  Hcap=%.4g", stheat->name, st->Hcap ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  Hcap=%.4g", stheat->name, st->Hcap ) ;
 			Eprint ( "Stheatinit", Err ) ;
 		}
 		if ( st->KA < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  KA=%.4g", stheat->name, st->KA ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  KA=%.4g", stheat->name, st->KA ) ;
 			Eprint ( "Stheatinit", Err ) ;
 		}
 		if ( st->eff < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  eff=%.4g", stheat->name, st->eff ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  eff=%.4g", stheat->name, st->eff ) ;
 			Eprint ( "Stheatinit", Err ) ;
 		}
 

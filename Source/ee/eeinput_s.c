@@ -13,7 +13,7 @@
 //You should have received a copy of the GNU General Public License
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "common.h"
@@ -72,7 +72,7 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 	File = NULL;
 
 	s[0] = '\0';
-	sprintf(Err, ERRFMT, "(Eeinput)");
+	sprintf_s(Err, sizeof(Err), ERRFMT, "(Eeinput)");
 
 	//*Nexs=0 ;
 
@@ -87,7 +87,7 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 	Rmvls->Nrdpnl = Rmvls->Nmwall = 0;
 #endif
 
-	if ((fi = fopen("dayweek.efl", "r")) == 0)
+	if (fopen_s(&fi, "dayweek.efl", "r") != 0)
 	{
 		Eprint("<Eeinput>", "dayweek.efl");
 
@@ -103,7 +103,9 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 		dprdayweek(Simc->daywk);
 #endif
 
-	if ((fi = fopen(strcat(strcpy(s, Ipath), "schtba.ewk"), "r")) == 0)
+	strcpy_s(s, sizeof(s), Ipath);
+	strcat_s(s, sizeof(s), "schtba.ewk");
+	if (fopen_s(&fi, s, "r") != 0)
 	{
 		Eprint("<Eeinput>", "schtba.ewk");
 
@@ -124,7 +126,9 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 		Schdl->Nscw = Scw->end;
 	}
 
-	if ((fi = fopen(strcat(strcpy(s, Ipath), "schnma.ewk"), "r")) == 0)
+	strcpy_s(s, sizeof(s), Ipath);
+	strcat_s(s, sizeof(s), "schnma.ewk");
+	if (fopen_s(&fi, s, "r") != 0)
 	{
 		Eprint("<Eeinput>", "schnma.ewk");
 
@@ -153,7 +157,9 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 			Schdl->isw = NULL;
 	}
 
-	if ((fi = fopen(strcat(strcpy(s, Ipath), "bdata.ewk"), "r")) == 0)
+	strcpy_s(s, sizeof(s), Ipath);
+	strcat_s(s, sizeof(s), "bdata.ewk");
+	if (fopen_s(&fi, s, "r") != 0)
 	{
 		Eprint("<Eeinput>", "bdata.ewk");
 
@@ -162,16 +168,16 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 	}
 
 
-	while (fscanf(fi, "%s", s), printf("=== %s\n", s), s[0] != '*')
+	while (fscanf_s(fi, "%s", s, sizeof(s)), printf("=== %s\n", s), s[0] != '*')
 	{
 		if (strcmp("TITLE", s) == 0)
 		{
-			fscanf(fi, "%[^;];", Simc->title);
+			fscanf_s(fi, "%[^;];", Simc->title, sizeof(Simc->title));
 			printf("%s\n", Simc->title);
 		}
 		else if (strcmp("GDAT", s) == 0)
 		{
-			sprintf(hptest, "GDAT");
+			sprintf_s(hptest, sizeof(hptest), "GDAT");
 			HeapCheck(hptest);
 			Wd->RNtype = 'C';
 			Wd->Intgtsupw = 'N';
@@ -220,7 +226,7 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 
 		else if (strcmp("EXSRF", s) == 0)
 		{
-			sprintf(hptest, "EXSRF");
+			sprintf_s(hptest, sizeof(hptest), "EXSRF");
 			HeapCheck(hptest);
 			Exsfdata(fi, s, Exsf, Schdl, Simc);
 		}
@@ -232,7 +238,7 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 			PCMdata(fi, s, &Rmvls->PCM, &Rmvls->Npcm, &Rmvls->pcmiterate);
 		else if (strcmp("WALL", s) == 0)
 		{
-			sprintf(hptest, "Wallata");
+			sprintf_s(hptest, sizeof(hptest), "Wallata");
 			HeapCheck(hptest);
 
 			if (Fbmlist == NULL)
@@ -240,7 +246,7 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 			else
 				File = Fbmlist;
 
-			if ((fbmlist = fopen(File, "r")) == 0)
+			if (fopen_s(&fbmlist, File, "r") != 0)
 			{
 				Eprint("<Eeinput>", "wbmlist.efl");
 
@@ -263,7 +269,7 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 			Roomdata(fi, "Roomdata", Exsf->Exs, &dfwl, Rmvls, Schdl, Simc);
 			Balloc(Rmvls->Nsrf, Rmvls->Sd, Rmvls->Wall, &Rmvls->Mw, &Rmvls->Nmwall);
 			//////////////////////////////////////
-			sprintf(hptest, "Roomdata");
+			sprintf_s(hptest, sizeof(hptest), "Roomdata");
 			HeapCheck(hptest);
 			//if(Rmvls->Sd->alicsch != NULL)
 			//	printf("Balloc end NULL check\n") ;
@@ -439,12 +445,12 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 				}
 			}
 			shdp = *shadtb;
-			while (fscanf(fi, "%s", s), s[0] != '*'){
+			while (fscanf_s(fi, "%s", s, sizeof(s)), s[0] != '*'){
 				shdp->lpname = stralloc(s);
 				(*shadn)++;
 				shdp->indatn = 0;
-				while (fscanf(fi, "%s", s), s[0] != ';'){
-					sscanf(s, "%d/%d-%lf-%d/%d", &smonth, &sday, &shdp->shad[shdp->indatn], &emonth, &eday);
+				while (fscanf_s(fi, "%s", s, sizeof(s)), s[0] != ';'){
+					sscanf_s(s, "%d/%d-%lf-%d/%d", &smonth, &sday, &shdp->shad[shdp->indatn], &emonth, &eday);
 					shdp->ndays[shdp->indatn] = nennkann(smonth, sday);
 					shdp->ndaye[shdp->indatn] = nennkann(emonth, eday);
 					shdp->indatn = shdp->indatn + 1;
@@ -456,7 +462,8 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 
 		else
 		{
-			strcat(strcat(Err, "  "), s);
+			strcat_s(Err, sizeof(Err), "  ");
+			strcat_s(Err, sizeof(Err), s);
 			Eprint("<Eeinput>", Err);
 		}
 
@@ -489,7 +496,7 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 
 	//printf("Nop=%d Nlp=%d\n", Noplpmp->Nop, Noplpmp->Nlp);
 	//////////////////////////////////////
-	sprintf(hptest, "Innput End");
+	sprintf_s(hptest, sizeof(hptest), "Innput End");
 	HeapCheck(hptest);
 
 	if (SYSCMP_ID == 0)
@@ -534,7 +541,7 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 	Simc->daystartx = daystartx;
 	Simc->daystart = daystart;
 
-	strcpy(Simc->timeid, "MDT");
+	strcpy_s(Simc->timeid, sizeof(Simc->timeid), "MDT");
 
 	Simc->Ntimedyprt = Simc->dayend - Simc->daystart + 1;
 	Simc->Dayntime = 24 * 3600 / dtm;
@@ -733,7 +740,7 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 
 	//////////////////////////////////////
 	//printf("InputEnd\n");
-	sprintf(hptest, "Innput End");
+	sprintf_s(hptest, sizeof(hptest), "Innput End");
 	HeapCheck(hptest);
 
 	//Sd = Rmvls->Sd ;

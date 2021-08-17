@@ -15,7 +15,7 @@
 
 /* esccntldat.c */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
@@ -49,7 +49,7 @@ void Contrldata(FILE *fi, CONTL **Ct, int *Ncontl, CTLIF **Ci, int *Nctlif,
 	Hload = HEATING_LOAD;
 	Cload = COOLING_LOAD;
 	HCload = HEATCOOL_LOAD;
-	sprintf(Err, ERRFMT, "(Contrldata)");
+	sprintf_s(Err, sizeof(Err), ERRFMT, "(Contrldata)");
 
 	ContrlCount ( fi, &Ni, &N ) ;
 
@@ -111,7 +111,7 @@ void Contrldata(FILE *fi, CONTL **Ct, int *Ncontl, CTLIF **Ci, int *Nctlif,
 	ctlst = Ctlst;
 	load = NULL;
 
-	while (fscanf(fi, "%s", s), *s != '*')
+	while (fscanf_s(fi, "%s", s, sizeof(s)), *s != '*')
 	{
 		if (load != NULL)
 			free(load);
@@ -131,7 +131,7 @@ void Contrldata(FILE *fi, CONTL **Ct, int *Ncontl, CTLIF **Ci, int *Nctlif,
 
 				Contl->type = 'c';
 				Contl->cif = Ctlif;
-				fscanf(fi, " (%[^)])", s);
+				fscanf_s(fi, " (%[^)])", s, sizeof(s));
 
 				ctifdecode(s, Ctlif, Simc, Ncompnt, Compnt, Nmpath, Mpath, Wd, Exsf, Schdl);
 				Ctlif++;
@@ -154,7 +154,7 @@ void Contrldata(FILE *fi, CONTL **Ct, int *Ncontl, CTLIF **Ci, int *Nctlif,
 				else
 					Contl->andandcif = Ctlif ;
 
-				fscanf(fi, " (%[^)])", s);
+				fscanf_s(fi, " (%[^)])", s, sizeof(s));
 
 				ctifdecode(s, Ctlif, Simc, Ncompnt, Compnt, Nmpath, Mpath, Wd, Exsf, Schdl);
 				Ctlif++;
@@ -173,7 +173,7 @@ void Contrldata(FILE *fi, CONTL **Ct, int *Ncontl, CTLIF **Ci, int *Nctlif,
 
 				Contl->type = 'c';
 				Contl->orcif = Ctlif;
-				fscanf(fi, " (%[^)])", s);
+				fscanf_s(fi, " (%[^)])", s, sizeof(s));
 
 				ctifdecode(s, Ctlif, Simc, Ncompnt, Compnt, Nmpath, Mpath, Wd, Exsf, Schdl);
 				Ctlif++;
@@ -215,7 +215,7 @@ void Contrldata(FILE *fi, CONTL **Ct, int *Ncontl, CTLIF **Ci, int *Nctlif,
 			else if (strcmp(s, "-e") == 0)
 			{
 
-				fscanf(fi, "%s", s);
+				fscanf_s(fi, "%s", s, sizeof(s));
 				cmp = Compnt;
 				for (i = 0; i < Ncompnt; i++, cmp++)
 				{
@@ -261,7 +261,7 @@ void Contrldata(FILE *fi, CONTL **Ct, int *Ncontl, CTLIF **Ci, int *Nctlif,
 					err = ctlrgtptr(st, &Ctlst->rgt, Simc, Ncompnt, Compnt, Nmpath, Mpath,
 						Wd, Exsf, Schdl, Ctlst->type);
 				}
-				sprintf(Er, " %s = %s", s, st);
+				sprintf_s(Er, sizeof(Er), " %s = %s", s, st);
 				Errprint(err, "<Contrldata>", Er);
 			}
 			else if ( strcmp ( s, "TVALV" ) == 0 )
@@ -282,7 +282,7 @@ void Contrldata(FILE *fi, CONTL **Ct, int *Ncontl, CTLIF **Ci, int *Nctlif,
 				Eprint("<Contrldata>", s);
 			}
 		}
-		while (fscanf(fi, "%s", s), *s != ';' ); 
+		while (fscanf_s(fi, "%s", s, sizeof(s)), *s != ';' ); 
 
 		Ctlst++;
 		*Nctlst = (int)(Ctlst - ctlst) ;
@@ -318,7 +318,7 @@ void	ContrlCount ( FILE *fi, int *Nif, int *N )
 
 	ad = ftell ( fi ) ;
 
-	while ( fscanf ( fi, " %s ", s ), s[0] != '*' )
+	while ( fscanf_s ( fi, " %s ", s, sizeof(s) ), s[0] != '*' )
 	{
 		if ( strcmp ( s, "if" ) == 0 || strcmp ( s, "AND" ) == 0
 			|| strcmp ( s, "OR" ) == 0 )
@@ -348,7 +348,7 @@ void ctifdecode(char *s, CTLIF *ctlif,
 	int  err;
 	VPTR vptr, vpath;
 
-	sscanf(s, "%s %s %s", lft, op, rgt);
+	sscanf_s(s, "%s %s %s", lft, sizeof(lft), op, sizeof(op), rgt, sizeof(rgt));
 	/**************
 	printf("   ctifdecode  %s |  %s  | %s\n", lft, op, rgt);
 	**************/

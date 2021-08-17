@@ -14,7 +14,7 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 /* rmvent.c  */
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include "MODEL.h" /*----higuchi 070918--*/
 #include "fesy.h"
@@ -38,14 +38,15 @@ void Ventdata(FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, SIMCONTL *Simc )
 	
 	vall = Schdl->val ;
 
-	sprintf (E, ERRFMT, dsn);
-	while ( fscanf ( fi, " %s ", name1 ), *name1 != '*' )
+	sprintf_s (E, sizeof(E), ERRFMT, dsn);
+	while ( fscanf_s ( fi, " %s ", name1, sizeof(name1) ), *name1 != '*' )
 	{
-		strcat ( strcpy ( err, E ), name1 ) ;
+		strcpy_s ( err, sizeof(err), E );
+		strcat_s ( err, sizeof(err), name1 ) ;
 		i = idroom ( name1, Room, err ) ;
 		Rm = Room + i ;
 		
-		fscanf ( fi, " %s ", s ) ;
+		fscanf_s ( fi, " %s ", s, sizeof(s) ) ;
 		if (( st = strchr ( s, '=' )) != 0 )
 		{
 			while ( s )
@@ -53,7 +54,7 @@ void Ventdata(FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, SIMCONTL *Simc )
 				*st = '\0';
 				if ( strcmp( s, "Vent") == 0 )
 				{
-					sscanf ( st + 1, "(%lf,%[^)])", &val, ss ) ;
+					sscanf_s ( st + 1, "(%lf,%[^)])", &val, ss, sizeof(ss) ) ;
 					Rm->Gve = val;
 
 					if (( k = idsch(ss, Schdl->Sch, NULL )) >= 0 )
@@ -69,7 +70,7 @@ void Ventdata(FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, SIMCONTL *Simc )
 				}
 				else if (strcmp(s, "Inf") == 0)
 				{
-					sscanf(st+1, "(%lf,%[^)])", &val, ss);
+					sscanf_s(st+1, "(%lf,%[^)])", &val, ss, sizeof(ss));
 					Rm->Gvi = val;
 
 					if (( k = idsch(ss, Schdl->Sch, NULL )) >= 0 )
@@ -85,13 +86,13 @@ void Ventdata(FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, SIMCONTL *Simc )
 				}
 				else
 				{
-					sprintf ( err, "Room=%s  %s", Rm->name, s ) ;
+					sprintf_s ( err, sizeof(err), "Room=%s  %s", Rm->name, s ) ;
 					Eprint ( "<Ventedata>", err ) ;
 				}
 				
 				if ( strchr ( st + 1, ';') != 0)
 					break;
-				fscanf ( fi, " %s ", s ) ;
+				fscanf_s ( fi, " %s ", s, sizeof(s) ) ;
 				if ( *s == ';')
 					break ;
 				st = strchr ( s, '=' ) ;
@@ -100,17 +101,19 @@ void Ventdata(FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, SIMCONTL *Simc )
 		else
 		{
 			c = *s ; 
-			fscanf ( fi, " %s v= %s ;", name2, s ) ;
+			fscanf_s ( fi, " %s v= %s ;", name2, sizeof(name2), s, sizeof(s) ) ;
 			if ( c == ';' ) break ;
 			/******************
 			printf("Aichdata  %s (%c)  %s\n", name1, c, name2);
 			************/
-			strcat ( strcpy ( err, E ), name2 ) ;
+			strcpy_s ( err, sizeof(err), E );
+			strcat_s ( err, sizeof(err), name2 ) ;
 			j = idroom ( name2, Room, err ) ;
 			
 			if (( ce = strchr ( s, ';' )) != 0 )
 				*ce = '\0' ;
-			strcat ( strcpy ( err, E ), s ) ;
+			strcpy_s ( err, sizeof(err), E );
+			strcat_s ( err, sizeof(err), s ) ;
 			v = idsch ( s, Schdl->Sch, err ) ;
 
 			switch ( c )

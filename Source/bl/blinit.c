@@ -14,7 +14,7 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 /*   binit.c   */
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
@@ -42,11 +42,11 @@ void Walldata (FILE *fi, FILE *fbmlist, char *dsn,
 	// void Walli();
 	
 	W = NULL ;
-	sprintf (E, ERRFMT, dsn);
+	sprintf_s (E, sizeof(E), ERRFMT, dsn);
 	
 	Nw = wbmlistcount ( fbmlist ) ;
 	
-	strcpy ( s, "Walldata wbmlist.efl--" ) ;
+	strcpy_s ( s, sizeof(s), "Walldata wbmlist.efl--" ) ;
 	
 	if ( Nw > 0 )
 	{
@@ -64,11 +64,11 @@ void Walldata (FILE *fi, FILE *fbmlist, char *dsn,
 	
 	k = 0 ;
 	Wl = W ;
-	while (fscanf(fbmlist, "%s", s) != EOF, *s != '*')
+	while (fscanf_s(fbmlist, "%s", s, sizeof(s)) != EOF, *s != '*')
 	{
 		if (strcmp(s,"!") == 0)
 		{
-			while (fscanf(fbmlist,"%c", &c), c != '\n' )
+			while (fscanf_s(fbmlist,"%c", &c, 1), c != '\n' )
 				;
 		}
 		
@@ -98,13 +98,13 @@ void Walldata (FILE *fi, FILE *fbmlist, char *dsn,
 				if ( Wl->mcode != NULL && Wc->mcode != NULL
 					&& strcmp ( Wl->mcode, Wc->mcode ) == 0 )
 				{
-					sprintf ( s, "wbmlist.efl duplicate code=<%s>",
+					sprintf_s ( s, sizeof(s), "wbmlist.efl duplicate code=<%s>",
 						Wl->mcode ) ;
 					Eprint ( "<Walldata>", s ) ;
 				}
 			}
 
-			fscanf(fbmlist, "%lf %lf", &Wl->Cond, &Wl->Cro);
+			fscanf_s(fbmlist, "%lf %lf", &Wl->Cond, &Wl->Cro);
 			// Cond：熱伝導率［W/mK］、Cro：容積比熱［kJ/m3K］
 			
 			//for ( j=0; j<k+1; j++)
@@ -129,7 +129,7 @@ void Walldata (FILE *fi, FILE *fbmlist, char *dsn,
 	
 	N = Wallcount ( fi ) ;
 	
-	strcpy ( s, "Walldata --" ) ;
+	strcpy_s ( s, sizeof(s), "Walldata --" ) ;
 	
 	if ( N > 0 )
 	{
@@ -190,7 +190,7 @@ void Walldata (FILE *fi, FILE *fbmlist, char *dsn,
 	}
 	
 	Wa = *Wall ;
-	while (fscanf(fi, " %s ",s) != EOF)
+	while (fscanf_s(fi, " %s ", s, sizeof(s)) != EOF)
 	{
 		//printf( "<WAlldata> 1.... s=%s\n", s ) ;
 		
@@ -241,7 +241,7 @@ void Walldata (FILE *fi, FILE *fbmlist, char *dsn,
 		
 		j= -1;
 		
-		while (fscanf(fi, "%s", s), *s != ';')
+		while (fscanf_s(fi, "%s", s, sizeof(s)), *s != ';')
 		{
 			//printf ( "<Walldata> 2..... s=%s\n", s ) ;
 			
@@ -335,7 +335,7 @@ void Walldata (FILE *fi, FILE *fbmlist, char *dsn,
 			else
 			{
 				j++ ;
-				strcpy(layer[j], s);
+				strcpy_s(layer[j], SCHAR, s);
 			}
 			
 			if (ce) break;
@@ -379,7 +379,7 @@ void Walldata (FILE *fi, FILE *fbmlist, char *dsn,
 				w->code = stralloc (layer[jj] ) ;
 				
 				// 同一層内の内部分割数の計算
-				ndat = sscanf(st+1, "%lf/%d", &dt, &ndiv);
+				ndat = sscanf_s(st+1, "%lf/%d", &dt, &ndiv);
 				if (ndat == 1)
 					w->ND = (int)(dt>=50. ? (dt-50.)/50. : 0);
 				else
@@ -450,21 +450,21 @@ void Walldata (FILE *fi, FILE *fbmlist, char *dsn,
 				}
 				else
 				{
-					sprintf ( s, "ble=%c name=%s 建築一体型空気集熱の熱貫流率Ku、Kdが未定義です",
+					sprintf_s ( s, sizeof(s), "ble=%c name=%s 建築一体型空気集熱の熱貫流率Ku、Kdが未定義です",
 						Wa->ble, Wa->name ) ;
 					Eprint ( "<Walldata>", s ) ;
 				}
 
 				if (Wa->chrRinput == 'N' && (Wa->Kc < 0. || Wa->Ksu < 0. || Wa->Ksd < 0. ))
 				{
-					sprintf ( s, "ble=%c name=%s 建築一体型空気集熱の熱貫流率Kc、Kdd、Kudが未定義です",
+					sprintf_s ( s, sizeof(s), "ble=%c name=%s 建築一体型空気集熱の熱貫流率Kc、Kdd、Kudが未定義です",
 						Wa->ble, Wa->name ) ;
 					Eprint ( "<Walldata>", s ) ;
 				}
 
 				if ( Wa->Ip == -1 )
 				{
-					sprintf ( s, "ble=%c name=%s 建築一体型空気集熱の空気流通層<P>が未定義です",
+					sprintf_s ( s, sizeof(s), "ble=%c name=%s 建築一体型空気集熱の空気流通層<P>が未定義です",
 						Wa->ble, Wa->name ) ;
 					Eprint ( "<Walldata>", s ) ;
 				}
@@ -508,7 +508,7 @@ void Windowdata (FILE *fi, char *dsn, WINDOW **Window, int *Nwindow)
 	//double  dt;
 	WINDOW	*W, *Wc ;
 	
-	sprintf (E, ERRFMT, dsn);
+	sprintf_s (E, sizeof(E), ERRFMT, dsn);
 	
 	N = Wallcount ( fi ) ;
 
@@ -534,7 +534,7 @@ void Windowdata (FILE *fi, char *dsn, WINDOW **Window, int *Nwindow)
 	}
 
 	W = *Window ;
-	while (fscanf(fi, "%s", s), *s != '*')
+	while (fscanf_s(fi, "%s", s, sizeof(s)), *s != '*')
 	{ 
 		i++ ;
 		
@@ -553,12 +553,12 @@ void Windowdata (FILE *fi, char *dsn, WINDOW **Window, int *Nwindow)
 			if ( W->name != NULL && Wc->name != NULL
 				&& strcmp ( W->name, Wc->name ) == 0 )
 			{
-				sprintf ( ss, "<WINDOW>  WindowName Already Defined  (%s)", W->name ) ;
+				sprintf_s ( ss, sizeof(ss), "<WINDOW>  WindowName Already Defined  (%s)", W->name ) ;
 				Eprint ( "<Windowdata>", ss ) ;
 			}
 		}
 		
-		while (fscanf (fi, "%s",s), *s != ';')
+		while (fscanf_s (fi, "%s", s, sizeof(s)), *s != ';')
 		{ 
 			// 室内透過日射が窓室内側への入射日射を屋外に透過する場合'y'
 			if (strcmp(s, "-RStrans") == 0)
@@ -591,7 +591,7 @@ void Windowdata (FILE *fi, char *dsn, WINDOW **Window, int *Nwindow)
 					W->Cidtype = NULL;
 					if (*st == '\'')
 					{
-						sscanf(st + 1, "%[^']", s);
+						sscanf_s(st + 1, "%[^']", s, sizeof(s));
 						W->Cidtype = stralloc(s);
 					}
 					else
@@ -609,7 +609,7 @@ void Windowdata (FILE *fi, char *dsn, WINDOW **Window, int *Nwindow)
 				//	W->AirFlowcat.alr =dt;
 				else
 				{
-					sprintf("%s %s\n", E, s);
+					sprintf_s(Err, sizeof(Err), "%s %s\n", E, s);
 					Eprint("<Windowdata>", Err);
 				}
 			}
@@ -661,7 +661,7 @@ void Snbkdata (FILE *fi, char *dsn, SNBK **Snbk)
 	
 	SNBK	*S ;
 	
-	sprintf(Er, ERRFMT, dsn);
+	sprintf_s(Er, sizeof(Er), ERRFMT, dsn);
 	type = 0 ;
 	
 	N = Wallcount ( fi ) ;
@@ -682,7 +682,7 @@ void Snbkdata (FILE *fi, char *dsn, SNBK **Snbk)
 	}
 
 	S = *Snbk ;
-	while (fscanf(fi, " %s", name), *name != '*')
+	while (fscanf_s(fi, " %s", name, sizeof(s)), *name != '*')
 	{
 		i++ ;
 		
@@ -694,14 +694,14 @@ void Snbkdata (FILE *fi, char *dsn, SNBK **Snbk)
 		/*************************************/
 
 		S->name = stralloc ( name ) ;
-		strcpy(code, ".......");
+		strcpy_s(code, sizeof(code), ".......");
 		
-		while (fscanf(fi, " %s" ,s),  *s != ';')
+		while (fscanf_s(fi, " %s", s, sizeof(s)),  *s != ';')
 		{
 			if ((ce=strchr(s, ';')) != 0)
 				*ce = '\0';
 
-			sscanf(s, "%[^=]=%s", key, v);
+			sscanf_s(s, "%[^=]=%s", key, sizeof(key), v, sizeof(v));
 			if (strcmp(key, "type") == 0)
 			{
 				vs = v ;
@@ -725,13 +725,13 @@ void Snbkdata (FILE *fi, char *dsn, SNBK **Snbk)
 					type = 9;
 				else
 				{
-					sprintf ( E, "%s %s %s\n", Er, name, s);
+					sprintf_s ( E, sizeof(E), "%s %s %s\n", Er, name, s);
 					Eprint ( "<Snbkdata>", E ) ;
 				}
 			}
 			else if (strcmp(key, "window") == 0)
 			{
-				sscanf(v, "%c%lfx%c%lf", &k[0], &val[0], &k[1], &val[1]);
+				sscanf_s(v, "%c%lfx%c%lf", &k[0], 1, &val[0], &k[1], 1, &val[1]);
 				for (j=0; j<2; j++)
 				{
 					if (k[j] == 'H')
@@ -740,7 +740,7 @@ void Snbkdata (FILE *fi, char *dsn, SNBK **Snbk)
 						S->W = val[j], code[1] = 'W';
 					else
 					{
-						sprintf ( E, "%s %s %c\n", Er, S->name, k[j] );
+						sprintf_s ( E, sizeof(E), "%s %s %c\n", Er, S->name, k[j] );
 						Eprint ( "<Snbkdata>", E ) ;
 					}
 				}
@@ -757,7 +757,7 @@ void Snbkdata (FILE *fi, char *dsn, SNBK **Snbk)
 				S->H2 = atof(v), code[6] = 'B';
 			else
 			{
-				sprintf ( E, "%s %s %s\n", Er, name, s) ;
+				sprintf_s ( E, sizeof(E), "%s %s %s\n", Er, name, s) ;
 				Eprint ( "<Snbkdata>", E ) ;
 			}
 			
@@ -769,7 +769,7 @@ void Snbkdata (FILE *fi, char *dsn, SNBK **Snbk)
 		case 1: case 5: case 9:
 			if (strcmp(code, typstr[type-1]) != 0)
 			{
-				sprintf(E, "%s %s  type=%d %s\n", Er, name, type, code);
+				sprintf_s(E, sizeof(E), "%s %s  type=%d %s\n", Er, name, type, code);
 				Eprint ( "<Snbkdata>", E ) ;
 			}
 			break;
@@ -785,7 +785,7 @@ void Snbkdata (FILE *fi, char *dsn, SNBK **Snbk)
 					}   
 					if (j == 3)
 					{
-						sprintf(E,"%s %s  type=%d %s\n", Er, name, type, code);
+						sprintf_s(E, sizeof(E), "%s %s  type=%d %s\n", Er, name, type, code);
 						Eprint ( "<Snbkdata>", E ) ;
 					}
 				}
@@ -1024,18 +1024,18 @@ int		wbmlistcount ( FILE *fi )
 	int		N = 0 ;
 	char	s[SCHAR], c ;
 	
-	while ( fscanf ( fi, "%s", s ) != EOF, *s != '*' )
+	while ( fscanf_s ( fi, "%s", s, sizeof(s) ) != EOF, *s != '*' )
 	{
 		if ( strcmp(s,"!") == 0)
 		{
-			while ( fscanf ( fi,"%c", &c), c != '\n' )
+			while ( fscanf_s ( fi,"%c", &c, 1), c != '\n' )
 				;
 		}
 		
 		else
 		{
 			N++ ;
-			fscanf ( fi, "%*s %*s" ) ;
+			fscanf_s ( fi, "%*s %*s" ) ;
 		}
 	}
 	
@@ -1053,7 +1053,7 @@ int		Wallcount ( FILE *fi )
 	
 	add = ftell ( fi ) ;
 	
-	while ( fscanf ( fi, " %s ", s ) != EOF )
+	while ( fscanf_s ( fi, " %s ", s, sizeof(s) ) != EOF )
 	{
 		if ( *s == '*' )
 			break ;

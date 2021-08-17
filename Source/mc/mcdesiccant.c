@@ -16,7 +16,7 @@
 /*  mcdessicant.c  */
 /*  バッチ式デシカント空調機 */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -128,27 +128,27 @@ void Desiint(int NDesi, DESI *Desi,
 
 		if ( Desica->Uad < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  Uad=%.4g", Desica->name, Desica->Uad ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  Uad=%.4g", Desica->name, Desica->Uad ) ;
 			Eprint ( "Desiint", Err ) ;
 		}
 		if ( Desica->A < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  A=%.4g", Desica->name, Desica->A ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  A=%.4g", Desica->name, Desica->A ) ;
 			Eprint ( "Desiint", Err ) ;
 		}
 		if ( Desica->r < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  r=%.4g", Desica->name, Desica->r ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  r=%.4g", Desica->name, Desica->r ) ;
 			Eprint ( "Desiint", Err ) ;
 		}
 		if ( Desica->rows < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  rows=%.4g", Desica->name, Desica->rows ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  rows=%.4g", Desica->name, Desica->rows ) ;
 			Eprint ( "Desiint", Err ) ;
 		}
 		if ( Desica->ms < 0.0 )
 		{
-			sprintf ( Err, "Name=%s  ms=%.4g", Desica->name, Desica->ms ) ;
+			sprintf_s ( Err, sizeof(Err), "Name=%s  ms=%.4g", Desica->name, Desica->ms ) ;
 			Eprint ( "Desiint", Err ) ;
 		}
 

@@ -14,7 +14,7 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 /*  rmdata.c   */
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -125,19 +125,20 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 	Sch = Schdl->Sch;
 	vall = Schdl->val;
 
-	sprintf (Er, ERRFMT, errkey);
+	sprintf_s (Er, sizeof(Er), ERRFMT, errkey);
 	Rm-- ;
 	Sd-- ;
 
 	//sprintf(s, "No. 2") ;
 	//HeapCheck(s) ;
-	while (fscanf(fi, "%s", s), s[0] != '*')
+	while (fscanf_s(fi, "%s", s, sizeof(s)), s[0] != '*')
 	{
 		if ( DEBUG )
 			printf ( "%s\n", s ) ;
 		/*****************************/
 
-		strcat ( strcpy ( err, Er ), s ) ; 
+		strcpy_s ( err, sizeof(err), Er );
+		strcat_s ( err, sizeof(err), s ) ; 
 
 		i++ ;
 		Rm++ ;
@@ -152,7 +153,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 		{
 			if ( strcmp ( Rm->name, Rmchk->name ) == 0 )
 			{
-				sprintf ( RmnameEr, "Room=%s is already defined name", Rm->name ) ;
+				sprintf_s ( RmnameEr, sizeof(RmnameEr), "Room=%s is already defined name", Rm->name ) ;
 				Eprint ( "<Roomdata>", RmnameEr ) ;
 			}
 		}
@@ -163,7 +164,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 			if ( Rm->name != NULL && Rc->name != NULL
 				&& strcmp ( Rm->name, Rc->name ) == 0 )
 			{
-				sprintf ( ss, "<ROOM>  RoomName Already Defined  (%s)", Rm->name ) ;
+				sprintf_s ( ss, sizeof(ss), "<ROOM>  RoomName Already Defined  (%s)", Rm->name ) ;
 				Eprint ( "<Roomdata>", ss ) ;
 			}
 		}
@@ -179,12 +180,13 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 
 		//		Rm->metsc = Rm->closc = Rm->wvsc = -1;
 
-		while (fscanf(fi, "%s", s), s[0] != '#' && (s[0] != '*' || strlen(s) != 1))
+		while (fscanf_s(fi, "%s", s, sizeof(s)), s[0] != '#' && (s[0] != '*' || strlen(s) != 1))
 		{
 			if ( DEBUG )
 				printf("Roomdata  s=%s\n", s);
 
-			strcat(strcpy(err, Er), s); 
+			strcpy_s(err, sizeof(err), Er);
+			strcat_s(err, sizeof(err),s); 
 			if ( *s != '-' )
 			{
 				if (strcmp(s, "*s") == 0)
@@ -197,20 +199,20 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 				{
 					*st = '\0';
 					if ( *s == '(' )
-						sscanf(&s[1], "%[^)])", dnxrname);
+						sscanf_s(&s[1], "%[^)])", dnxrname, sizeof(dnxrname));
 					else
-						strcpy(dexsname, s);
+						strcpy_s(dexsname, sizeof(dexsname), s);
 				}
 				else if (strcmp(s, "Fij") == 0)
 				{
 					Rm->fij = 'F';
-					fscanf(fi, "%d", &N2);
+					fscanf_s(fi, "%d", &N2);
 					Rm->F = dcalloc(N2 * N2, " xxxxx Roomdata F");
 
 					ij=0;
-					while (fscanf(fi, "%s", ss), ss[0] != ';')
+					while (fscanf_s(fi, "%s", ss, sizeof(ss)), ss[0] != ';')
 					{
-						sscanf(ss, "%lf", &Rm->F[ij]);
+						sscanf_s(ss, "%lf", &Rm->F[ij]);
 						ij++ ;
 					}
 				}
@@ -229,7 +231,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 							Rm->VRM = atof(st+1);
 						else
 						{
-							sscanf ( st + 1, "%lf*%lf*%lf", &Wi, &H, &D ) ;
+							sscanf_s ( st + 1, "%lf*%lf*%lf", &Wi, &H, &D ) ;
 							Rm->VRM = Wi * H * D ;
 						}
 					}
@@ -309,7 +311,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 						}
 						if (Rm->PCM == NULL)
 						{
-							sprintf(Er, "Roomname=%s %sが見つかりません", Rm->name, Rm->PCMfurnname);
+							sprintf_s(Er, sizeof(Er), "Roomname=%s %sが見つかりません", Rm->name, Rm->PCMfurnname);
 							Eprint(Er, "<Roomdata>");
 							//if (NSTOP == 0)
 								preexit();
@@ -325,7 +327,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 					}
 					else
 					{
-						sprintf ( err, "Room=%s s=%s", Rm->name, s ) ;
+						sprintf_s ( err, sizeof(err), "Room=%s s=%s", Rm->name, s ) ;
 						Eprint ( "<Roomdata>", err ) ;
 					}
 				}
@@ -373,12 +375,13 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 				Sd->fnd[k] = 0 ;
 				/********************************/
 
-				while (fscanf(fi, "%s", s), s[0] != ';')
+				while (fscanf_s(fi, "%s", s, sizeof(s)), s[0] != ';')
 				{
 					if ( DEBUG )
 						printf("Roomdata1  s=%s\n", s);
 
-					strcat(strcpy(err, Er), s); 
+					strcpy_s(err, sizeof(err), Er);
+					strcat_s(err, sizeof(err), s); 
 
 					//printf ( "aaaaaa\n" ) ;
 
@@ -401,11 +404,11 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 						else if (strcmp(s, "*shd") == 0)
 							Sd->shdpri = 'p';
 
-						else if (( st = strchr(s, '*')) != NULL || sscanf(s, "%lf", &Sd->A) != 0 )
+						else if (( st = strchr(s, '*')) != NULL || sscanf_s(s, "%lf", &Sd->A) != 0 )
 						{
 							if ( Sd->A < 0.0 )
 							{
-								sscanf ( s, "%lf*%lf", &X, &Y ) ;
+								sscanf_s ( s, "%lf*%lf", &X, &Y ) ;
 								Sd->A = X * Y ;
 							}
 						}
@@ -417,14 +420,14 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 								Ercalloc(1, "<Roomdata> CTLIF" ) ;
 
 							// ifの最後まで読み込む
-							fscanf(fi, " (%[^)])", ss) ;
+							fscanf_s(fi, " (%[^)])", ss, sizeof(ss)) ;
 							Sd->dynamiccode = stralloc(ss) ;
 
 							// IF文の展開
 							//ctifdecode(s, Sd->ctlif, Simc, Ncompnt, Compnt, Nmpath, Mpath, Wd, Exsf, Schdl);
 
 							// Trueの時の窓の読み込み
-							fscanf(fi, "%s", s) ;
+							fscanf_s(fi, "%s", s, sizeof(s)) ;
 							Nwindow = Window->end ;
 							W = Window ;
 							for (j = 0; j < Nwindow; j++, W++)
@@ -439,7 +442,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 							}
 							if (j == Nwindow)
 							{
-								sprintf(err, "Room=%s <window> %s", Rm->name, stt);
+								sprintf_s(err, sizeof(err), "Room=%s <window> %s", Rm->name, stt);
 								Eprint("<Roomdata>", err);
 								//getch();
 								//if (NSTOP == 0)
@@ -501,7 +504,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 								}
 								if (j == Nwindow)
 								{
-									sprintf(err, "Room=%s <window> %s", Rm->name, stt);
+									sprintf_s(err, sizeof(err), "Room=%s <window> %s", Rm->name, stt);
 									Eprint("<Roomdata>", err);
 									//getch();
 									//if (NSTOP == 0)
@@ -539,7 +542,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 								}
 								if ( j == Nwall )
 								{
-									sprintf ( err, "Room=%s <wall> ble=%c %s Undefined in <WALL>", Rm->name, Sd->ble, s ) ;
+									sprintf_s ( err, sizeof(err), "Room=%s <wall> ble=%c %s Undefined in <WALL>", Rm->name, Sd->ble, s ) ;
 									Eprint ( "<Roomdata>", err ) ;
 									//getch();
 									//if (NSTOP == 0)
@@ -568,7 +571,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 							}
 							if ( j == Nexs )
 							{
-								sprintf ( err, "Room=%s <exsrf> %s\n", Rm->name, s ) ;
+								sprintf_s ( err, sizeof(err), "Room=%s <exsrf> %s\n", Rm->name, s ) ;
 								Eprint ( "<Roomdata>", err ) ;
 								//getch();
 								//if (NSTOP==0)
@@ -589,7 +592,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 							}
 							if ( j == Nsnbk ) 
 							{
-								sprintf ( err, "Room=%s <Snbrk> %s\n", Rm->name, s ) ;
+								sprintf_s ( err, sizeof(err), "Room=%s <Snbrk> %s\n", Rm->name, s ) ;
 								Eprint ( "<Roomdata>", err ) ;
 								//getch();
 								//if (NSTOP == 0)
@@ -669,7 +672,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 							Sd->tnxt = atoi(st + 1);
 						else
 						{
-							sprintf ( err, "Room=%s ble=%c s=%s\n",
+							sprintf_s ( err, sizeof(err), "Room=%s ble=%c s=%s\n",
 								Rm->name, Sd->ble, s ) ;
 							Eprint ( "<Roomdata>", err ) ;
 							//getch();
@@ -716,7 +719,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 						}
 						if ( j == Nexs )
 						{
-							sprintf ( err, "Room=%s  (%s)\n", Rm->name, dexsname ) ;
+							sprintf_s ( err, sizeof(err), "Room=%s  (%s)\n", Rm->name, dexsname ) ;
 							Eprint ( "<Roomdata>", err ) ;
 							//getch();
 							preexit();
@@ -876,7 +879,8 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 	{
 		if (( J = Sd->nxrm) >= 0)
 		{
-			strcat ( strcpy ( err, Er ), nxrmname[J] ) ;
+			strcpy_s ( err, sizeof(err), Er );
+			strcat_s ( err, sizeof(err), nxrmname[J] ) ;
 			Sd->nxrm = idroom ( nxrmname[J], Room, err ) ;
 			Sd->nextroom = Room + Sd->nxrm ;
 		}
@@ -1034,7 +1038,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 
 			if (rsd->nxn < 0 && rsd->mwtype == 'C')
 			{
-				sprintf(err, "%s    room=%s  xxx  (%s):  -%c\n", Er, (Room+rsd->rm)->name,
+				sprintf_s(err, sizeof(err), "%s    room=%s  xxx  (%s):  -%c\n", Er, (Room+rsd->rm)->name,
 					(Room+rsd->nxrm)->name, rsd->ble);
 				Eprint ( "<Roomdata>", err ) ;
 				//getch();
@@ -1511,7 +1515,7 @@ void Roomdata (FILE *fi, char *errkey, EXSF *Exs, DFWL *dfwl,
 	}
 
 	Rmvls->Emrk = scalloc ( Rmvls->Nroom, "<Roomdata> Emrk alloc" ) ;
-	strcpy ( Rmvls->Emrk, "" ) ;
+	strcpy_s ( Rmvls->Emrk, Rmvls->Nroom, "" ) ;
 
 	for ( i = 0; i < Nnxrm; i++ )
 		free ( nxrmname[i] ) ;
@@ -1546,7 +1550,7 @@ void Balloc (int N, RMSRF *Sd, WALL *Wall, MWALL **Mwall, int *Nmwall)
 	ssd = NULL ;
 	*Er = '\0' ;
 
-	sprintf (Er, ERRFMT, "(Balloc)");
+	sprintf_s (Er, sizeof(Er), ERRFMT, "(Balloc)");
 
 	mw = 0 ;
 	M = 0 ;
@@ -1691,7 +1695,7 @@ void Balloc (int N, RMSRF *Sd, WALL *Wall, MWALL **Mwall, int *Nmwall)
 	*Nmwall = Mw->end = mw;
 
 	char	hptest[SCHAR];
-	sprintf(hptest, "Main3");
+	sprintf_s(hptest, sizeof(hptest), "Main3");
 	HeapCheck(hptest);
 	ssd = Sd;
 	for (n = 0; n < N; n++, ssd++)
@@ -1911,11 +1915,11 @@ int		Roomcount ( FILE *fi )
 	N = 0 ;
 	ad = ftell ( fi ) ;
 
-	while ( fscanf ( fi, "%s", s ) != EOF && *s != '*' )
+	while ( fscanf_s ( fi, "%s", s, sizeof(s) ) != EOF && *s != '*' )
 	{
 		N++ ;
 
-		while ( fscanf ( fi, "%s", s ) != EOF )
+		while ( fscanf_s ( fi, "%s", s, sizeof(s) ) != EOF )
 		{
 			if ( strcmp ( s, "*" ) == 0 || strcmp ( s, "#" ) == 0 )
 				break ;
@@ -2018,12 +2022,12 @@ int		Rmsrfcount ( FILE *fi )
 	N = 0 ;
 	ad = ftell ( fi ) ;
 
-	while ( fscanf ( fi, "%s", s ) != EOF )
+	while ( fscanf_s ( fi, "%s", s, sizeof(s) ) != EOF )
 	{
 		if ( strcmp ( s, "*" ) == 0 || strcmp ( s, "#" ) == 0 )
 			break ;
 
-		while ( fscanf ( fi, "%s", s ) != EOF )
+		while ( fscanf_s ( fi, "%s", s, sizeof(s) ) != EOF )
 		{
 			if ( *s == '-' )
 				N++ ;
@@ -2074,7 +2078,7 @@ void	Rmsrfinit ( int N, RMSRF *S )
 		//		S->Rwall = 0.0 ;
 		S->mwside = 'i' ;
 		S->mwtype = 'I' ;
-		strcpy ( S->fnmrk, "" ) ;
+		strcpy_s ( S->fnmrk, sizeof(S->fnmrk), "" ) ;
 		S->alirsch = NULL ;
 		S->ffix_flg = '!' ;
 		S->fsol = NULL ;

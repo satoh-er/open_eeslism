@@ -15,7 +15,7 @@
 
 /* escntllb_s.c */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdlib.h>
 #include "MODEL.h"   /*-----higuchi 070918---*/
 #include "fesy.h"
@@ -73,7 +73,7 @@ int strkey(char *s, char **key)
 		return 0;
 	else
 	{  
-		strcpy(ss, s); 
+		strcpy_s(ss, sizeof(ss), s); 
 		
 		key[0] = ss;
 		nk = 1;

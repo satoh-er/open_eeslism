@@ -15,7 +15,7 @@
 
 /* mcevcooling.c */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -83,13 +83,13 @@ void	Evacint(int Nevac, EVAC *Evac)
 		cat = Evac->cat;
 		if (cat->N < 0)
 		{
-			sprintf(s, "Name=%s catname=%s 分割数が未定義です",
+			sprintf_s(s, sizeof(s), "Name=%s catname=%s 分割数が未定義です",
 				Evac->name, cat->name);
 			Eprint("<Evacint>", s);
 		}
 		if (cat->Adry < 0. || cat->Awet < 0. || (cat->Nlayer < 0 && (cat->hdry < 0. || cat->hwet < 0.)))
 		{
-			sprintf(s, "Name=%s catname=%s Adry=%.1g Awet=%.1g hdry=%.1g hwet=%.1g\n",
+			sprintf_s(s, sizeof(s), "Name=%s catname=%s Adry=%.1g Awet=%.1g hdry=%.1g hwet=%.1g\n",
 				Evac->name, cat->name, cat->Adry, cat->Awet, cat->hdry, cat->hwet);
 			Eprint("<Evacint>", s);
 		}

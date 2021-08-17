@@ -14,7 +14,7 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 /*  room.c       */
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdlib.h>
 #include "common.h"
 #include "MODEL.h" /*----higuchi 070918--*/
@@ -143,7 +143,7 @@ void	RMcf(ROOM *Room)
 	sprintf ( E, "Room=%s  <Rmcf>", Room->name ) ;
         printf("%s, %d, %f",E,N,XA) ;
 	----*/
-	sprintf(E, "<RMcf> name=%s", Room->name);
+	sprintf_s(E, sizeof(E), "<RMcf> name=%s", Room->name);
 	matinv(XA, N, N, E );
        
         /*--

@@ -17,7 +17,7 @@
 
 /*  ポンプ   */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -239,7 +239,7 @@ double	PumpFanPLC ( double XQ, PUMP *Pump )
 
 	if (cat->pfcmp == NULL)
 	{
-		sprintf ( Err, "<PumpFanPLC>  PFtype=%c  type=%s", cat->pftype, cat->type ) ;
+		sprintf_s ( Err, sizeof(Err), "<PumpFanPLC>  PFtype=%c  type=%s", cat->pftype, cat->type ) ;
 		Eprint ( "PUMP oir FAN", Err ) ;
 		Buff = 0.0 ;
 	}
@@ -501,11 +501,11 @@ void	PFcmpdata(FILE *fl, int *Npfcmp, PFCMP *pfcmp)
 	PFCMP	*Cmp ;
 
 	Cmp = pfcmp ;
-	while ( fscanf(fl, "%s", s) != EOF, s[0] != '*' )
+	while ( fscanf_s(fl, "%s", s, sizeof(s)) != EOF, s[0] != '*' )
 	{
 		if (strcmp(s, "!") == 0)
 		{
-			while ( fscanf ( fl,"%c", &c), c != '\n' )
+			while ( fscanf_s ( fl,"%c", &c, 1), c != '\n' )
 				;
 		}
 		else
@@ -517,11 +517,11 @@ void	PFcmpdata(FILE *fl, int *Npfcmp, PFCMP *pfcmp)
 			else
 				Eprint("<pumpfanlst.efl>", s) ;
 			
-			fscanf(fl, "%s", s) ;
+			fscanf_s(fl, "%s", s, sizeof(s)) ;
 			pfcmp->type = stralloc(s) ;
 			
 			i = 0 ;
-			while (fscanf(fl, "%s", s) != EOF, s[0] != ';' )
+			while (fscanf_s(fl, "%s", s, sizeof(s)) != EOF, s[0] != ';' )
 			{
 				pfcmp->dblcoeff[i] = atof(s) ;
 				i++ ;

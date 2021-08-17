@@ -14,7 +14,7 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 /*  rmresid.c   */
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include "MODEL.h" /*----higuchi 070918--*/
 #include "fesy.h"
@@ -38,25 +38,27 @@ void	Residata (FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, int *pmvpri, SIMCO
 	
 	*s = *ss = *sss = *s4 = *err = *Er = '\0' ;
 
-	sprintf (Er, ERRFMT, dsn);
+	sprintf_s (Er, sizeof(Er), ERRFMT, dsn);
 	vall = Schdl->val ;
 	
-	while (fscanf(fi, "%s", s), *s != '*')
+	while (fscanf_s(fi, "%s", s, sizeof(s)), *s != '*')
 	{
-		strcat(strcpy(err, Er), s); 
+		strcpy_s(err, sizeof(err), Er);
+		strcat_s(err, sizeof(err), s); 
 		i = idroom ( s, Room, err ) ;
 		rm = Room + i ;
 		
-		while (fscanf(fi, "%s", s), s[0] != ';')
+		while (fscanf_s(fi, "%s", s, sizeof(s)), s[0] != ';')
 		{
-			strcat(strcpy(err, Er), s); 
+			strcpy_s(err, sizeof(err), Er);
+			strcat_s(err, sizeof(err), s); 
 			ce = strchr(s, ';');
 			st = strchr(s, '=');
 			*st = '\0';
 			
 			if (strcmp(s, "H") == 0)
 			{
-				sscanf(st+1, "(%lf,%[^,],%[^)])", &rm->Nhm, ss, sss);
+				sscanf_s(st+1, "(%lf,%[^,],%[^)])", &rm->Nhm, ss, sizeof(ss), sss, sizeof(sss));
 				//rm->hmnsc = idsch(ss, Sch, err);
 
 				if (( k = idsch(ss, Schdl->Sch, NULL )) >= 0 )
@@ -73,7 +75,7 @@ void	Residata (FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, int *pmvpri, SIMCO
 			}
 			else if (strcmp(s, "comfrt") == 0)
 			{
-				sscanf(st+1, "(%[^,],%[^,],%[^)])", ss, sss, s4);
+				sscanf_s(st+1, "(%[^,],%[^,],%[^)])", ss, sizeof(ss), sss, sizeof(sss), s4, sizeof(s4));
 				//rm->metsc = idsch(ss, Sch, err);
 
 				if (( k = idsch(ss, Schdl->Sch, NULL )) >= 0 )
@@ -101,7 +103,7 @@ void	Residata (FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, int *pmvpri, SIMCO
 			}
 			else
 			{
-				sprintf(err, "Room=%s  %s", rm->name, s );
+				sprintf_s(err, sizeof(err), "Room=%s  %s", rm->name, s );
 				Eprint ( "<Residata>", s ) ;
 			}
 			
@@ -125,15 +127,16 @@ void	Appldata (FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, SIMCONTL *Simc)
 	*s = *ss = *err = *Er = '\0' ;
 	vall = Schdl->val ;
 
-	sprintf (Er, ERRFMT, dsn);
+	sprintf_s (Er, sizeof(Er), ERRFMT, dsn);
 	
-	while (fscanf(fi, "%s", s), s[0] != '*')
+	while (fscanf_s(fi, "%s", s, sizeof(s)), s[0] != '*')
 	{
-		strcat(strcpy(err, Er), s); 
+		strcpy_s(err, sizeof(err), Er);
+		strcat_s(err, sizeof(err), s); 
 		i = idroom(s, Room, err);
 		rm = Room + i ;
 		
-		while (fscanf(fi, "%s", s), s[0] != ';')
+		while (fscanf_s(fi, "%s", s, sizeof(s)), s[0] != ';')
 		{
 			ce = strchr(s, ';');
 			st = strchr(s, '=');
@@ -141,7 +144,7 @@ void	Appldata (FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, SIMCONTL *Simc)
 			
 			if (strcmp(s, "L") == 0)
             {
-				sscanf(st+1, "(%lf,%c,%[^)])", &rm->Light, &rm->Ltyp, ss); 
+				sscanf_s(st+1, "(%lf,%c,%[^)])", &rm->Light, &rm->Ltyp, 1, ss, sizeof(ss)); 
 
 				if (( k = idsch ( ss, Schdl->Sch, NULL )) >= 0 )
 					rm->Lightsch = &vall[k] ;
@@ -152,7 +155,7 @@ void	Appldata (FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, SIMCONTL *Simc)
 			}
 			else if (strcmp(s, "As") == 0)
             {
-				sscanf(st+1, "(%lf,%lf,%[^)])", &rm->Apsc, &rm->Apsr, ss);
+				sscanf_s(st+1, "(%lf,%lf,%[^)])", &rm->Apsc, &rm->Apsr, ss, sizeof(ss));
 
 				if (( k = idsch ( ss, Schdl->Sch, NULL )) >= 0 )
 					rm->Assch = &vall[k] ;
@@ -163,7 +166,7 @@ void	Appldata (FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, SIMCONTL *Simc)
 			}
 			else if (strcmp(s, "Al") == 0)
             {
-				sscanf(st+1, "(%lf,%[^)])", &rm->Apl, ss);
+				sscanf_s(st+1, "(%lf,%[^)])", &rm->Apl, ss, sizeof(ss));
 
 				if (( k = idsch ( ss, Schdl->Sch, NULL )) >= 0 )
 					rm->Alsch = &vall[k] ;
@@ -174,7 +177,7 @@ void	Appldata (FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, SIMCONTL *Simc)
 			}
 			else if (strcmp(s, "AE") == 0)
             {
-				sscanf(st+1, "(%lf,%[^)])", &rm->AE, ss);
+				sscanf_s(st+1, "(%lf,%[^)])", &rm->AE, ss, sizeof(ss));
 
 				if (( k = idsch ( ss, Schdl->Sch, NULL )) >= 0 )
 					rm->AEsch = &vall[k] ;
@@ -183,7 +186,7 @@ void	Appldata (FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, SIMCONTL *Simc)
 			}
 			else if (strcmp(s, "AG") == 0)
             {
-				sscanf(st+1, "(%lf,%[^)])", &rm->AG, ss);
+				sscanf_s(st+1, "(%lf,%[^)])", &rm->AG, ss, sizeof(ss));
 
 				if (( k = idsch ( ss, Schdl->Sch, NULL )) >= 0 )
 					rm->AGsch = &vall[k] ;
@@ -192,7 +195,7 @@ void	Appldata (FILE *fi, char *dsn, SCHDL *Schdl, ROOM *Room, SIMCONTL *Simc)
 			}
 			else
 			{
-				sprintf ( err, "Room=%s  %s", rm->name, s ) ;
+				sprintf_s ( err, sizeof(err), "Room=%s  %s", rm->name, s ) ;
 				Eprint ( "<Appldata>", err ) ;
 			}
 			

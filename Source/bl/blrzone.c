@@ -14,7 +14,7 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 /* rzone.c */
-#define _CRT_SECURE_NO_WARNINGS
+
 #include "fesy.h"
 #include "fnesy.h"
 #include "fnfio.h"
@@ -28,14 +28,14 @@ void	Rzonedata(FILE *fi, char *dsn, int Nroom, ROOM *Room, int *Nrzone, RZONE *R
 	char	s[SCHAR];
 	ROOM	*Rm ;
 	
-	while ( fscanf ( fi, "%s", s ), *s != '*')
+	while ( fscanf_s(fi, "%s", s, sizeof(s)), *s != '*')
 	{    
-		fscanf ( fi, "%s", s ) ;
+		fscanf_s(fi, "%s", s, sizeof(s)) ;
 		Rzone->name = stralloc(s);
 		Rzone->Nroom = 0;
 		Rzone->Afloor = 0.0;
 		
-		while ( fscanf ( fi, "%s", s), *s != ';')
+		while ( fscanf_s ( fi, "%s", s, sizeof(s)), *s != ';')
 		{
 			if (( i = idroom ( s, Room, NULL )) < Nroom )
 			{

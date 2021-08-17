@@ -14,7 +14,7 @@
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
 /*   binit.c   */
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
@@ -39,11 +39,11 @@ void PCMdata(FILE *fi, char *dsn, PCM **pcm, int *Npcm, char *pcmiterate)
 	int		N, j;
 
 	PCMa = NULL;
-	sprintf(E, ERRFMT, dsn);
+	sprintf_s(E, sizeof(E), ERRFMT, dsn);
 
 	N = PCMcount(fi);
 
-	strcpy(s, "PCMdata --");
+	strcpy_s(s, SCHAR, "PCMdata --");
 
 	if (N > 0)
 	{
@@ -88,7 +88,7 @@ void PCMdata(FILE *fi, char *dsn, PCM **pcm, int *Npcm, char *pcmiterate)
 	}
 
 	PCMa = *pcm;
-	while (fscanf(fi, " %s ", s) != EOF)
+	while (fscanf_s(fi, " %s ", s, sizeof(s)) != EOF)
 	{
 		//printf( "<WAlldata> 1.... s=%s\n", s ) ;
 
@@ -97,7 +97,7 @@ void PCMdata(FILE *fi, char *dsn, PCM **pcm, int *Npcm, char *pcmiterate)
 
 		PCMa->name = stralloc(s);							// PCM名称
 
-		while (fscanf(fi, "%s", s), *s != ';')
+		while (fscanf_s(fi, "%s", s, sizeof(s)), *s != ';')
 		{
 			//printf ( "<Walldata> 2..... s=%s\n", s ) ;
 
@@ -288,8 +288,7 @@ void TableRead(CHARTABLE *ct)
 {
 	if (ct->filename != NULL)
 	{
-		ct->fp = fopen(ct->filename, "r");
-		if (ct->fp == NULL)
+		if (fopen_s(&(ct->fp), ct->filename, "r") != 0)
 			printf("<PCMdata> xxxx file not found %s xxxx\n", ct->filename);
 		else
 		{
@@ -297,7 +296,7 @@ void TableRead(CHARTABLE *ct)
 			char c;
 			int	 row;
 			row = 0;
-			while (fscanf(ct->fp, "%c", &c) != EOF)
+			while (fscanf_s(ct->fp, "%c", &c, 1) != EOF)
 			{
 				if (c == '\n')
 					row++;
@@ -310,7 +309,7 @@ void TableRead(CHARTABLE *ct)
 			if (ct->T == NULL || ct->Chara == NULL)
 				printf("<PCMdata> メモリの確保に失敗\n");
 			// 再度ファイルを開く
-			ct->fp = fopen(ct->filename, "r");
+			fopen_s(&ct->fp, ct->filename, "r");
 			int i;
 			int st = 0, tt = 0;
 			double spheat, prevheat, prevTemp;
@@ -323,7 +322,7 @@ void TableRead(CHARTABLE *ct)
 			for (i = 0; i < row; i++, T++, Char++)
 			{
 				// 温度の読み込み
-				fscanf(ct->fp, " %lf ", T);
+				fscanf_s(ct->fp, " %lf ", T);
 				// テーブルの下限温度
 				if (st == 0)
 				{
@@ -339,7 +338,7 @@ void TableRead(CHARTABLE *ct)
 				}
 				double dblTemp;
 				// 特性値の読み込み
-				fscanf(ct->fp, " %lf ", &dblTemp);
+				fscanf_s(ct->fp, " %lf ", &dblTemp);
 				*Char = dblTemp;
 				// 見かけの比熱の場合
 				if (ct->tabletype == 'h')
@@ -380,7 +379,7 @@ int		PCMcount(FILE *fi)
 
 	add = ftell(fi);
 
-	while (fscanf(fi, " %s ", s) != EOF)
+	while (fscanf_s(fi, " %s ", s, sizeof(s)) != EOF)
 	{
 		if (*s == '*')
 			break;

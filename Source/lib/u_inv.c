@@ -15,7 +15,7 @@
 
 /*  inv.c  */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -63,9 +63,9 @@ void	matinv(double *a, int n, int m, char *s)
 		if (big == 0.0)
 		{
 			if (s != NULL)
-				sprintf(E, "対角要素に０があります  matrix=%dx%d  i=%d  [%s]", m, m, i, s);
+				sprintf_s(E, sizeof(E), "対角要素に０があります  matrix=%dx%d  i=%d  [%s]", m, m, i, s);
 			else
-				sprintf(E, "対角要素に０があります  matrix=%dx%d  i=%d", m, m, i);
+				sprintf_s(E, sizeof(E), "対角要素に０があります  matrix=%dx%d  i=%d", m, m, i);
 
 			matprint("%.2g  ", m, mattemp);
 			free(mattemp);

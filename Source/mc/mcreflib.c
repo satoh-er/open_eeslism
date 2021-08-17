@@ -15,7 +15,7 @@
 
 /*   mc_reflib.c                     */                           
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include "esize.h"
 #include "fesy.h"
@@ -35,22 +35,22 @@ void Refcmpdat(FILE *frf, int *Nrfcmp, RFCMP *Rfcmp)
 	
 	rfc = Rfcmp;
 	
-	while (fscanf(frf, "%s", s), s[0] != '*')
+	while (fscanf_s(frf, "%s", s, sizeof(s)), s[0] != '*')
 	{
         Rfcmp->name = stralloc(s);
 		
-		fscanf(frf, "%s", s);
+		fscanf_s(frf, "%s", s, sizeof(s));
 		Rfcmp->cname = stralloc(s);
 		
 		for (i=0; i<4; i++)
-			fscanf(frf, "%lf", &Rfcmp->e[i]);
+			fscanf_s(frf, "%lf", &Rfcmp->e[i]);
 		for (i=0; i<4; i++)
-			fscanf(frf, "%lf", &Rfcmp->d[i]);
+			fscanf_s(frf, "%lf", &Rfcmp->d[i]);
 		for (i=0; i<4; i++)
-			fscanf(frf, "%lf", &Rfcmp->w[i]);
-		fscanf(frf, "%lf %lf %lf %lf", &Rfcmp->Teo[0], &Rfcmp->Teo[1], 	
+			fscanf_s(frf, "%lf", &Rfcmp->w[i]);
+		fscanf_s(frf, "%lf %lf %lf %lf", &Rfcmp->Teo[0], &Rfcmp->Teo[1], 	
 			&Rfcmp->Tco[0], &Rfcmp->Tco[1]);
-		fscanf(frf, "%lf", &Rfcmp->Meff);
+		fscanf_s(frf, "%lf", &Rfcmp->Meff);
 		
 		Rfcmp++;	
 	}

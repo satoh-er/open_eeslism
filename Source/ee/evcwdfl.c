@@ -15,7 +15,7 @@
 
 /* evcwdfl.c  */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdlib.h>
 #include <ctype.h>
 #include <math.h>
@@ -39,14 +39,14 @@ void wdflinit(SIMCONTL *Simc, ESTL *Estl, TLIST *Tlist)
 	
 	/****printf("<<wdflinit>> wdloc=%s\n", s);****/
 	
-	sprintf(Err, ERRFMT, "(wdflinit)");   
+	sprintf_s(Err, sizeof(Err), ERRFMT, "(wdflinit)");   
 
 	Locinit (Simc->Loc) ;
 	loc = Simc->Loc;
 
 	m = -1;
 	
-	while (sscanf(s, "%s", ss), *s != ';')
+	while (sscanf_s(s, "%s", ss, sizeof(ss)), *s != ';')
 	{
 		N = (int)strlen(ss);
 		if ((st = strchr(ss, '=')) != NULL)

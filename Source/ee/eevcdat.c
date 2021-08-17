@@ -15,7 +15,7 @@
 
 /* eevcdat.c */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <ctype.h>
 #include <stdlib.h>
 #include "common.h"
@@ -34,7 +34,7 @@ void Vcfdata(FILE *fi, SIMCONTL *Simcon)
 	int		i, N, j ;
 	char     s[SCHAR], Err[SCHAR], E[SCHAR*3+128];
 	
-	sprintf(Err, ERRFMT, "(vcfileint)");
+	sprintf_s(Err, sizeof(Err), ERRFMT, "(vcfileint)");
 	
 	//N = VCFILEMAX ;
 	N = VCFcount ( fi ) ;
@@ -59,7 +59,7 @@ void Vcfdata(FILE *fi, SIMCONTL *Simcon)
 			V->Estl.Npreq = V->Estl.Npprd = V->Estl.Ndata = 0 ;
 			V->Estl.Rq = NULL ;
 			V->Estl.Prq = NULL ;
-			strcpy ( V->Estl.vreq, "" ) ;
+			strcpy_s ( V->Estl.vreq, sizeof(V->Estl.vreq), "" ) ;
 
 			for ( j = 0; j < VTYPEMAX; j++ )
 				V->Estl.unit[j] = NULL ;
@@ -67,19 +67,19 @@ void Vcfdata(FILE *fi, SIMCONTL *Simcon)
 	}
 
 	Vcfile = Simcon->Vcfile;
-	while (fscanf(fi, "%s", s), *s != '*')
+	while (fscanf_s(fi, "%s", s, sizeof(s)), *s != '*')
 	{
 		Vcfile->name = stralloc(s);
-		while (fscanf(fi, "%s", s), *s != ';')
+		while (fscanf_s(fi, "%s", s, sizeof(s)), *s != ';')
 		{
 			if (strcmp(s, "-f") == 0)
 			{
-				fscanf(fi, "%s", s);
+				fscanf_s(fi, "%s", s, sizeof(s));
 				Vcfile->fname = stralloc(s);
 			}
 			else
 			{
-				sprintf ( E, "Vcfile=%s  %s %s", Vcfile->name, Err, s);
+				sprintf_s ( E, sizeof(E), "Vcfile=%s  %s %s", Vcfile->name, Err, s);
 				Eprint ( "<Vcfdata>", E ) ;
 			}
 		}
@@ -94,7 +94,7 @@ void Vcfdata(FILE *fi, SIMCONTL *Simcon)
 	
 	for (i = 0; i < Simcon->Nvcfile; i++, Vcfile++)
 	{
-		if((Vcfile->fi = fopen(Vcfile->fname, "r")) == 0)
+		if(fopen_s(&(Vcfile->fi), Vcfile->fname, "r") != 0)
 		{
 			Eprint ( "<Vcfdata>", Vcfile->fname ) ;
 
@@ -151,7 +151,7 @@ int	VCFcount ( FILE *fi )
 
 	ad = ftell ( fi ) ;
 
-	while ( fscanf ( fi, " %s ", s ), s[0] != '*' )
+	while ( fscanf_s ( fi, " %s ", s, sizeof(s) ), s[0] != '*' )
 	{
 		if ( strcmp ( s, "-f" ) == 0 )
 			N++ ;
@@ -171,10 +171,10 @@ void flindat(FLIN *Flin)
 	int  n = 0;
 	char     Err[SCHAR];
 	
-	sprintf(Err, ERRFMT, "(flindat)");
+	sprintf_s(Err, sizeof(Err), ERRFMT, "(flindat)");
 	
 	ss = Flin->cmp->tparm;
-	while(sscanf(ss, "%s", s), strchr(s,'*') == NULL)
+	while(sscanf_s(ss, "%s", s, sizeof(s)), strchr(s,'*') == NULL)
 	{
 		ss += strlen(s);
 		while(isspace(*ss))
@@ -351,14 +351,14 @@ void Vcfinput(DAYTM *Daytm, int Nvcfile, VCFILE *Vcfile, char perio)
 		}
 		if ( idend == 0 )
 		{
-			sprintf(E, "Vcfinput file-end: %s\n", Vcfile->fname);
+			sprintf_s(E, sizeof(E), "Vcfinput file-end: %s\n", Vcfile->fname);
 
 			Eprint ( "<Vcfinput>", E );
 		}
 		
 		if ( iderr )
 		{
-			sprintf(E,"Vcfinput xxx file=%s prog_MM/DD/TM=%d/%d/%d file_MM/DD/TM=%d/%d/%d\n",
+			sprintf_s(E, sizeof(E), "Vcfinput xxx file=%s prog_MM/DD/TM=%d/%d/%d file_MM/DD/TM=%d/%d/%d\n",
 				Vcfile->fname, Daytm->Mon, Daytm->Day, Daytm->ttmm,
 				Tmdt.Mon, Tmdt.Day, Tmdt.Time);
 			

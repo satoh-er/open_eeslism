@@ -13,7 +13,7 @@
 //You should have received a copy of the GNU General Public License
 //along with Foobar.If not, see < https://www.gnu.org/licenses/>.
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
@@ -44,7 +44,7 @@ char *STRCUT(char *DATA, char a)
 	name=stralloc(res+1) ;
 	//printf ( "KKKK4\n" ) ;
 
-	strcpy(rev2,name) ;
+	strcpy_s(rev2, len + 1, name) ;
 	//printf ( "KKKK5\n" ) ;
 	ret=rev2 ;
 	len = (int)strlen(rev2);

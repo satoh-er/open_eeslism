@@ -17,7 +17,7 @@
 
 /*  OM用変風量コントローラ */
 
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -279,7 +279,7 @@ int colkey(char *s, char **key)
 		return 0;
 	else
 	{  
-		strcpy(ss, s); 
+		strcpy_s(ss, sizeof(ss), s); 
 		
 		key[0] = ss;
 		nk = 1;
