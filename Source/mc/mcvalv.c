@@ -264,3 +264,19 @@ void	ValvControl ( FILE *fi,  int Ncompnt, COMPNT *Compnt, SCHDL *Schdl, SIMCONT
 	Vb->Tin = &elout->sysv ;
 	/**********************************************/
 }
+
+// バルブの内部変数へのポインタ
+int valv_vptr(char** key, VALV* Valv, VPTR* vptr)
+{
+	int err = 0;
+
+	if (strcmp(key[1], "value") == 0)
+	{
+		vptr->ptr = &Valv->x;
+		vptr->type = VAL_CTYPE;
+	}
+	else
+		err = 1;
+
+	return err;
+}
