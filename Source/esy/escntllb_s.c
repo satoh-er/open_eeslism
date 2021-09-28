@@ -236,6 +236,8 @@ int kynameptr(char *s, SIMCONTL *Simc, int Ncompnt, COMPNT *Compnt, int Nmpath, 
 								err = pipevptr(key, (PIPE *)Compnt->eqp, vptr) ;
 							else if (strcmp(e, RDPANEL_TYPE) == 0)
 								err = rdpnlvptr(key, (RDPNL *)Compnt->eqp, vptr) ;
+							else if (strcmp(e, VALV_TYPE) == 0 || strcmp(key, TVALV_TYPE) == 0)
+								err = valv_vptr(key, (VALV*)Compnt->eqp, vptr);
 							else
 								Eprint ( "CONTL", Compnt->name ) ;
 						}
