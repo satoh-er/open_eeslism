@@ -17,6 +17,7 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 #include "MODEL.h" /*---------higuchi 070918------------*/
 #include "fesy.h"
 #include "fnbld.h"
@@ -134,6 +135,11 @@ void Fotinit(int Nroom, ROOM *Room)
 			printf("-----Fotint i=%d %s  Ntr=%d Nrp=%d\n", 
 				i, Room->name, Room->Ntr, Room->Nrp); ***************/
 				
+				free(Room->rmld->FOTN);
+				free(Room->rmld->FOPL);
+				Room->rmld->FOTN = NULL;
+				Room->rmld->FOPL = NULL;
+
 				Room->rmld->FOTN = dcalloc(Room->Ntr, "Fotint");
 				Room->rmld->FOPL = dcalloc(Room->Nrp, "Fotint"); 
 			}
