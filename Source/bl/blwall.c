@@ -562,6 +562,9 @@ void Twall(int M, int mp, double *UX, double uo, double um,
 			}
 		}
 	}
+
+	free(Ttemp);
+	free(Toldcalc);
 }
 
 /* --------------------------------------------- */
