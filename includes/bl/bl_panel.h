@@ -1,4 +1,4 @@
-#pragma oncce
+#pragma once
 
 void panelwp (RDPNL *rdpnl);
 void Panelcf (RDPNL *rdpnl);
