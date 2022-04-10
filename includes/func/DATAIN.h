@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 void HISASHI(FILE *fi,sunblk *sb) ;
 void BARUKO(FILE *fi,sunblk *sb) ;
 void SODEK(FILE *fi,sunblk *sb) ;

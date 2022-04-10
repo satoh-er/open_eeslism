@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //OP,LPの座標出力（デバッグ用）
 

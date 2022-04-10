@@ -1,4 +1,4 @@
-//This file is part of EESLISM.
+﻿//This file is part of EESLISM.
 //
 //Foobar is free software : you can redistribute itand /or modify
 //it under the terms of the GNU General Public License as published by

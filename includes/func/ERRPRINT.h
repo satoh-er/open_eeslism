@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 void errbekt_printf(int n, int m, bekt *a, char *name) ;
 

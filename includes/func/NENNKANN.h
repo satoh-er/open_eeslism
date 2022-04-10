@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 /*----年間通日を求める-----*/
