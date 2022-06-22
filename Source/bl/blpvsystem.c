@@ -65,7 +65,7 @@ double	FNTPV(RMSRF *Sd, WDAT *Wd, EXSFS *Exsfs)
 	Exs = &Exsfs->Exs[Sd->exs] ;
 	Ipv = ( wall->tra - Sd->PVwall.Eff ) * Sd->Iwall ;
 
-	if ( Sd->rpnl->cG > 0.)
+	if (Sd->rpnl != NULL && Sd->rpnl->cG > 0.)
 	{
 		//printf("Tf=%lf\n", Sd->Tf ) ;
 		TPV = (wall->PVwallcat.ap * Sd->Tf + *Exs->alo * Wd->T + Ipv) / (wall->PVwallcat.ap + *Exs->alo) ;
