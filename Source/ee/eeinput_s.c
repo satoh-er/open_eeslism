@@ -543,7 +543,7 @@ void Eeinput(char *Ipath, SIMCONTL *Simc, SCHDL *Schdl,
 	for (nday = Simc->daystart; nday <= Simc->dayend; nday++)
 	{
 		//printf("nday=%d\n",nday) ;
-		if (Simc->dayprn[nday])
+		if (Simc->dayprn[nday % 366])
 			Simc->Ntimehrprt += Simc->Dayntime;
 	}
 #if SIMUL_BUILDG  /******************************/
