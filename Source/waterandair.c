@@ -38,7 +38,9 @@ double FNalam(double dblT)
 {
 	double dblTemp ;
 
-    if ( dblT > -50. && dblT < 100.)
+    if (dblT <= -50.0)
+		dblTemp = -999.0;
+    else if ( dblT > -50. && dblT < 100.)
         dblTemp = 0.0241 + 0.000077 * dblT ;
     else
         dblTemp = -999. ;
@@ -72,7 +74,9 @@ double FNwrow(double dblT)
 {
 	double dblTemp ;
 
-    if (dblT > 0. && dblT < 100. )
+    if (dblT <= 0.0)
+		dblTemp = -999.0;
+    else if (dblT > 0. && dblT < 100. )
         dblTemp = 1000.5 - 0.068737 * dblT - 0.0035781 * dblT * dblT ;
 	else if (dblT < 200.)
         dblTemp = 1008.7 - 0.28735 * dblT - 0.0021643 * dblT * dblT ;
@@ -87,7 +91,9 @@ double FNwc(double dblT)
 {
 	double dblTemp ;
 
-    if (dblT > 0. && dblT < 100.)
+    if (dblT <= 0.0)
+        dblTemp = -999.0;
+    else if (dblT > 0. && dblT < 100.)
         dblTemp = 4210.4 - 1.356 * dblT + 0.014588 * dblT * dblT ;
     else if (dblT < 200.)
         dblTemp = 4306.8 - 2.7913 * dblT + 0.018773 * dblT * dblT ;
@@ -102,7 +108,9 @@ double FNwlam(double dblT)
 {
 	double dblTemp ;
 
-    if (dblT > 0. && dblT < 100.)
+    if (dblT <= 0.0)
+        dblTemp = -999.0;
+    else if (dblT > 0. && dblT < 100.)
         dblTemp = 0.56871 + 0.0018421 * dblT - 7.0427e-6 * dblT * dblT ;
     else if (dblT < 200.)
         dblTemp = 0.60791 + 0.0012032 * dblT - 4.7025e-6 * dblT * dblT ;
@@ -117,7 +125,9 @@ double FNwnew(double dblT)
 {
 	double dblTemp ;
 
-    if (dblT > 0. && dblT < 50.)
+    if (dblT <= 0.0)
+        dblTemp = -999.0;
+    else if (dblT > 0. && dblT < 50.)
         dblTemp = exp(-13.233 - 0.032516 * dblT + 0.000068997 * dblT * dblT
                 + 0.0000069513 * dblT * dblT * dblT - 0.00000009386 * dblT * dblT* dblT* dblT) ;
 	else if (dblT < 100.)
@@ -136,7 +146,9 @@ double FNwbeta(double dblT)
 {
 	double dblTemp ;
 
-    if (dblT > 0. && dblT < 50.)
+    if (dblT <= 0.0)
+        dblTemp = -999.0;
+    else if (dblT > 0. && dblT < 50.)
         dblTemp = -0.060159 + 0.018725 * dblT - 0.00045278 * dblT * dblT 
                 + 0.0000098148 * dblT * dblT * dblT  - 0.000000083333 * dblT * dblT * dblT * dblT ;
     else if (dblT < 100.)
